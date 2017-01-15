@@ -1,5 +1,5 @@
 {
-  "name": "web-dev",
+  "name": "webdev",
   "version": "1.0.0",
   "description": "Web Dev at Northeastern University",
   "main": "server.js",
@@ -14,6 +14,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Jose G. Annunziato",
-  "license": "ISC"
+  "author": "Sree Keerthi Matta",
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sreekmatta/matta-sreekeerthi-webdev.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/sreekmatta/matta-sreekeerthi-webdev/issues"
+  },
+  "homepage": "https://github.com/sreekmatta/matta-sreekeerthi-webdev#readme"
 }
