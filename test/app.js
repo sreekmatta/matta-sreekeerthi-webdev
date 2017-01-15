@@ -13,7 +13,7 @@ module.exports = function(app)
     //         process.env.MLAB_PORT + '/' +
     //         process.env.MLAB_APP_NAME;
     // }
-        connectionString = "mongodb://admin:Bolsol@2016@ds111549.mlab.com:11549/heroku_4rnhbbns";
+        connectionString = "mongodb://keerthi:abcd@ds111549.mlab.com:11549/heroku_4rnhbbns";
 
     var mongoose = require("mongoose");
     mongoose.connect(connectionString);
