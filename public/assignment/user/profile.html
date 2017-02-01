@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          charset="UTF-8"/>
+    <title>Profile</title>
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                Fixed Top
+        <div class="row">
+
+            <div class="col-xs-9">
+                <a href="#" class="navbar-link navbar-text pull-left">
+                    <span class="glyphicon glyphicon-home msk-black"> </span>
+                </a><a class="navbar-brand" href="#">
+                Profile
             </a>
-            <p class="navbar-text pull-right">
-                <a href="#" class="navbar-link">
-          <span class="glyphicon glyphicon-plus">
-          </span>
+            </div>
+
+            <div class="col-xs-3">
+                <a href="profile.html" class="navbar-link navbar-text pull-right">
+                    <span class="glyphicon glyphicon-ok msk-black"> </span>
                 </a>
-            </p>
+            </div>
         </div>
     </div>
 </nav>
 
 
-    <div class="container">
-        <h1>Profile</h1>
+    <div class="container-fluid msk-main-form">
 
         <form>
             <div class="form-group">
@@ -48,35 +55,16 @@
         </form>
 
         <a class="btn btn-primary btn-block"
-           href="website-list.html">Websites</a>
+           href="../website/website-list.html">Websites</a>
         <a class="btn btn-danger  btn-block"
            href="login.html">Logout</a>
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-star"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-heart"></span>
-                </a>
-            </div>
-        </div>
+    <div class="container-fluid">
+        <a href="#" class="navbar-link navbar-text pull-right">
+            <span class="glyphicon glyphicon-user msk-black"> </span>
+        </a>
     </div>
 </nav>
 

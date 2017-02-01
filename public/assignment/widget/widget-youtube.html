@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          charset="UTF-8"/>
+    <title>Widget | Video</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+    <link href="../css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="widget-list.html" class="navbar-link navbar-text pull-left">
+                    <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
+                </a>
+                <a class="navbar-brand pull-left" href="#">
+                    Edit Video
+                </a>
+                <a href="widget-list.html" class="navbar-link navbar-text pull-right">
+                    <span class="glyphicon glyphicon-ok msk-black"> </span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid msk-main-form">
+    <div class="row">
+        <div class="col-xs-12">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label for="text">Text</label>
+                    <input type="text" class="form-control" id="text" placeholder="Text">
+                </div>
+                <div class="form-group">
+                    <label for="url">URL</label>
+                    <input type="url" class="form-control" id="url" placeholder="URL">
+                </div>
+                <div class="form-group">
+                    <label for="width">Width (in percentage)</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="width" placeholder="Width">
+                        <div class="input-group-addon">%</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-danger  btn-block"
+                       href="widget-list.html">Delete</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <a href="../user/profile.html" class="navbar-link navbar-text pull-right">
+            <span class="glyphicon glyphicon-user msk-black"> </span>
+        </a>
+    </div>
+</nav>
+
+</body>
+</html>

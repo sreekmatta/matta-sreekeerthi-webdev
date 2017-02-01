@@ -1,7 +1,108 @@
+body {
+    padding-top: 36px;
+}
+
 input.form-control {
     margin-bottom: 5px;
 }
 
-body {
-    padding-top: 36px;
+.navbar-default{
+    background-color: #337ab7 !important;
 }
+
+a.navbar-brand{
+    color: #000000 !important;
+    font-size: 28px;
+}
+
+a.navbar-brand:hover {
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+a.pull-right{
+    margin-right: 0;
+}
+
+.msk-black {
+    color: #000000;
+}
+span.msk-black:hover{
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+.glyphicon{
+    font-size: 20px;
+    top: -1px !important;
+}
+
+.msk-main-form{
+    margin-top: 30px !important;
+    margin-bottom: 65px !important;
+    margin-left: 3.5% !important;
+    margin-right: 3.5% !important;
+}
+
+.msk-website-row a{
+    font-size: 16px;
+}
+
+.msk-website-row a:hover{
+    text-decoration: none;
+}
+
+li.msk-website-row:hover{
+    background-color: beige;
+}
+
+textarea { resize: vertical; }
+
+.msk-widget-edit{
+
+    z-index: 2;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    border: solid beige 1px;
+    border-bottom-left-radius: 7px;
+    background-color: beige;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+a.msk-extreme-right{
+    margin-right: 0px !important;
+}
+
+.msk-index-page{
+    background: url("../images/website-assignment-background.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    height: 10em;
+    position: relative
+}
+
+.msk-index-page h2{
+    color: white !important;
+}
+
+.msk-center{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.msk-button{
+    width: 60% !important;
+    margin-left: 20%;
+}
+
+
