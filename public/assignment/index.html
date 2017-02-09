@@ -4,18 +4,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
           charset="UTF-8"/>
     <title>Assignment | Home</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- CDN for angular.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!-- local files for Style-->
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
 
+    <!-- local files for js-->
+    <script src="js/jquery-1.11.1.js"></script>
+    <script src="js/angular.min.js"></script>
+
+    <!-- CDN for style -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+
 </head>
-<body class="msk-index-page">
-    <div class="msk-center">
-        <h2>Create a Website in Few Steps</h2>
-        <div class="form-group">
-            <a class="btn btn-default  btn-block msk-button"
-               href="user/login.html">Create Website</a>
-        </div>
+<body ng-app="WebAppMaker">
+    <div ng-view>
+
     </div>
+
 </body>
 </html>
