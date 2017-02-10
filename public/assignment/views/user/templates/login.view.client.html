@@ -3,14 +3,14 @@
             <div class="row">
 
                 <div class="col-xs-9">
-                        <a href="../../index.html" class="navbar-link navbar-text pull-left">
+                        <a href="#!/" class="navbar-link navbar-text pull-left">
                             <span class="glyphicon glyphicon-home msk-black"> </span>
                         </a>
                         <a class="navbar-brand" href="#">Login</a>
                     </div>
 
                     <div class="col-xs-3">
-                        <a href="#" class="navbar-link navbar-text pull-right">
+                        <a href="#!/" class="navbar-link navbar-text pull-right">
                             <span class="glyphicon glyphicon-ok msk-black"> </span>
                         </a>
                     </div>
@@ -23,21 +23,24 @@
         <div class="container-fluid msk-main-form">
             <form>
                 <label for ="username">Username</label>
-                <input type="text"
+                <input ng-model="user.username"
+                       type="text"
                        id="username"
                        class="form-control"
                        placeholder="username123"/>
 
                 <label for ="password">Password</label>
-                <input type="password"
+                <input ng-model="user.password"
+                        type="password"
                        id="password"
                        class="form-control"
                        placeholder="Password@1234"/>
 
                 <a class="btn btn-primary btn-block"
-                   href="profile.view.client.html">Login</a>
+                   href="#!/user/:uid"
+                    ng-click="model.login(user)" >Login</a>
                 <a class="btn btn-success btn-block"
-                   href="register.view.client.html">Register</a>
+                   href="#!/register">Register</a>
             </form>
         </div>
 

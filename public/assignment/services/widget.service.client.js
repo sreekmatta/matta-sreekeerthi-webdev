@@ -17,18 +17,36 @@
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
 
-        var api = {
-            findAllWidgets : findAllWidgets
-
+        var apiWidgets = {
+            createWidget : createWidget,
+            findAllWidgets : findAllWidgets,
+            findWidgetsByPageId : findWidgetsByPageId,
+            findWidgetById : findWidgetById,
+            updateWidget : updateWidget,
+            deleteWidget : deleteWidget
         };
 
-        return api;
+        return apiWidgets;
 
+        function createWidget(pageId, widget){
+
+        }
         function findAllWidgets(pageId){
-
 
         }
 
+        function findWidgetsByPageId(pageId){
+
+        }
+        function findWidgetById(widgetId){
+
+        }
+        function updateWidget(widgetId, widget){
+
+        }
+        function deleteWidget(widgetId){
+
+        }
 
     }
 
