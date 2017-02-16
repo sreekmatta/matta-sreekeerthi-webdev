@@ -2,29 +2,25 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4 hidden-sm hidden-xs">
-                <a href="#!/user/:uid/website" class="navbar-link navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/website" class="navbar-link navbar-text pull-left">
                     <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
                 </a>
                 <a class="navbar-brand" href="#">
                     Websites
                 </a>
-                <a href="#!/user/:uid/website/new" class="navbar-link navbar-text pull-right msk-extreme-right">
+                <a href="#!/user/{{model.userId}}/website/new" class="navbar-link navbar-text pull-right msk-extreme-right">
                     <span class="glyphicon glyphicon-plus msk-black"> </span>
                 </a>
 
             </div>
 
             <div class="visible-lg visible-md col-md-8 visible-xs visible-sm col-sm-12">
-                <a href="#!/user/:uid/website" class="visible-xs visible-sm navbar-link navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/website" class="visible-xs visible-sm navbar-link navbar-text pull-left">
                     <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
                 </a>
-                <a class="navbar-brand pull-left" href="#">
+                <a class="navbar-brand pull-left msk-main-heading" href="#">
                     Edit Website
                 </a>
-                <a href="#!/user/:uid/website" class="navbar-link navbar-text pull-right">
-                    <span class="glyphicon glyphicon-ok msk-black"> </span>
-                </a>
-
             </div>
         </div>
     </div>
@@ -34,37 +30,30 @@
     <div class="row">
         <div class="col-md-4 hidden-sm hidden-xs">
             <ul class="list-group">
-                <li class="list-group-item msk-website-row">
-                    <a href="#!/user/:uid/website/:wid/page" class="">
-                        Address Book App
-                    </a>
-                    <a class="pull-right" href="#!/user/:uid/website/:wid">
-                        <span class="glyphicon glyphicon-cog msk-black"> </span>
-                    </a>
+                <li class="list-group-item msk-table-heading">
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-10">
+                            Name
+                        </div>
+                        <div class="col-xs-2 col-sm-2">
+
+                        </div>
+                    </div>
                 </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#!/user/:uid/website/:wid/page" class="">
-                        Blogger
-                    </a>
-                    <a class="pull-right" href="#!/user/:uid/website/:wid">
-                        <span class="glyphicon glyphicon-cog msk-black"> </span>
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#!/user/:uid/website/:wid/page" class="">
-                        Blogging App
-                    </a>
-                    <a class="pull-right" href="#!/user/:uid/website/:wid">
-                        <span class="glyphicon glyphicon-cog msk-black"> </span>
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#!/user/:uid/website/:wid/page" class="">
-                        Script Testing App
-                    </a>
-                    <a class="pull-right" href="#!/user/:uid/website/:wid">
-                        <span class="glyphicon glyphicon-cog msk-black"> </span>
-                    </a>
+
+                <li ng-repeat="website in model.websites" class="list-group-item msk-website-row">
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-10">
+                            <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
+                                {{website.name}}
+                            </a>
+                        </div>
+                        <div class="col-xs-2 col-sm-2">
+                            <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -73,17 +62,29 @@
             <form>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name">
+                    <input type="text"
+                           class="form-control"
+                           id="name"
+                           placeholder="Name"
+                           ng-model="model.currentWebsite.name">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control" id="description" placeholder="Description" rows="5"></textarea>
-                </div>
-                <div class="form-group">
-                    <a class="btn btn-danger  btn-block"
-                       href="#!/user/:uid/website">Delete</a>
+                    <textarea class="form-control"
+                              id="description"
+                              placeholder="Description"
+                              rows="5"
+                              ng-model="model.currentWebsite.description"></textarea>
                 </div>
             </form>
+            <a ng-click="model.editWebsite(model.currentWebsite)"
+               class="btn btn-primary  btn-block">
+                Edit Website
+            </a>
+            <a ng-click="model.deleteWebsite()"
+               class="btn btn-danger  btn-block">
+                Delete
+            </a>
         </div>
     </div>
 
@@ -91,7 +92,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <a href="#!/user/:uid" class="navbar-link navbar-text pull-right">
+        <a href="#!/user/{{model.userId}}" class="navbar-link navbar-text pull-right">
             <span class="glyphicon glyphicon-user msk-black"> </span>
         </a>
     </div>

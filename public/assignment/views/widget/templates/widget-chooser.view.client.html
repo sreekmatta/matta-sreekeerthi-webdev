@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="navbar-link navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link navbar-text pull-left">
                     <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
                 </a>
                 <a class="navbar-brand" href="#">Choose Widget</a>
@@ -15,67 +15,19 @@
     <div class="row">
         <div class="col-xs-12">
             <ul class="list-group">
-                <li class="list-group-item msk-website-row">
-                    <a href="widget-heading.view.client.html" class="">
-                        Header
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#" class="">
-                        Label
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#" class="">
-                        HTML
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#" class="">
-                        Text Input
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#" class="">
-                        Link
-                    </a>
-                </li>
-
-                <li class="list-group-item msk-website-row">
-                    <a href="#" class="">
-                        Button
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="widget-image.view.client.html" class="">
-                        Image
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="widget-youtube.view.client.html" class="">
-                        Youtube
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#" class="">
-                        Data Table
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#" class="">
-                        Repeater
+                <li ng-repeat="widgetType in model.allWidgetTypes" class="list-group-item msk-website-row">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/create-{{widgetType}}">
+                        {{widgetType}}
                     </a>
                 </li>
             </ul>
         </div>
-
     </div>
-
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <a href="#!/user/:uid" class="navbar-link navbar-text pull-right">
+        <a href="#!/user/{{model.userId}}" class="navbar-link navbar-text pull-right">
             <span class="glyphicon glyphicon-user msk-black"> </span>
         </a>
     </div>

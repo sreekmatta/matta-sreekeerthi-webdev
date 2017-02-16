@@ -3,7 +3,7 @@
         <div class="row">
 
             <div class="col-xs-9">
-                <a href="#!/user/:uid/website/:wid/page" class="navbar-link navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link navbar-text pull-left">
                     <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
                 </a><a class="navbar-brand" href="#">
                 Widgets
@@ -11,7 +11,7 @@
             </div>
 
             <div class="col-xs-3">
-                <a href="#!/user/:uid/website/:wid/page/:pid/widget/new" class="navbar-link navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link navbar-text pull-right">
                     <span class="glyphicon glyphicon-plus msk-black"> </span>
                 </a>
             </div>
@@ -22,111 +22,20 @@
 
 <div class="container-fluid msk-main-form">
     <ul class="list-group">
+        <li ng-repeat="widget in model.widgets" class="list-group-item msk-website-row">
 
-        <li class="list-group-item msk-website-row">
-            <h1>Hidden Figures (2016)</h1>
+            <ng-include src="model.getWidgetURL(widget.widgetType)"></ng-include>
+
             <div class="msk-widget-edit pull-right">
-                <a href="widget-heading.view.client.html">
+
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                     <span class="glyphicon glyphicon-cog msk-black"> </span>
                 </a>
-                <a href="#">
-                    <span class="glyphicon glyphicon-align-justify msk-black"> </span>
-                </a>
-            </div>
-
-        </li>
-        <li class="list-group-item msk-website-row">
-            <h3>What Sets the Smart Heroines of Hidden Figures Apart.</h3>
-            <div class="msk-widget-edit pull-right">
-                <a href="widget-heading.view.client.html">
-                    <span class="glyphicon glyphicon-cog msk-black"> </span>
-                </a>
-                <a href="#">
+                <a href="">
                     <span class="glyphicon glyphicon-align-justify msk-black"> </span>
                 </a>
             </div>
         </li>
-
-        <li class="list-group-item msk-website-row">
-            <img src="http://s3.foxmovies.com/foxmovies/production/films/123/images/feature/hf-film-header-now-playing-rt-front-main-stage-1.jpg"
-            width="100%">
-            <div class="msk-widget-edit pull-right">
-                <a href="widget-image.view.client.html">
-                    <span class="glyphicon glyphicon-cog msk-black"> </span>
-                </a>
-                <a href="#">
-                    <span class="glyphicon glyphicon-align-justify msk-black"> </span>
-                </a>
-            </div>
-
-        </li>
-        <li class="list-group-item msk-website-row">
-            <h5>
-                HIDDEN FIGURES is the incredible untold story of Katherine G. Johnson (Taraji P. Henson),
-                Dorothy Vaughan (Octavia Spencer) and Mary Jackson (Janelle Monáe)—brilliant African-American
-                women working at NASA, who served as the brains behind one of the greatest operations in history:
-                the launch of astronaut John Glenn into orbit, a stunning achievement that restored the nation’s
-                confidence, turned around the Space Race, and galvanized the world. The visionary trio crossed all
-                gender and race lines to inspire generations to dream big.
-            </h5>
-            <div class="msk-widget-edit pull-right">
-                <a href="widget-heading.view.client.html">
-                    <span class="glyphicon glyphicon-cog msk-black"> </span>
-                </a>
-                <a href="#">
-                    <span class="glyphicon glyphicon-align-justify msk-black"> </span>
-                </a>
-            </div>
-
-        </li>
-
-        <li class="list-group-item msk-website-row">
-            <h3>Movies about brilliant scientific or mathematical minds often focus on their subject’s ego</h3>
-            <div class="msk-widget-edit pull-right">
-                <a href="widget-heading.view.client.html">
-                    <span class="glyphicon glyphicon-cog msk-black"> </span>
-                </a>
-                <a href="#">
-                    <span class="glyphicon glyphicon-align-justify msk-black"> </span>
-                </a>
-            </div>
-
-        </li>
-
-        <li class="list-group-item msk-website-row">
-            <iframe width="100%" height="400" src="https://www.youtube.com/embed/RK8xHq6dfAo" frameborder="0" allowfullscreen></iframe>
-            <div class="msk-widget-edit pull-right">
-                <a href="widget-youtube.view.client.html">
-                    <span class="glyphicon glyphicon-cog msk-black"> </span>
-                </a>
-                <a href="#">
-                    <span class="glyphicon glyphicon-align-justify msk-black"> </span>
-                </a>
-            </div>
-
-        </li>
-
-        <li class="list-group-item msk-website-row">
-            <h5>
-                Hidden Figures is not that kind of film: It’s a story of brilliance, but not of ego.
-                It’s a story of struggle and willpower, but not of individual glory. Set in 1960s Virginia, the film
-                centers on three pioneering African American women whose calculations for NASA were integral to several
-                historic space missions, including John Glenn’s successful orbit of the Earth. These women—Katherine
-                Johnson, Mary Jackson, and Dorothy Vaughan—were superlative mathematicians and engineers despite
-                starting their careers in segregation-era America and facing discrimination at home, at school,
-                and at work.
-            </h5>
-            <div class="msk-widget-edit pull-right">
-                <a href="widget-heading.view.client.html">
-                    <span class="glyphicon glyphicon-cog msk-black"> </span>
-                </a>
-                <a href="#">
-                    <span class="glyphicon glyphicon-align-justify msk-black"> </span>
-                </a>
-            </div>
-
-        </li>
-
     </ul>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -140,7 +49,7 @@
             <span class="glyphicon glyphicon-eye-open msk-black"> </span>
         </a>
 
-        <a href="#!/user/:uid" class="navbar-link navbar-text pull-right">
+        <a href="#!/user/{{model.userId}}" class="navbar-link navbar-text pull-right">
             <span class="glyphicon glyphicon-user msk-black"> </span>
         </a>
     </div>

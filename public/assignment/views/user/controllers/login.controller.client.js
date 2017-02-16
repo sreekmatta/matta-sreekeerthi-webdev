@@ -10,20 +10,14 @@
         var viewModel = this;
 
         //event handlers
-        viewModel.login = onLogin;
+        viewModel.login = login;
 
-        function init() {
-            //This function is called when this controller
-            //is loaded into memory along with respective view
-        }
-        init();
-
-        function onLogin(user) {
+        function login(user) {
             var user = UserService.findUserByCredentials(user.username,user.password);
             if(user) {
                 $location.url("/user/"+user._id);
             } else {
-                viewModel.error = "User not found";
+                viewModel.errorMessage = "User not found";
             }
         }
     }

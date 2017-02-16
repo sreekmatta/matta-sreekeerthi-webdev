@@ -105,4 +105,16 @@ a.msk-extreme-right{
     margin-left: 20%;
 }
 
+.msk-msg-glyphicon{
+    top: 3px !important;
+}
 
+li.msk-table-heading{
+    background-color: darkgray;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+a.msk-main-heading{
+    margin-left: 0px !important;
+}

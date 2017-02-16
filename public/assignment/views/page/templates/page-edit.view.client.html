@@ -2,29 +2,25 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4 hidden-sm hidden-xs">
-                <a href="#!/user/:uid/website/:wid/page" class="navbar-link navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link navbar-text pull-left">
                     <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
                 </a>
                 <a class="navbar-brand" href="#">
                     Pages
                 </a>
-                <a href="#!/user/:uid/website/:wid/page/new" class="navbar-link navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link navbar-text pull-right">
                     <span class="glyphicon glyphicon-plus msk-black"> </span>
                 </a>
 
             </div>
 
             <div class="visible-lg visible-md col-md-8 visible-xs visible-sm col-xs-12">
-                <a href="#!/user/:uid/website/:wid/page" class="visible-xs visible-sm navbar-link navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="visible-xs visible-sm navbar-link navbar-text pull-left">
                     <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
                 </a>
-                <a class="navbar-brand pull-left" href="#">
+                <a class="navbar-brand pull-left msk-main-heading" href="#" >
                     Edit Page
                 </a>
-                <a href="#!/user/:uid/website/:wid/page" class="navbar-link navbar-text pull-right">
-                    <span class="glyphicon glyphicon-ok msk-black"> </span>
-                </a>
-
             </div>
         </div>
     </div>
@@ -34,45 +30,30 @@
     <div class="row">
         <div class="col-md-4 hidden-sm hidden-xs">
             <ul class="list-group">
-                <li class="list-group-item msk-website-row">
-                    <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="">
-                        Blog Post
-                    </a>
-                    <a class="pull-right" href="#!/user/:uid/website/:wid/page/:pid">
-                        <span class="glyphicon glyphicon-cog msk-black"> </span>
-                    </a>
+                <li class="list-group-item msk-table-heading">
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-10">
+                            Name
+                        </div>
+                        <div class="col-xs-2 col-sm-2">
+
+                        </div>
+                    </div>
                 </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="">
-                        Blog
-                    </a>
-                    <a class="pull-right" href="#!/user/:uid/website/:wid/page/:pid">
-                        <span class="glyphicon glyphicon-cog msk-black"> </span>
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="">
-                        Home
-                    </a>
-                    <a class="pull-right" href="#!/user/:uid/website/:wid/page/:pid">
-                        <span class="glyphicon glyphicon-cog msk-black"> </span>
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="">
-                        About
-                    </a>
-                    <a class="pull-right" href="#!/user/:uid/website/:wid/page/:pid">
-                        <span class="glyphicon glyphicon-cog msk-black"> </span>
-                    </a>
-                </li>
-                <li class="list-group-item msk-website-row">
-                    <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="">
-                        Contact Us
-                    </a>
-                    <a class="pull-right" href="#!/user/:uid/website/:wid/page/:pid">
-                        <span class="glyphicon glyphicon-cog msk-black"> </span>
-                    </a>
+
+                <li ng-repeat="page in model.pages" class="list-group-item msk-website-row">
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-10">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                                {{page.name}}
+                            </a>
+                        </div>
+                        <div class="col-xs-2 col-sm-2">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -81,25 +62,40 @@
             <form>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Page Name">
+                    <input type="text"
+                           class="form-control"
+                           id="name"
+                           placeholder="Page Name"
+                           ng-model="model.currentPage.name">
                 </div>
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <textarea class="form-control" id="title" placeholder="Page Title" rows="5"></textarea>
-                </div>
-                <div class="form-group">
-                    <a class="btn btn-danger  btn-block"
-                       href="#!/user/:uid/website/:wid/page">Delete</a>
+                    <label for="description">Description</label>
+                    <textarea class="form-control"
+                              id="description"
+                              placeholder="Page description"
+                              rows="5"
+                              ng-model="model.currentPage.description"></textarea>
                 </div>
             </form>
+
+            <a ng-click="model.editPage(model.currentPage)"
+               class="btn btn-primary  btn-block">
+                Edit Website
+            </a>
+            <a ng-click="model.deletePage()"
+               class="btn btn-danger  btn-block">
+                Delete
+            </a>
         </div>
     </div>
 
 </div>
 
+
+
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <a href="#!/user/:uid" class="navbar-link navbar-text pull-right">
+        <a href="#!/user/{{model.userId}}" class="navbar-link navbar-text pull-right">
             <span class="glyphicon glyphicon-user msk-black"> </span>
         </a>
     </div>

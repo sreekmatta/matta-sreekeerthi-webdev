@@ -3,15 +3,16 @@
         <div class="row">
 
             <div class="col-xs-9">
-                <a href="#!/user/:uid/website" class="navbar-link navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/website" class="navbar-link navbar-text pull-left">
                     <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
-                </a><a class="navbar-brand" href="#">
-                Pages
-            </a>
+                </a>
+                <a class="navbar-brand" href="#">
+                    Pages
+                </a>
             </div>
 
             <div class="col-xs-3">
-                <a href="#!/user/:uid/website/:wid/page/new" class="navbar-link navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-link navbar-text pull-right">
                     <span class="glyphicon glyphicon-plus msk-black"> </span>
                 </a>
             </div>
@@ -22,51 +23,48 @@
 
 <div class="container-fluid msk-main-form">
     <ul class="list-group">
-        <li class="list-group-item msk-website-row">
-            <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="">
-                Blog Post
-            </a>
-            <a class="pull-right" href="#!/user/:uid/website/:wid/page/:pid">
-                <span class="glyphicon glyphicon-cog msk-black"> </span>
-            </a>
+        <li class="list-group-item msk-table-heading">
+            <div class="row">
+                <div class="col-xs-10 col-sm-5">
+                    Name
+                </div>
+                <div class="col-sm-3 hidden-xs">
+                    Date Created
+                </div>
+                <div class="col-sm-2 hidden-xs">
+                    Website ID
+                </div>
+                <div class="col-xs-2">
+
+                </div>
+            </div>
         </li>
-        <li class="list-group-item msk-website-row">
-            <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="">
-                Blog
-            </a>
-            <a class="pull-right" href="#!/user/:uid/website/:wid/page/:pid">
-                <span class="glyphicon glyphicon-cog msk-black"> </span>
-            </a>
-        </li>
-        <li class="list-group-item msk-website-row">
-            <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="">
-                Home
-            </a>
-            <a class="pull-right" href="#!/user/:uid/website/:wid/page/:pid">
-                <span class="glyphicon glyphicon-cog msk-black"> </span>
-            </a>
-        </li>
-        <li class="list-group-item msk-website-row">
-            <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="">
-                About
-            </a>
-            <a class="pull-right" href="#!/user/:uid/website/:wid/page/:pid">
-                <span class="glyphicon glyphicon-cog msk-black"> </span>
-            </a>
-        </li>
-        <li class="list-group-item msk-website-row">
-            <a href="#!/user/:uid/website/:wid/page/:pid/widget" class="">
-                Contact Us
-            </a>
-            <a class="pull-right" href="#!/user/:uid/website/:wid/page/:pid">
-                <span class="glyphicon glyphicon-cog msk-black"> </span>
-            </a>
+
+        <li ng-repeat="page in model.pages" class="list-group-item msk-website-row">
+            <div class="row">
+                <div class="col-xs-10 col-sm-5">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                        {{page.name}}
+                    </a>
+                </div>
+                <div class="col-sm-3 hidden-xs">
+                    {{page.created | date}}
+                </div>
+                <div class="col-sm-2 hidden-xs">
+                    {{page.websiteId}}
+                </div>
+                <div class="col-xs-2">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+            </div>
         </li>
     </ul>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <a href="#!/user/:uid" class="navbar-link navbar-text pull-right">
+        <a href="#!/user/{{model.userId}}" class="navbar-link navbar-text pull-right">
             <span class="glyphicon glyphicon-user msk-black"> </span>
         </a>
     </div>
