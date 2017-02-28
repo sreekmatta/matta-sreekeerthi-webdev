@@ -16,8 +16,19 @@
         //no event handlers
 
         function init() {
-            var allWidgetTypes = WidgetService.findAllWidgets(pageId);
-            viewModel.allWidgetTypes = allWidgetTypes;
+            var promise =  WidgetService.findAllWidgets(pageId);
+            promise.then(function successCallback(response) {
+                    var allWidgetTypes = response.data;
+                    if(allWidgetTypes!= undefined) {
+                        viewModel.allWidgetTypes = allWidgetTypes;
+                    } else {
+                        viewModel.errorMessage = "Error while loading Widget Types";
+                    }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while loading Widget Types";
+                });
+
         }
         init();
 

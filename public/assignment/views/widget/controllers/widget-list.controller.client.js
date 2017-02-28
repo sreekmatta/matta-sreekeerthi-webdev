@@ -18,8 +18,24 @@
         viewModel.getWidgetURL = getWidgetURL;
 
         function init() {
-            var widgets = WidgetService.findWidgetsByPageId(pageId);
-            viewModel.widgets = widgets;
+            var promise =  WidgetService.findWidgetsByPageId(pageId);
+            promise.then(function successCallback(response) {
+                    var widgets = response.data;
+                    if(widgets!= undefined) {
+                        viewModel.widgets = widgets;
+                    } else {
+                        viewModel.errorMessage = "Error while loading Widgets for Page ID:" + pageId;
+                    }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while loading Widgets for Page ID:" + pageId;
+                });
+
+            $('#widget-list').sortable({
+                axis: "y", handle:'.glyphicon-align-justify'
+            }
+
+            );
         }
         init();
 

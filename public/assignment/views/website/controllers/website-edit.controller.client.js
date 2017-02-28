@@ -15,34 +15,66 @@
         viewModel.deleteWebsite = deleteWebsite;
 
         function init() {
-            var websites = WebsiteService.findWebsitesByUser(userId);
-            var currentWebsite = WebsiteService.findWebsiteById(websiteId);
+            var promise = WebsiteService.findWebsitesByUser(userId);
+            promise.then(function successCallback(response) {
+                    var websites = response.data;
+                    if(websites!= undefined) {
+                        viewModel.websites = websites;
+                    } else {
+                        viewModel.errorMessage = "Error while loading websites for user ID:" + userId;
+                    }
+
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while loading websites for user ID:" + userId;
+                });
 
 
-            viewModel.websites = websites; //array of websites
-            viewModel.currentWebsite = currentWebsite; //current website to edit
+            var promiseCurrentWebsite = WebsiteService.findWebsiteById(websiteId);
+            promiseCurrentWebsite.then(function successCallback(response) {
+                    var currentWebsite = response.data;
+                    if(currentWebsite!= undefined) {
+                        viewModel.currentWebsite = currentWebsite; //current website to edit
+                    } else {
+                        viewModel.errorMessage = "Error while loading website";
+                    }
+
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while loading website";
+                });
         }
         init();
 
         function editWebsite(websiteDetails) {
-            var websiteDetails = WebsiteService.updateWebsite(websiteId,websiteDetails);
-            if(websiteDetails!= undefined) {
-                viewModel.successMessage = "Website updated successfully";
-            } else {
-                viewModel.errorMessage = "Error while updating website by ID:" + websiteId;
-            }
-            $location.url("/user/"+userId+"/website");
+            var promise = WebsiteService.updateWebsite(websiteId,websiteDetails);
+            promise.then(function successCallback(response) {
+                    var websiteDetails = response.data;
+                    if(websiteDetails!= undefined) {
+                        $location.url("/user/"+userId+"/website");
+                    } else {
+                        viewModel.errorMessage = "Error while updating website by ID:" + websiteId;
+                    }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while updating website by ID:" + websiteId;
+                });
+
         }
 
         function deleteWebsite() {
-            var deleteWebsiteId = WebsiteService.deleteWebsite(websiteId);
-            if(deleteWebsiteId!= undefined) {
-                viewModel.successMessage = "Website deleted successfully";
-            } else {
-                viewModel.errorMessage = "Error while deleting website by ID:" + websiteId;
-            }
-            $location.url("/user/"+userId+"/website");
+            var promise = WebsiteService.deleteWebsite(websiteId);
+            promise.then(function successCallback(response) {
+                    var deleteWebsiteId = response.data;
+                    if(deleteWebsiteId!= undefined) {
+                        $location.url("/user/"+userId+"/website");
+                    } else {
+                        viewModel.errorMessage = "Error while deleting website by ID:" + websiteId;
+                    }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while deleting website by ID:" + websiteId;
+                });
         }
-
     }
 })();

@@ -12,19 +12,35 @@
         viewModel.newWebsite = newWebsite;
 
         function init() {
-            var websites = WebsiteService.findWebsitesByUser(userId);
+            var promise = WebsiteService.findWebsitesByUser(userId);
+            promise.then(function successCallback(response) {
+                    var websites = response.data;
+                    if(websites!= undefined) {
+                        viewModel.websites = websites;
+                    } else {
+                        viewModel.errorMessage = "Error while loading websites for user ID:" + userId;
+                    }
 
-            if(websites!= undefined) {
-                viewModel.websites = websites;
-            } else {
-                viewModel.errorMessage = "Error while loading websites for user ID:" + userId;
-            }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while loading websites for user ID:" + userId;
+                });
         }
         init();
 
         function newWebsite(newWebsiteDetails) {
-            var created = WebsiteService.createWebsite(userId, newWebsiteDetails);
-            $location.url("/user/"+userId+"/website");
+            var promise = WebsiteService.createWebsite(userId, newWebsiteDetails);
+            promise.then(function successCallback(response) {
+                    user = response.data;
+                    if(user) {
+                        $location.url("/user/"+userId+"/website");
+                    } else {
+                        viewModel.errorMessage = "Website not created";
+                    }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Website not created";
+                });
         }
 
     }

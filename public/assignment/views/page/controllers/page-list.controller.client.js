@@ -15,13 +15,18 @@
         //no event handlers here
 
         function init() {
-            var pages =  PageService.findPageByWebsiteId(websiteId);
-
-            if(pages!= undefined) {
-                viewModel.pages = pages;
-            } else {
-                viewModel.errorMessage = "Error while loading pages for website ID:" + websiteId;
-            }
+            var promise = PageService.findPageByWebsiteId(websiteId);
+            promise.then(function successCallback(response) {
+                    var pages = response.data;
+                    if(pages!= undefined) {
+                        viewModel.pages = pages;
+                    } else {
+                        viewModel.errorMessage = "Error while loading pages for website ID:" + websiteId;
+                    }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while loading pages for website ID:" + websiteId;
+                });
         }
         init();
 

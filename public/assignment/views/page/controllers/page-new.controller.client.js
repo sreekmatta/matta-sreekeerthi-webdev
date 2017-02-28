@@ -17,16 +17,36 @@
 
 
         function init() {
-            var pages =  PageService.findPageByWebsiteId(websiteId);
-            viewModel.pages = pages;
+            var promise = PageService.findPageByWebsiteId(websiteId);
+            promise.then(function successCallback(response) {
+                    var pages = response.data;
+                    if(pages!= undefined) {
+                        viewModel.pages = pages;
+                    } else {
+                        viewModel.errorMessage = "Error while loading pages for website ID:" + websiteId;
+                    }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while loading pages for website ID:" + websiteId;
+                });
         }
         init();
 
 
         function createPage(newPageDetails) {
-            var created = PageService.createPage(websiteId,newPageDetails);
-            $location.url("/user/"+userId+"/website/"+websiteId+"/page");
+            var promise = PageService.createPage(websiteId,newPageDetails);
+            promise.then(function successCallback(response) {
+                    var created = response.data;
+                    if(created!= undefined) {
+                        $location.url("/user/"+userId+"/website/"+websiteId+"/page");
 
+                    } else {
+                        viewModel.errorMessage = "Error while creating the page for the website with ID:" + websiteId;
+                    }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while creating the page for the website with ID:" + websiteId;
+                });
         }
 
     }

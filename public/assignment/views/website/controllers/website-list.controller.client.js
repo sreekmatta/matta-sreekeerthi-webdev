@@ -12,13 +12,19 @@
         //no event handlers
 
         function init() {
-            var websites = WebsiteService.findWebsitesByUser(userId);
+            var promise = WebsiteService.findWebsitesByUser(userId);
+            promise.then(function successCallback(response) {
+                    var websites = response.data;
+                    if(websites!= undefined) {
+                        viewModel.websites = websites;
+                    } else {
+                        viewModel.errorMessage = "Error while loading websites for user ID:" + userId;
+                    }
 
-            if(websites!= undefined) {
-                viewModel.websites = websites;
-            } else {
-                viewModel.errorMessage = "Error while loading websites for user ID:" + userId;
-            }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while loading websites for user ID:" + userId;
+                });
         }
         init();
 
