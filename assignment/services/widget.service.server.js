@@ -30,42 +30,33 @@ module.exports = function (app) {
     // all the widgetTypes if some widget type is deleted in
     // any case.
 
-    // function uploadImage(req, res) {
-    //     console.log("Entered upload Image");
-    //     var widgetId      = req.body.widgetId;
-    //     var width         = req.body.width;
-    //     var myFile        = req.file;
-    //     var originalname  = myFile.originalname; // file name on user's computer
-    //     var filename      = myFile.filename;     // new file name in upload folder
-    //     var path          = myFile.path;         // full path of uploaded file
-    //     var destination   = myFile.destination;  // folder where file is saved to
-    //     var size          = myFile.size;
-    //     var mimetype      = myFile.mimetype;
-    //
-    //     if(widgetId!=undefined){
-    //         updateWidget(req,res);
-    //     }
-    //     else
-    //         createWidget(req,res)
-    //
-    // }
-
 
     function uploadImage(req, res) {
 
-        var widget        = req.body;
-        var myFile        = req.file;
+        var widget = req.body;
         var pageId = req.body.pageId;
         widget.pageId = pageId;
-        var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+
         if(widget.widgetId == "")
         {
-            widget.url = url;
+            console.log(widget);
+            console.log(req.file);
             var widgetId = Math.floor(Date.now() / 1000);
-
+            if(req.file!=undefined)
+            {
+                var myFile = req.file;
+                var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+                widget.url = url;
+            }
+            else{
+                widget.url = req.body.url;
+            }
             widget._id = widgetId;
             widget.widgetType = "IMAGE";
-            console.log("In if",widget);
+            widget.name = req.body.name;
+            widget.text = req.body.text;
+            widget.width =  req.body.width;
+
             widgets.push(widget);
         }
         else
@@ -74,11 +65,21 @@ module.exports = function (app) {
             {
                 if(widgets[w]._id === widget.widgetId)
                 {
-                    widgets[w].url = url;
                     widgets[w].width = widget.width;
+                    widgets[w].name = widget.name;
+                    widgets[w].text = widget.text;
+
+                    if(req.file!=undefined)
+                    {
+                        var myFile = req.file;
+                        var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+                        widgets[w].url = url;
+                    }
+                    else{
+                        widgets[w].url = widget.url;
+                    }
                 }
             }
-            console.log("In else",widget);
 
             widget._id = widget.widgetId;
         }
@@ -112,7 +113,7 @@ module.exports = function (app) {
             allWidgets.push(allWidgetTypes[wi]);
         }
         res.json(allWidgets);
-}
+    }
 
     function findWidgetsByPageId(req,res){
         var pageId = req.params.pageId;
