@@ -30,12 +30,6 @@
                 function errorCallback(response) {
                     viewModel.errorMessage = "Error while loading Widgets for Page ID:" + pageId;
                 });
-
-            $('#widget-list').sortable({
-                axis: "y", handle:'.glyphicon-align-justify'
-            }
-
-            );
         }
         init();
 

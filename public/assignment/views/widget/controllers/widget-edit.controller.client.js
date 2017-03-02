@@ -112,5 +112,23 @@
                     viewModel.errorMessage = "Error while creating widget";
                 });
         }
+
+        function uploadWidget(widgetDetails) {
+            if(widgetDetails._id== undefined){
+                var widgetId = Math.floor(Date.now() / 1000);
+            }
+            var promise =  WidgetService.uploadWidget(widgetId,widgetDetails);
+            promise.then(function successCallback(response) {
+                    var widgetDetails = response.data;
+                    if(widgetDetails!= undefined) {
+                        $location.url("/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");
+                    } else {
+                        viewModel.errorMessage = "Error while uploading widget by ID:" + widgetId;
+                    }
+                },
+                function errorCallback(response) {
+                    viewModel.errorMessage = "Error while uploading widget by ID:" + widgetId;
+                });
+        }
     }
 })();

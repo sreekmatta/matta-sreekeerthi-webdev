@@ -21,7 +21,7 @@
 
 
 <div class="container-fluid msk-main-form">
-    <ul id="widget-list" class="list-group">
+    <ul wbdv-sortable="" class="list-group">
         <li ng-repeat="widget in model.widgets" class="list-group-item msk-website-row">
 
             <ng-include src="model.getWidgetURL(widget.widgetType)"></ng-include>

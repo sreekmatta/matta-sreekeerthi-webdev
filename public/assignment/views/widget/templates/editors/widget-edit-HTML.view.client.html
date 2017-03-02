@@ -15,4 +15,19 @@
                   placeholder="HTML Text"
                   rows="5"></textarea>
     </div>
+    <a class="btn btn-primary  btn-block"
+       ng-if="model.widgetType"
+       ng-click="model.createNewWidget(model.widget)">
+        Create {{model.widgetType.toLowerCase()}}
+    </a>
+    <a class="btn btn-primary  btn-block"
+       ng-if="model.editWidgetVar"
+       ng-click="model.editWidget(model.widget)">
+        Edit {{model.widget.widgetType.toLowerCase()}}
+    </a>
+    <a class="btn btn-danger  btn-block"
+       ng-if="model.editWidgetVar"
+       ng-click="model.deleteWidget()">
+        Delete
+    </a>
 </form>

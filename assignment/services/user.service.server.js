@@ -71,7 +71,6 @@ module.exports = function (app) {
         var user = users.find(function (u) {
             return u.username == req.query.username;
         });
-        console.log(user);
         if(user) {
             res.json(user);
         } else {

@@ -3,6 +3,6 @@
  */
 (function () {
     angular
-        .module("WebAppMaker", ["ngRoute"]);
+        .module("WebAppMaker", ["ngRoute","wbdvDirectives"]);
     // Multiple argument means we are declaring the module along with it's dependencies
 })();
