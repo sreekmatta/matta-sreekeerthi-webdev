@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("wbdvDirectives")
+        .module("wbdvDirectives",[])
         .directive("wbdvSortable" ,wbdvSortableDir );
 
     function wbdvSortableDir(){
