@@ -118,3 +118,7 @@ li.msk-table-heading{
 a.msk-main-heading{
     margin-left: 0px !important;
 }
+
+.input-bar{
+    height: 39px !important;
+}

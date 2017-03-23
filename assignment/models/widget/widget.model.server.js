@@ -1,4 +1,6 @@
-module.exports = function (pageModel) {
+module.exports = function () {
+
+    var model = null;
     var api={
         createWidget : createWidget,
         findWidgetById:findWidgetById,
@@ -8,6 +10,7 @@ module.exports = function (pageModel) {
         deleteWidget:deleteWidget,
         deleteWidgets:deleteWidgets,
         updateWidgetOrder:updateWidgetOrder,
+        setModel: setModel
     };
 
     var mongoose = require('mongoose');
@@ -24,7 +27,7 @@ module.exports = function (pageModel) {
         return WidgetModel
             .create(widget)
             .then(function (widget) {
-                return pageModel
+                return model.pageModel
                     .findPageById(pageId)
                     .then(function (page) {
                         widget._page = page._id;
@@ -99,7 +102,7 @@ module.exports = function (pageModel) {
     }
 
     function updateWidgetOrder(pageId, start, end) {
-        return pageModel
+        return model.pageModel
             .findPageById(pageId)
             .then(function (page) {
                 page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
@@ -109,5 +112,7 @@ module.exports = function (pageModel) {
                 return err;
             });
     }
-
+    function setModel(_model) {
+        model = _model;
+    }
 }

@@ -1,12 +1,14 @@
-module.exports=function (websiteModel,widgetModel) {
+module.exports=function () {
 
+    var model= null;
     var api={
         "createPage" : createPage,
         "findAllPagesForWebsite": findAllPagesForWebsite,
         "findPageById" : findPageById,
         "updatePage" : updatePage,
         "deletePage" : deletePage,
-        "deletePageWidgets" : deletePageWidgets
+        "deletePageWidgets" : deletePageWidgets,
+        setModel: setModel
     };
 
     var mongoose = require('mongoose');
@@ -21,7 +23,7 @@ module.exports=function (websiteModel,widgetModel) {
         return PageModel
             .create(page)
             .then(function (page) {
-                return websiteModel
+                return model.websiteModel
                     .findWebsiteById(websiteId)
                     .then(function (website) {
                         website.pages.push(page);
@@ -109,7 +111,7 @@ module.exports=function (websiteModel,widgetModel) {
                 });
         }
 
-        return widgetModel
+        return model.widgetModel
             .deleteWidgets(widgets.shift())
             .then(function (response) {
                 if(response.result.n == 1 && response.result.ok == 1){
@@ -129,5 +131,7 @@ module.exports=function (websiteModel,widgetModel) {
                 return err;
             });
     }
-
+    function setModel(_model) {
+        model = _model;
+    }
 }

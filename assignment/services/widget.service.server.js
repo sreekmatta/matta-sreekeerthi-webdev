@@ -36,11 +36,11 @@ module.exports = function (app,widgetModel) {
         var myFile = req.file;
         var pageId = req.body.pageId;
         widget.pageId = pageId;
-        var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
-        if(widget.widgetId == "")
+        if(widget.widgetId == "" && myFile!=null)
         {
+            var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
             widget.url = url;
-            widget.widgetType = "IMAGE";
+            widget.type = "IMAGE";
             widgetModel
                 .createWidget(pageId,widget)
                 .then(function (widget) {
@@ -49,24 +49,45 @@ module.exports = function (app,widgetModel) {
                     res.sendStatus(500);
                 });
         }
-        else
+        else if(widget.widgetId != "" && myFile!=null)
         {
-            for (var w in widgets)
-            {
-                if(widgets[w]._id === widget.widgetId)
-                {
-                    widgets[w].url = url;
-                    widgets[w].width = widget.width;
-                }
+            var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+            widget.url = url;
+            widgetModel
+                .updateWidget(widget.widgetId,widget)
+                .then(function (widget) {
+                    res.redirect("/assignment/index.html#!/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget/");
+                }, function (error) {
+                    res.sendStatus(500);
+                });
+        }
+        else if(myFile == null){
+            if(widget.widgetId == ""){
+                widget.type = "IMAGE";
+                widgetModel
+                    .createWidget(pageId,widget)
+                    .then(function (widget) {
+                        res.redirect("/assignment/index.html#!/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget/");
+                    }, function (error) {
+                        res.sendStatus(500);
+                    });
+            }
+            else{
+                widgetModel
+                    .updateWidget(widget.widgetId,widget)
+                    .then(function (widget) {
+                        res.redirect("/assignment/index.html#!/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget/");
+                    }, function (error) {
+                        res.sendStatus(500);
+                    });
             }
 
-            widget._id = widget.widgetId;
         }
     }
 
 
-
     function createWidget(req,res){
+
         var pageId = req.params.pageId;
         var widget = req.body;
         console.log(widget);

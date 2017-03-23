@@ -1,5 +1,6 @@
-module.exports = function (userModel,pageModel) {
+module.exports = function () {
 
+    var model = null;
     var api = {
         createWebsiteForUser: createWebsiteForUser,
         findAllWebsitesForUser:findAllWebsitesForUser,
@@ -7,7 +8,8 @@ module.exports = function (userModel,pageModel) {
         updateWebsite:updateWebsite,
         deleteWebsite:deleteWebsite,
         deleteUsersWebsite:deleteUsersWebsite,
-        deleteWebsitesPages:deleteWebsitesPages
+        deleteWebsitesPages:deleteWebsitesPages,
+        setModel: setModel
     };
 
     var mongoose = require('mongoose');
@@ -23,7 +25,7 @@ module.exports = function (userModel,pageModel) {
             .create(website)
             .then(
                 function (website) {
-                    return userModel
+                    return model.userModel
                         .findUserById(userId)
                         .then(function (user) {
                             website._user = user._id;
@@ -126,7 +128,7 @@ module.exports = function (userModel,pageModel) {
                 });
         }
 
-        return pageModel.deletePageWidgets(pages.shift())
+        return model.pageModel.deletePageWidgets(pages.shift())
             .then(function (response) {
                 if(response.result.n == 1 && response.result.ok == 1){
                     return Delete(pages, websiteId);
@@ -134,5 +136,8 @@ module.exports = function (userModel,pageModel) {
             }, function (err) {
                 return err;
             });
+    }
+    function setModel(_model) {
+        model = _model;
     }
 };

@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default navbar-fixed-top sm-navbar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/create-IMAGE" class="navbar-link navbar-text pull-left">
+          <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
+        </a>
+        <a class="navbar-brand sm-navbar-brand">
+          Flickr Image Search
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="msk-main-form">
+  <div class="input-group">
+    <input placeholder="Search Flickr Images" ng-model="searchText" type="text" class="form-control input-bar">
+    <span class="input-group-btn">
+        <a ng-click="model.searchPhotos(searchText)" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4" ng-repeat="photo in model.photos.photo">
+      <img ng-click="model.selectPhoto(photo)"
+           ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom sm-navbar">
+  <div class="container-fluid">
+    <a href="#/user/{{model.userid}}" class="navbar-link navbar-text pull-right">
+      <span class="glyphicon glyphicon-user sm-navbar-glyphicon"></span>
+    </a>
+  </div>
+</nav>

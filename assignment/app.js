@@ -1,13 +1,8 @@
-module.exports = function (app) {
-    var userModel = require('./models/user/user.model.server')(websiteModel);
-    var websiteModel = require('./models/website/website.model.server')(userModel,pageModel);
-    var pageModel = require('./models/page/page.model.server')(websiteModel,widgetModel);
-    var widgetModel = require('./models/widget/widget.model.server')(pageModel);
-
-
-    require('./services/user.service.server')(app, userModel);
-    require('./services/website.service.server')(app, websiteModel);
-    require('./services/page.service.server')(app, pageModel);
-    require('./services/widget.service.server')(app, widgetModel);
+module.exports = function(app) {
+    var models = require('./models/models.server')();
+    require("./services/user.service.server.js")(app,models.userModel);
+    require("./services/website.service.server.js")(app,models.websiteModel);
+    require("./services/page.service.server.js")(app,models.pageModel);
+    require("./services/widget.service.server.js")(app,models.widgetModel);
 
 };

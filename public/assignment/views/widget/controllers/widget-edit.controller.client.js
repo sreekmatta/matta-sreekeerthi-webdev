@@ -32,11 +32,25 @@
         viewModel.editWidget = editWidget;
         viewModel.deleteWidget = deleteWidget;
         viewModel.createNewWidget = createNewWidget;
+        viewModel.flickrSearch = flickrSearch;
+
 
         function init() {
             var widgetIdParts = widgetId.split("-");
             if(widgetIdParts[0]=="create"){
                 viewModel.type = widgetIdParts[1];
+
+                if(widgetIdParts.length > 2) {
+                    var farm = widgetIdParts[2];
+                    var server = widgetIdParts[3];
+                    var photoid = widgetIdParts[4]
+                    var secret = widgetIdParts[5];
+                    var photoURL = "https://farm" + farm + ".staticflickr.com/" + server + "/" + photoid + "_" + secret + "_b.jpg";
+
+                    var widget = {};
+                    widget.url = photoURL;
+                    viewModel.widget = widget;
+                }
             }
             else {
                 var promise = WidgetService.findWidgetById(widgetId);
@@ -130,5 +144,15 @@
                     viewModel.errorMessage = "Error while uploading widget by ID:" + widgetId;
                 });
         }
+
+        function flickrSearch() {
+            if(viewModel.widgetId!=null)
+                $location.url("/user/"+ viewModel.userId +"/website/"+ viewModel.websiteId + "/page/"+ viewModel.pageId + "/widget/" + viewModel.widgetId + "/search");
+            else
+                $location.url("/user/"+ viewModel.userId +"/website/"+ viewModel.websiteId + "/page/"+ viewModel.pageId + "/widget/search");
+        }
+
     }
+
+
 })();
