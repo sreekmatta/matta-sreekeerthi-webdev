@@ -21,10 +21,10 @@
 
 
 <div class="container-fluid msk-main-form">
-    <ul wbdv-sortable="" class="list-group">
+    <ul wbdv-sortable pageid="{{model.pageId}}" class="list-group">
         <li ng-repeat="widget in model.widgets" class="list-group-item msk-website-row">
 
-            <ng-include src="model.getWidgetURL(widget.widgetType)"></ng-include>
+            <ng-include src="model.getWidgetURL(widget.type)"></ng-include>
 
             <div class="msk-widget-edit pull-right">
 

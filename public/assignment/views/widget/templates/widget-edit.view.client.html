@@ -2,18 +2,18 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <a ng-if="model.widgetType" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link navbar-text pull-left">
+                <a ng-if="model.type" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link navbar-text pull-left">
                     <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
                 </a>
                 <a ng-if="model.editWidgetVar" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link navbar-text pull-left">
                     <span class="glyphicon glyphicon-chevron-left msk-black"> </span>
                 </a>
 
-                <a class="navbar-brand" href="#" ng-if="model.widgetType">
-                    New {{model.widgetType.toLowerCase()}}
+                <a class="navbar-brand" href="#" ng-if="model.type">
+                    New {{model.type.toLowerCase()}}
                 </a>
                 <a class="navbar-brand" href="#" ng-if="model.editWidgetVar">
-                    Edit {{model.widget.widgetType.toLowerCase()}}
+                    Edit {{model.widget.type.toLowerCase()}}
                 </a>
             </div>
         </div>
@@ -23,11 +23,11 @@
 <div class="container-fluid msk-main-form">
     <div class="row">
         <div class="col-xs-12">
-            <div ng-if="model.widgetType">
-                <ng-include src="model.getWidgetEditURL(model.widgetType)"></ng-include>
+            <div ng-if="model.type">
+                <ng-include src="model.getWidgetEditURL(model.type)"></ng-include>
             </div>
             <div ng-if="model.editWidgetVar">
-                <ng-include src="model.getWidgetEditURL(model.widget.widgetType)"></ng-include>
+                <ng-include src="model.getWidgetEditURL(model.widget.type)"></ng-include>
             </div>
         </div>
     </div>

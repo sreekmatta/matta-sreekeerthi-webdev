@@ -36,13 +36,13 @@
         function init() {
             var widgetIdParts = widgetId.split("-");
             if(widgetIdParts[0]=="create"){
-                viewModel.widgetType = widgetIdParts[1];
+                viewModel.type = widgetIdParts[1];
             }
             else {
                 var promise = WidgetService.findWidgetById(widgetId);
                 promise.then(function successCallback(response) {
                         var widget = response.data;
-                        if (widget.widgetType == "IMAGE" || widget.widgetType == "YOUTUBE") {
+                        if (widget.type == "IMAGE" || widget.type == "YOUTUBE") {
                             widget.width = getWidthValue(widget.width);
                         }
                         viewModel.widget = widget;
@@ -55,8 +55,8 @@
         }
         init();
 
-        function getWidgetEditURL(widgetType) {
-            var url = "views/widget/templates/editors/widget-edit-"+widgetType+".view.client.html";
+        function getWidgetEditURL(type) {
+            var url = "views/widget/templates/editors/widget-edit-"+type+".view.client.html";
             return url;
         }
 
@@ -98,7 +98,7 @@
         }
 
         function createNewWidget(widgetDetails) {
-            widgetDetails.widgetType = viewModel.widgetType;
+            widgetDetails.type = viewModel.type;
             var promise =  WidgetService.createWidget(pageId,widgetDetails);
             promise.then(function successCallback(response) {
                     var widgetDetails = response.data;

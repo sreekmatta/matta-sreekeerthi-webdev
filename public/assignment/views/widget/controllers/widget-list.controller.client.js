@@ -45,8 +45,8 @@
             return $sce.trustAsHtml(html);
         }
 
-        function getWidgetURL(widgetType) {
-            var url = 'views/widget/templates/widget-'+widgetType+'.view.client.html';
+        function getWidgetURL(type) {
+            var url = 'views/widget/templates/widget-'+type+'.view.client.html';
             return url;
         }
     }

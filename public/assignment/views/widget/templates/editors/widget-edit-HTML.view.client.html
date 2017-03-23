@@ -16,14 +16,14 @@
                   rows="5"></textarea>
     </div>
     <a class="btn btn-primary  btn-block"
-       ng-if="model.widgetType"
+       ng-if="model.type"
        ng-click="model.createNewWidget(model.widget)">
-        Create {{model.widgetType.toLowerCase()}}
+        Create {{model.type.toLowerCase()}}
     </a>
     <a class="btn btn-primary  btn-block"
        ng-if="model.editWidgetVar"
        ng-click="model.editWidget(model.widget)">
-        Edit {{model.widget.widgetType.toLowerCase()}}
+        Edit {{model.widget.type.toLowerCase()}}
     </a>
     <a class="btn btn-danger  btn-block"
        ng-if="model.editWidgetVar"
