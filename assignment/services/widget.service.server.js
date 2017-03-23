@@ -153,7 +153,7 @@ module.exports = function (app,widgetModel) {
         var pageId = req.params.pageId;
 
         widgetModel
-            .updateWidgetOrder(pageId, start, end)
+            .updateWidgetOrder(pageId, initial, final)
             .then(function (doc) {
                 res.json(200);
             }, function (error) {

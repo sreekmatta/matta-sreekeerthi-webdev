@@ -60,17 +60,29 @@ module.exports = function () {
         return deferred.promise;
     }
 
-    function findWidgetsByPageId(pageId) {
-        var deferred = q.defer();
-        WidgetModel
-            .find({_page:pageId}, function (err, widgetsByPageId) {
-                if(err) {
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(widgetsByPageId);
-                }
+    function findWidgetsByPageId(pid) {
+
+        return model.pageModel
+            .findPageById(pid)
+            .then(function (page) {
+                var widgets = page.widgets;
+                var n = widgets.length;
+                var _widgets = [];
+
+                return getWidgets(n, widgets, _widgets);
             });
-        return deferred.promise;
+    }
+
+    function getWidgets(n, widgets, _widgets) {
+        if(n == 0){
+            return _widgets;
+        }
+
+        return WidgetModel.findById(widgets.shift()).select('-__v')
+            .then(function (widget) {
+                _widgets.push(widget);
+                return getWidgets(--n, widgets, _widgets);
+            });
     }
 
 
