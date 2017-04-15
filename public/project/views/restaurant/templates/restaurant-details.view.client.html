@@ -133,7 +133,7 @@
                     <div class="row" ng-if="model.userType == 'RESTAURANT'">
                         <a href="#!/restaurant/{{model.resId}}/addMenu" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Menu</a>
                     </div>
-                    <div ng-repeat="section in model.restaurantMenu"  class="row left-margin">
+                    <div ng-if="model.restaurantMenu" ng-repeat="section in model.restaurantMenu" class="row left-margin">
                         <div class="row pull-left">
                             <h4>{{section.name}}</h4>
 
@@ -148,7 +148,9 @@
                             </div>
                         </div>
                     </div>
-
+                    <div ng-if="model.userType == 'RESTAURANT'" class="row left-margin">
+                        <div ng-bind-html="model.getHTMLContent(model.restaurant.menu)">
+                    </div>
                 </div>
 
                 <div id="posts" class="tab-pane fade">

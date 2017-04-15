@@ -20,6 +20,8 @@ module.exports = function () {
         deliveryMin:Number,
         deliveryPrice:Number,
         phone: String,
+        menu: String,
+        record:{type:String, default:'LOCAL'},
         dateCreated: {type:Date ,default:Date.now}
     }, {collection: 'project.restaurant'});
 

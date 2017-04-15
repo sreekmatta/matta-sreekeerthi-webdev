@@ -611,7 +611,11 @@ a.restaurant-link:hover {
 .left-margin{
     margin-left: 25px;
 }
+.right-margin{
+    margin-left: 25px;
+}
 
 .ho-margin-left{
     margin-left: 15px;
 }
+

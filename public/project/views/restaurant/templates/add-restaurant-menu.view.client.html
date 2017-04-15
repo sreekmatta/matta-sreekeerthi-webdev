@@ -91,73 +91,42 @@
             <div class="col-md-1 hidden-xs"></div>
         </div>
         <div class="row">
-            <h3 class="ho-board-heading">Foodie Profile</h3>
+            <h3 class="ho-board-heading">Restaurant Menu</h3>
         </div>
-        <div class="row">
-            <div class="col-sm-2 col-xs-1">
+        <div class="row left-margin right-margin">
+            <div ng-show="model.successMessage" class="alert alert-success" role="alert">
+                <span class="glyphicon glyphicon-ok-circle msk-msg-glyphicon" aria-hidden="true"></span>
+                <span class="sr-only">Restaurant Info:</span>
+                {{model.successMessage}}
             </div>
-            <div class="col-sm-8 col-xs-10">
-                <div ng-show="model.successMessage" class="alert alert-success" role="alert">
-                    <span class="glyphicon glyphicon-ok-circle msk-msg-glyphicon" aria-hidden="true"></span>
-                    <span class="sr-only">Profile:</span>
-                    {{model.successMessage}}
+            <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{model.errorMessage}}
+            </div>
+            <form>
+                <div class="form-group">
+                    <div ng-model="model.restaurant.menu"
+                         placeholder="HTML Text"
+                         text-angular
+                         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+                    </div>
                 </div>
-                <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span>
-                    {{model.errorMessage}}
-                </div>
-                <label for ="firstName">First Name</label>
-                <input ng-model="model.user.firstName"
-                       type="text"
-                       id="firstName"
-                       class="form-control"
-                       placeholder="firstName"/>
-                <label for ="lastName">Last Name</label>
-                <input ng-model="model.user.lastName"
-                       type="text"
-                       id="lastName"
-                       class="form-control"
-                       placeholder="lastName"/>
-                <label for ="email">E-mail</label>
-                <input ng-model="model.user.email"
-                       type="text"
-                       id="email"
-                       class="form-control"
-                       placeholder="email"/>
-
-                <label for ="username">Username</label>
-                <input ng-model="model.user.username"
-                       type="text"
-                       id="username"
-                       class="form-control"
-                       placeholder="username"/>
-
-                <label for ="password">Password</label>
-                <input ng-model="model.user.password"
-                       type="password"
-                       id="password"
-                       class="form-control"
-                       placeholder="password"/>
-
-                <label for ="retypepassword">Retype Password</label>
-                <input ng-model="model.user.retypepassword"
-                       type="password"
-                       id="retypepassword"
-                       class="form-control"
-                       placeholder="Retype Password"/>
-
                 <div class="ho-buttons-margin">
                     <a class="btn btn-success btn-block"
-                       ng-click="model.updateUser(model.user)">Update Profile</a>
+                       ng-click="model.updateProfile(model.restaurant)">Update Menu</a>
                     <a class="btn btn-danger  btn-block"
-                       href="#!/enduser/{{model.user._id}}">Cancel</a>
+                       href="#!/restaurant/{{model.rid}}">Cancel</a>
                 </div>
-            </div>
-            <div class="col-sm-2 col-xs-1">
-            </div>
+
+            </form>
+        </div>
+        <div class="col-sm-2 col-xs-1">
         </div>
     </div>
+</div>
 </div>
 
 

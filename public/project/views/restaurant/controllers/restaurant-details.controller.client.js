@@ -3,7 +3,7 @@
         .module("HungryOwlAppMaker")
         .controller("RestaurantDetailsController", RestaurantDetailsController);
 
-    function RestaurantDetailsController(PostService,RestaurantService,$location,$rootScope,$routeParams) {
+    function RestaurantDetailsController(PostService,RestaurantService,$sce,$location,$rootScope,$routeParams) {
         var viewModel = this;
         var resId = $routeParams['resid'];
         var resName = $routeParams['resName'];
@@ -14,6 +14,7 @@
         var rid = $routeParams['rid'];
         //event handlers
         viewModel.searchRestaurants = searchRestaurants;
+        viewModel.getHTMLContent = getHTMLContent;
 
         function init() {
             if(rid==undefined) {
@@ -51,7 +52,6 @@
                         restaurant = restaurant.data;
                         if (restaurant != undefined) {
                             viewModel.restaurant = restaurant;
-                            viewModel.restaurantMenu = restaurant.menu;
                             viewModel.userType = restaurant.userType;
                             viewModel.resName = restaurant.name;
                         } else {
@@ -82,6 +82,11 @@
             var radius = $( "#radius").val();
             $location.url("/restaurant/search/"+radius+"/"+resname);
         }
+
+        function getHTMLContent(html) {
+            return $sce.trustAsHtml(html);
+        }
+
     }
 
 })();

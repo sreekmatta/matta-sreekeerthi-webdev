@@ -33,9 +33,10 @@
                     function successCallback(response) {
                         var restaurant = response.data;
                         viewModel.restaurant = restaurant;
+                        viewModel.successMessage = "Restaurant Menu updated successfully";
                     },
                     function errorCallback(response) {
-                        viewModel.errorMessage = "Restaurant does not exist";
+                        viewModel.errorMessage = "Restaurant Menu could be updated";
                     }
                 );
         }

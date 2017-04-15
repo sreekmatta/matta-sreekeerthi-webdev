@@ -94,6 +94,7 @@ module.exports = function () {
                     offersDelivery:restaurant.offersDelivery,
                     deliveryMin:restaurant.deliveryMin,
                     deliveryPrice:restaurant.deliveryPrice,
+                    menu:restaurant.menu
                 },
                 function (err,restaurant) {
                     if(err){

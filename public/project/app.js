@@ -1,4 +1,4 @@
 (function () {
     angular
-        .module("HungryOwlAppMaker", ["ngRoute","wbdvDirectives"]);
+        .module("HungryOwlAppMaker", ["ngRoute","wbdvDirectives","textAngular"]);
 })();
