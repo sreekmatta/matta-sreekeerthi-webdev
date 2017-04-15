@@ -13,8 +13,5 @@
             var radius = $( "#radius").val();
             $location.url("/restaurant/search/"+radius+"/"+resname);
         }
-
-
-
     }
 })();

@@ -5,7 +5,17 @@
 
     function restaurantService($http) {
         var api = {
-            findRestaurantById:findRestaurantById,
+            restaurantLogout: restaurantLogout,
+            restaurantLogin : restaurantLogin,
+            restaurantRegister: restaurantRegister,
+            findRestaurantByCredentials: findRestaurantByCredentials,
+            findRestaurantByIdFromDB:findRestaurantByIdFromDB,
+            updateRestaurant: updateRestaurant,
+            findRestaurantByUsername: findRestaurantByUsername,
+            createRestaurant: createRestaurant,
+            deleteRestaurant: deleteRestaurant,
+            findRestaurantMenuById:findRestaurantMenuById,
+            findRestaurant:findRestaurant,
             findRestaurantByName:findRestaurantByName,
             findRestaurantsNearBy:findRestaurantsNearBy,
             findDeliveringRestaurantsOfCuisine:findDeliveringRestaurantsOfCuisine,
@@ -13,7 +23,46 @@
         };
         return api;
 
-        function findRestaurantById(resId) {
+        function restaurantLogin(restaurant) {
+            return $http.post("/rest/restaurant/login", restaurant);
+        }
+
+        function restaurantLogout(restaurant) {
+            return $http.post("/rest/restaurant/logout");
+        }
+
+        function restaurantRegister(restaurant) {
+            return $http.post("/rest/restaurant/register", restaurant);
+        }
+
+        function createRestaurant(restaurant) {
+            return $http.post("/rest/restaurant", restaurant);
+        }
+
+        function findRestaurantByUsername(username) {
+            return $http.get("/rest/restaurant?username="+username);
+        }
+
+        function updateRestaurant(rid, restaurant) {
+            return $http.put("/rest/restaurant/"+rid, restaurant);
+        }
+
+        function findRestaurantByCredentials(username, password) {
+            return $http.get("/rest/restaurant?username="+username+"&password="+password);
+        }
+
+        function deleteRestaurant(rid) {
+            return $http.delete("/rest/restaurant/"+rid);
+        }
+
+        function findRestaurant(resName) {
+            var url = "https://api.eatstreet.com/publicapi/v1/restaurant/search?latitude=42.343165899999995&longitude=-71.1011797&method=both&pickup-radius=100&" +
+                "search="+resName+"&access-token=9519d5bba99b4fc1";
+            var results = $http.get(url);
+            return results;
+        }
+
+        function findRestaurantMenuById(resId) {
             var url = "https://api.eatstreet.com/publicapi/v1/restaurant/"+resId+"/menu?includeCustomizations=false&access-token=9519d5bba99b4fc1";
             var results = $http.get(url);
             return results;
@@ -58,5 +107,8 @@
             return results;
         }
 
+        function findRestaurantByIdFromDB(resId) {
+            return $http.get("/rest/restaurant/"+resId);
+        }
     }
 })();

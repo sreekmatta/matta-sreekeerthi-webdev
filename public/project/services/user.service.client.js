@@ -49,7 +49,7 @@
             return $http.get("/rest/enduser?username="+username+"&password="+password);
         }
 
-        function deleteUser(username, password) {
+        function deleteUser(userId) {
             return $http.delete("/rest/enduser/"+userId);
         }
     }

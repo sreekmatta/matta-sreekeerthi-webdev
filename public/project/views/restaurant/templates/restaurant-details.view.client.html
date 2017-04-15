@@ -1,0 +1,174 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="col-xs-6 msk-navbar-header zero-padding">
+            <a class="navbar-brand" href="#!/">
+                <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
+                <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
+            </a>
+        </div>
+
+        <div class="col-xs-6">
+        </div>
+    </nav>
+
+    <div class="ho-main-body">
+        <div class="msk-search-bar">
+            <div class="col-xs-1 col-md-2"></div>
+            <div class="col-xs-10 col-md-8 zero-padding">
+                <div class="col-xs-12 col-sm-2 msk-col-search dropdown pull-left">
+                    <select name="radius" id="radius" class="ho-radius">
+                        <option value="2">Around 2 miles</option>
+                        <option value="5">Around 5 miles</option>
+                        <option value="10">Around 10 miles</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-8 msk-col-search search-bar">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle search-bar-height"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span>Search</span>
+                            </button>
+                        </div><!-- /btn-group -->
+                        <select name="place" id="resname" class="search-bar-height ho-place">
+                            <option value="0">All Places</option>
+                            <option value="Cafe">Cafes</option>
+                            <option value="Bars">Bars</option>
+                            <option value="Pizza">Pizzeria</option>
+                        </select>
+                    </div><!-- /input-group -->
+                </div>
+                <div class="col-xs-12 col-sm-2 msk-col-search">
+                    <a ng-click="model.searchRestaurants()"
+                       class="btn btn-block btn-danger search-bar-height">Search</a>
+                </div>
+            </div>
+            <div class="col-xs-1 col-md-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 ho-top-margin">
+                <img src="{{model.restaurant.logoUrl}}">
+            </div>
+            <div class="col-xs-12 ho-bottom-margin">
+                <h3>Restaurant Name: {{model.resName}}</h3>
+                <div class="ho-brief-details" ng-if="model.restaurant.streetAddress">{{model.restaurant.streetAddress}}
+                    <br>
+                    <div ng-if="model.restaurant.city">{{model.restaurant.city}},{{model.restaurant.state}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#info" target="_self">Info</a></li>
+                <li><a data-toggle="tab" href="#menu" target="_self">Menu Card</a></li>
+                <li><a data-toggle="tab" href="#posts" target="_self">Been Here</a></li>
+            </ul>
+
+            <div class="tab-content ho-all-padding ho-deco">
+                <div id="info" class="tab-pane fade in active">
+                    <div class="row" ng-if="model.userType == 'RESTAURANT'">
+                        <a href="#!/restaurant/{{model.resId}}/addInfo" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Details</a>
+                    </div>
+                    <div class="row" ng-if="model.restaurant.foodTypes[0]">
+                        <div class="col-sm-3 col-xs-5">
+                            Cuisines:
+                        </div>
+                        <div class="col-sm-9 col-xs-7">
+                        <span ng-repeat="foodTypeValues in model.restaurant.foodTypes">
+                            <span>{{foodTypeValues}} | </span>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="model.restaurant.open">
+                        <div class="col-sm-3 col-xs-5">
+                            Open Now:
+                        </div>
+                        <div class="col-sm-9 col-xs-7">
+                            {{model.restaurant.open}}
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="model.restaurant.deliveryMin">
+                        <div class="col-sm-3 col-xs-5">
+                            Minimum Order:
+                        </div>
+                        <div class="col-sm-9 col-xs-7">
+                            $ {{model.restaurant.deliveryMin}}
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="model.restaurant.deliveryPrice">
+                        <div class="col-sm-3 col-xs-5">
+                            Delivery Fees:
+                        </div>
+                        <div class="col-sm-9 col-xs-7">
+                            $ {{model.restaurant.deliveryPrice}}
+                        </div>
+                    </div>
+                    <div class="row" ng-if="model.restaurant.acceptsCash">
+                        <div class="col-sm-3 col-xs-5">
+                            Cash Accepted:
+                        </div>
+                        <div class="col-sm-9 col-xs-7">
+                            {{model.restaurant.acceptsCash}}
+                        </div>
+                    </div>
+                    <div class="row" ng-if="model.restaurant.hours">
+                        <div class="col-sm-3 col-xs-5">
+                            Open hours:
+                        </div>
+                        <div class="col-sm-9 col-xs-7">
+                            <div ng-repeat="time in model.restaurant.hours">
+                                {{time}}</div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div id="menu" class="tab-pane fade">
+                    <div class="row" ng-if="model.userType == 'RESTAURANT'">
+                        <a href="#!/restaurant/{{model.resId}}/addMenu" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Menu</a>
+                    </div>
+                    <div ng-repeat="section in model.restaurantMenu"  class="row left-margin">
+                        <div class="row pull-left">
+                            <h4>{{section.name}}</h4>
+
+                            <h5 ng-if="section.description">
+                                {{section.description}}
+                            </h5>
+                        </div>
+                        <br><br><br>
+                        <div class="row">
+                            <div class="" ng-repeat="itemVal in section.items">
+                                <h5>{{itemVal.name}} - $ {{itemVal.basePrice}}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="posts" class="tab-pane fade">
+                    <div class="row" ng-repeat="post in model.posts" ng-if="model.posts.length>0">
+                        <div class="col-xs-1">
+                            user {{post._user.substring(0, 3)}}
+                        </div>
+                        <div class="col-xs-11">
+                            <p>{{post.post_text}}</p>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="model.posts.length==0">
+                        <div class="col-xs-12">
+                            No posts yet here.
+                            Visit <span>{{model.resName}}</span> today
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

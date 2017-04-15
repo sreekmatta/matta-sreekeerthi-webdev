@@ -8,7 +8,8 @@
             "createPost": createPost,
             "updatePost":updatePost,
             "deletePost": deletePost,
-            "findAllPostsByUser":findAllPostsByUser
+            "findAllPostsByUser":findAllPostsByUser,
+            "findPostsByRestaurantId":findPostsByRestaurantId
         };
         return api;
 
@@ -23,6 +24,9 @@
         }
         function findAllPostsByUser(userId) {
             return  $http.get("/rest/enduser/"+userId+"/post");
+        }
+        function findPostsByRestaurantId(resId) {
+            return  $http.get("/rest/restaurant/"+resId+"/post");
         }
     }
 })();

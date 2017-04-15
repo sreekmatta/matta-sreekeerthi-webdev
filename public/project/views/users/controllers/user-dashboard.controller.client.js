@@ -42,9 +42,6 @@
         function getDashboardURL(){
             if(viewModel.user.userType == "FOODIE")
                 return 'views/users/templates/foodie/foodie-dashboard.view.client.html';
-            else
-            if(viewModel.user.userType == "RESTAURANT")
-                return 'views/users/templates/restaurant/restaurant-dashboard.view.client.html';
         }
 
         function newPost(newPostDetails) {
@@ -73,16 +70,18 @@
         function showPosition(position) {
             lat = position.coords.latitude;
             lon =  position.coords.longitude;
-            document.getElementById("lat").innerHTML = lat;
-            document.getElementById("lon").innerHTML = lon;
+            if(document.getElementById("lat")) {
+                document.getElementById("lat").innerHTML = lat;
+                document.getElementById("lon").innerHTML = lon;
+            }
 
         }
 
         function createPost(newPost) {
             newPost._restaurant = document.getElementById("restaurant-id").value;
+            newPost.restaurant_name = document.getElementById("restaurant").value;
             newPost._user = userId;
             var promise = PostService.createPost(userId,newPost);
-
 
             promise.then(
                 function (post) {
@@ -110,8 +109,6 @@
                     }
                 }
             );
-
-
         }
 
         function getRestaurantById(resId) {

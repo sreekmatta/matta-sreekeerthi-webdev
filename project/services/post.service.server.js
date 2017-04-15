@@ -4,6 +4,7 @@ module.exports = function (app,postModel) {
     app.put("/rest/post/:postId", updatePost);
     app.delete("/rest/post/:postId",deletePost);
     app.get("/rest/enduser/:userId/post",findAllPostsForUser);
+    app.get("/rest/restaurant/:resId/post",findAllPostsForRestaurant);
 
     function createPost(req, res) {
         var userId = req.params.userId;
@@ -58,6 +59,17 @@ module.exports = function (app,postModel) {
             .deletePost(postId)
             .then(function(doc) {
                 res.json(200);
+            }, function (error) {
+                res.sendStatus(500).send(error);
+            });
+    }
+
+    function findAllPostsForRestaurant(req,res) {
+        var resId = req.params.resId;
+        postModel
+            .findAllPostsForRestaurant(resId)
+            .then(function(PostsForRestaurant) {
+                res.json(PostsForRestaurant);
             }, function (error) {
                 res.sendStatus(500).send(error);
             });

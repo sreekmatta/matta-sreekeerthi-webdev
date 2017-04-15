@@ -1,6 +1,3 @@
-/**
- * Created by sreematta on 2/9/2017.
- */
 (function () {
     angular
         .module("HungryOwlAppMaker")
@@ -14,7 +11,7 @@
 
         function login(user) {
             UserService
-                .login(user)
+                .findUserByCredentials(user.username,user.password)
                 .then(
                     function successCallback(response) {
                         var user = response.data;

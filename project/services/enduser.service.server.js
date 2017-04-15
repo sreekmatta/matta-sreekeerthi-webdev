@@ -143,16 +143,15 @@ module.exports = function (app,enduserModel) {
         enduserModel
             .findUserById(userId)
             .then(function (user) {
-                res.json(user);
+                res.json(user[0]);
             }, function (error) {
                 res.sendStatus(500);
             });
     }
 
     function findUser(req, res) {
-        var user = req.body;
-        var username = user.username;
-        var password = user.password;
+        var username = req.query.username;
+        var password = req.query.password;
         if(username && password) {
             findUserByCredentials(req, res);
         } else if(username) {
@@ -173,9 +172,8 @@ module.exports = function (app,enduserModel) {
 
     function findUserByCredentials(req, res){
 
-        var user = req.body;
-        var username = user.username;
-        var password = user.password;
+        var username = req.query.username;
+        var password = req.query.password;
 
         enduserModel
             .findUserByCredentials(username,password)

@@ -17,10 +17,6 @@
                            target="_self" class="btn ho-dashboard-link">Bookmarks
                         </a>
                     </li>
-                    <li class="ho-menu-li"><a data-toggle="pill" href="#myreviews"
-                                              target="_self" class="btn ho-dashboard-link">My Reviews
-                    </a>
-                    </li>
                     <li class="ho-menu-li"><a data-toggle="pill" href="#followers"
                                               target="_self" class="btn ho-dashboard-link">Followers</a>
                     </li>
@@ -85,15 +81,21 @@
                     </div>
 
                     <div class="ho-posts-ul">
-
                         <ul class="list-group">
+                                <li ng-if="model.posts.length==0"
+                                    class="list-group-item ho-posts">
+                                    <h4>You haven't posted anything yet.</h4>
+                                    <h5>Share your first post now.</h5>
+                                </li>
+
                             <li ng-repeat="post in model.posts" class="list-group-item ho-posts">
                                 <div class="row">
                                     <div class="col-xs-12">
                                         {{post.post_text}} <b>at</b>
                                         <span class="glyphicon glyphicon-map-marker">
                                         </span>
-                                        {{model.restaurantNames}}
+                                        <a href="#!/restaurant/{{post.restaurant_name}}/{{post._restaurant}}"
+                                            class="restaurant-link">{{post.restaurant_name}}</a>
                                     </div>
                                 </div>
                             </li>
@@ -109,6 +111,7 @@
                             <h4>Nothing in your Bookmarks yet.</h4>
                             <h5>Add restaurants to your Bookmarks for easy future reference.</h5>
                         </div>
+                        <div ng-repeat="bookmark in model.bookmarks">
                         <div class="row ho-5px-all-padding restaurant-bookmark">
                             <div class="col-xs-3 zero-padding">
                                 <img src="images/icon.png" width="50" height="50">
@@ -121,30 +124,7 @@
                                 <a href="#!/" class="btn btn-success ho-5px-all-padding pull-right">4.5</a>
                             </div>
                         </div>
-                        <div class="row ho-5px-all-padding restaurant-bookmark">
-                            <div class="col-xs-3 zero-padding">
-                                <img src="images/icon.png" width="50" height="50">
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="ho-brief-details">Restaurant Name</div>
-                                <div class="ho-brief-details">Street</div>
-                            </div>
-                            <div class="col-xs-3 zero-padding">
-                                <a href="#!/" class="btn btn-success ho-5px-all-padding pull-right">4.5</a>
-                            </div>
                         </div>
-                    </div>
-                </div>
-                <div id="myreviews" class="tab-pane fade search-result">
-                    <div class="ho-section-heading">
-                        My Reviews
-                    </div>
-                    <div class="ho-section-content">
-                        <div class="">
-                            <h4>You haven't written any reviews yet.</h4>
-                            <h5>Add your first review now.</h5>
-                        </div>
-
                     </div>
                 </div>
                 <div id="followers" class="tab-pane fade search-result">

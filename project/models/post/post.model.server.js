@@ -4,6 +4,7 @@ module.exports = function () {
     var api = {
         createPostForUser:createPostForUser,
         findAllPostsForUser:findAllPostsForUser,
+        findAllPostsForRestaurant:findAllPostsForRestaurant,
         findPostById:findPostById,
         updatePost:updatePost,
         setModel: setModel
@@ -43,6 +44,20 @@ module.exports = function () {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(PostsForUser);
+                }
+            });
+        return deferred.promise;
+    }
+
+
+    function findAllPostsForRestaurant(resId) {
+        var deferred = q.defer();
+        PostModel
+            .find({_restaurant:resId}, function (err, PostsForRestaurant) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(PostsForRestaurant);
                 }
             });
         return deferred.promise;

@@ -6,13 +6,20 @@ module.exports = function () {
         userType: { type : String,
             default : 'RESTAURANT'},
         logoUrl: String,
+        username:String,
+        password: String,
         streetAddress: String,
         city: String,
         state: String,
         latitude:String,
         longitude:String,
-        foodTypes: [String],
-        phone: Number,
+        foodTypes: {type:[String] ,default:[]},
+        acceptsCash:Boolean,
+        acceptsCard:Boolean,
+        offersDelivery:Boolean,
+        deliveryMin:Number,
+        deliveryPrice:Number,
+        phone: String,
         dateCreated: {type:Date ,default:Date.now}
     }, {collection: 'project.restaurant'});
 

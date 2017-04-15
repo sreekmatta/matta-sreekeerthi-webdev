@@ -573,3 +573,45 @@ textarea{
     margin-left:-40px ;
     padding: 5px;
 }
+
+a.restaurant-link{
+    padding: 5px;
+}
+a.restaurant-link:hover {
+    background: lightgray;
+    padding: 5px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.ho-review-heading{
+    width: 100.5%;
+    margin-left: -1px;
+    font-family: sans-serif;
+    font-size: 15px;
+    height: 45px;
+    padding: 15px;
+    font-weight: 500;
+}
+
+.ho-top-margin{
+    margin-top: 25px;
+}
+.ho-bottom-margin{
+    margin-bottom: 25px;
+}
+
+.ho-deco{
+    background-color: white;
+    border: 1px solid;
+    border-style: groove;
+    border-top: none;
+}
+
+.left-margin{
+    margin-left: 25px;
+}
+
+.ho-margin-left{
+    margin-left: 15px;
+}

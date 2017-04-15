@@ -1,43 +1,188 @@
 module.exports = function (app,restaurantModel,$http) {
-    const querystring = require('querystring');
 
-    app.get("/rest/restaurant/:resId", findRestaurantById);
-    app.post("/rest/restaurant/byname/byloc", findRestaurantByName);
+    var passport = require('passport');
 
-
-    var http = require('http');
-
-
-    //call sent to API
-    function findRestaurantByName(req,res) {
-        var searchParams = req.body;
-        var resName = searchParams.resName;
-        var latlon = searchParams.latlon;
-
-        var api_key = "AIzaSyCPz-LPtXo8wNVylKpno9yt4avApBfyzGU";
-
-        var urlBase = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=RESNAME&location=LATLON&radius=10000&key=API_KEY";
-        var url = urlBase.replace("RESNAME", resName).replace("LATLON", latlon)
-            .replace("API_KEY",api_key);
-
-
-        $http({
-            method: 'GET',
-            url: url
-        }).then(function successCallback(response) {
-            console.log("success");
-        });
-    }
+    app.post('/rest/restaurant/login', passport.authenticate('local'), login);
+    app.post('/rest/restaurant/logout', logout);
+    app.get ('/rest/restaurant/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/rest/restaurant/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/#/restaurant',
+            failureRedirect: '/#/restaurant/login'
+        }));
+    app.post("/rest/restaurant", createRestaurant);
+    app.get("/rest/restaurant", findRestaurant);
+    app.get("/rest/restaurant/:rid", findRestaurantById);
+    app.put("/rest/restaurant/:rid", updateRestaurant);
+    app.delete("/rest/restaurant/:rid", deleteRestaurant);
+    app.post('/rest/restaurant/register', register);
+    app.get('/rest/restaurant/loggedin', loggedin);
 
     function findRestaurantById(req, res) {
-        var resId = req.params.resId;
+        var rid = req.params.rid;
         restaurantModel
-            .findRestaurantById(resId)
+            .findRestaurantById(rid)
             .then(function (restaurant) {
-                res.json(user);
+                res.json(restaurant);
             }, function (error) {
                 res.sendStatus(500);
             });
     }
 
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    };
+
+    var LocalStrategy = require('passport-local').Strategy;
+
+    //session information is maintained for currently logged in enduser
+    passport.serializeUser(serializeUser);
+    function serializeUser(restaurant, done) {
+        done(null, restaurant);
+    }
+
+    passport.deserializeUser(deserializeUser);
+    function deserializeUser(restaurant, done) {
+        restaurantModel
+            .findRestaurantById(restaurant._id)
+            .then(
+                function(restaurant){
+                    done(null, restaurant);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    passport.use(new LocalStrategy(localStrategy));
+    function localStrategy(username, password, done) {
+        restaurantModel
+            .findRestaurantByCredentials(username, password)
+            .then(
+                function(restaurant) {
+                    if (!restaurant) { return done(null, false); }
+                    return done(null, restaurant);
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+    function login(req, res) {
+        var restaurant = req.body;
+        res.json(restaurant);
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
+    }
+
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.restaurant : '0');
+    }
+
+
+    function register (req, res) {
+        var restaurant = req.body;
+        restaurantModel
+            .createRestaurant(restaurant)
+            .then(
+                function(restaurant){
+                    if(restaurant){
+                        req.login(restaurant, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(restaurant);
+                            }
+                        });
+                    }
+                }
+            );
+    }
+
+
+    function createRestaurant(req, res) {
+        var newRestaurant = req.body;
+        restaurantModel
+            .createRestaurant(newRestaurant)
+            .then(function(newRestaurant) {
+                res.json(newRestaurant);
+            }, function (error) {
+                res.sendStatus(500).send(error);
+            });
+    }
+
+    function updateRestaurant(req, res) {
+        var rid = req.params.rid;
+        var restaurantNew = req.body;
+        restaurantModel
+            .updateRestaurant(rid,restaurantNew)
+            .then(function (restaurant) {
+                res.json(restaurantNew);
+            }, function (error) {
+                res.sendStatus(500);
+            });
+    }
+
+    function findRestaurantById(req, res) {
+        var rid = req.params.rid;
+        restaurantModel
+            .findRestaurantById(rid)
+            .then(function (restaurant) {
+                res.json(restaurant);
+            }, function (error) {
+                res.sendStatus(500);
+            });
+    }
+
+    function findRestaurant(req, res) {
+        var username = req.query.username;
+        var password = req.query.password;
+        if(username && password) {
+            findRestaurantByCredentials(req, res);
+        } else if(username) {
+            findRestaurantByUsername(req, res);
+        }
+    }
+
+    function findRestaurantByUsername(req, res) {
+        var username = req.params.username;
+        restaurantModel
+            .findRestaurantByUsername(username)
+            .then(function (restaurant) {
+                res.json(restaurant);
+            }, function (error) {
+                res.sendStatus(500);
+            });
+    }
+
+    function findRestaurantByCredentials(req, res){
+
+        var username = req.query.username;
+        var password = req.query.password;
+
+        restaurantModel
+            .findRestaurantByCredentials(username,password)
+            .then(function (restaurant) {
+                res.json(restaurant);
+            }, function (error) {
+                res.sendStatus(500);
+            });
+
+    }
+
+    function deleteRestaurant(rid){
+        restaurantModel
+            .deleteRestaurant(rid)
+            .then(function (restaurant) {
+                res.json(restaurant);
+            }, function (error) {
+                res.sendStatus(500)
+            });
+    }
 };

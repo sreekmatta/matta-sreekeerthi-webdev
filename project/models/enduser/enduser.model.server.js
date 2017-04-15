@@ -41,7 +41,7 @@ module.exports = function () {
     function findUserById(userId){
         var deferred = q.defer();
         EnduserModel
-            .findById(userId, function (err, user) {
+            .find({_id:userId}, function (err, user) {
                 if(err) {
                     deferred.reject(err);
                 } else {
@@ -50,7 +50,6 @@ module.exports = function () {
             });
         return deferred.promise;
     }
-
 
     function findUserByUsername(username){
         var deferred = q.defer();
@@ -74,7 +73,6 @@ module.exports = function () {
                     console.log("err");
                     deferred.reject(err);
                 } else {
-                    console.log("enduser me");
                     deferred.resolve(user[0]);
                 }
             });

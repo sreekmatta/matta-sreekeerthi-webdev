@@ -31,11 +31,46 @@
                 controller: 'ProfileController',
                 controllerAs: 'model'
             })
-
             .when("/restaurant/search/:radius/:resname",{
                 templateUrl: 'views/home/templates/search-results.view.client.html',
                 controller: 'SearchResultsController',
                 controllerAs: 'model'
             })
+            .when("/restaurant/:rid/profile",{
+                templateUrl: 'views/restaurant/templates/restaurant-profile.view.client.html',
+                controller: 'RestaurantProfileController',
+                controllerAs: 'model'
+            })
+            .when("/restaurant/login",{
+                templateUrl: 'views/restaurant/templates/restaurant-login.view.client.html',
+                controller: 'RestaurantLoginController',
+                controllerAs: 'model'
+            })
+            .when("/restaurant/register",{
+                templateUrl: 'views/restaurant/templates/restaurant-register.view.client.html',
+                controller: 'RestaurantRegisterController',
+                controllerAs: 'model'
+            })
+            .when("/restaurant/:rid/addInfo",{
+                templateUrl: 'views/restaurant/templates/add-restaurant-info.view.client.html',
+                controller: 'AddRestaurantInfoController',
+                controllerAs: 'model'
+            })
+            .when("/restaurant/:rid/addMenu",{
+                templateUrl: 'views/restaurant/templates/add-restaurant-menu.view.client.html',
+                controller: 'AddRestaurantMenuController',
+                controllerAs: 'model'
+            })
+            .when("/restaurant/:resName/:resid",{
+                templateUrl: 'views/restaurant/templates/restaurant-details.view.client.html',
+                controller: 'RestaurantDetailsController',
+                controllerAs: 'model'
+            })
+            .when("/restaurant/:rid",{
+                templateUrl: 'views/restaurant/templates/restaurant-details.view.client.html',
+                controller: 'RestaurantDetailsController',
+                controllerAs: 'model'
+            })
+
     }
 })();
