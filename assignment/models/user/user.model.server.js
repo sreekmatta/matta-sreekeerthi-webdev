@@ -80,19 +80,19 @@ module.exports = function () {
         var deferred = q.defer();
         UserModel
             .update({_id:userId},
-                    {   username: user.username,
-                        password: user.password,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        email: user.email,
-                        phone:user.phone},
-                    function (err,user) {
-            if(err){
-                deferred.reject(err);
-            } else {
-                deferred.resolve(user);
-            }
-            });
+                {   username: user.username,
+                    password: user.password,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                    phone:user.phone},
+                function (err,user) {
+                    if(err){
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(user);
+                    }
+                });
 
         return deferred.promise;
     }

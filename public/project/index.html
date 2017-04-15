@@ -1,10 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Project Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          charset="UTF-8"/>
+    <link rel="icon" href="images/icon.png" type="image/png" sizes="64x64"/>
+    <title>HungryOwl</title>
+
+    <meta name="author" content="HungryOwl"/>
+    <meta name="description" content="Restaurant Finding Web Application" />
+    <meta name="keywords"  content="Restaurants,Bars,cafes,breakfast,lunch,dinner,brunch"/>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Limelight|Macondo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- app and config -->
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+
+
+    <script src="directives/wbdv-search.js"></script>
+
+
+    <!-- controllers -->
+    <script src="views/users/controllers/admin.controller.client.js"></script>
+    <script src="views/users/controllers/user-dashboard.controller.client.js"></script>
+    <script src="views/users/controllers/login.controller.client.js"></script>
+    <script src="views/users/controllers/register.controller.client.js"></script>
+    <script src="views/users/controllers/profile.controller.client.js"></script>
+    <script src="views/home/controllers/home.controller.client.js"></script>
+    <script src="views/home/controllers/search-results.controller.client.js"></script>
+
+    <!-- services -->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/restaurant.service.client.js"></script>
+    <script src="services/post.service.client.js"></script>
+
+
+
+
 </head>
-<body>
-    <h1>Project Home Page</h1>
+<body ng-app="HungryOwlAppMaker">
+<div ng-view>
+</div>
 </body>
 </html>

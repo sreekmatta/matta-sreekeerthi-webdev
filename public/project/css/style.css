@@ -1,0 +1,575 @@
+body {
+    margin: 0 !important;
+    font-family: 'Lato', sans-serif;
+    background-color: whitesmoke;
+}
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    transition: 1s opacity;
+}
+
+input:hover{
+    transition: 0.5s;
+}
+a:hover{
+    transition: 0.5s;
+}
+
+#polina {
+    font-weight:100;
+    color: white;
+    padding: 2rem;
+    width: 100%;
+}
+
+a:hover{
+    background:rgba(0,0,0,0.9);
+}
+
+#over{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color:Black;
+    opacity:0.8;
+    z-index: -1;
+}
+/* end of home style*/
+
+
+/* Layer with position absolute in order to have it over the video
+* --------------------------------------- */
+#ho-home{
+    background-color: black !important;
+}
+
+#ho-home .layer{
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    left: 0;
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+#ho-home{
+    overflow: hidden;
+}
+
+#infoMenu li a {
+    color: #fff;
+}
+
+
+#logo{
+    width: 55px;
+}
+
+.top-navbar{
+    text-align: left;
+    margin-left: 10px;
+    color: white;
+}
+
+.hungry-owl-text{
+    margin-left: 47px;
+    margin-top: -47px;
+    font-size: 41px;
+    font-family: 'Macondo', Sans-Serif, cursive;
+}
+
+.search-bar-height{
+    height: 45px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+
+.msk-caret{
+    vertical-align: middle;
+    margin-top: 8px;
+}
+.msk-search-loc{
+    margin-left: 4px;
+}
+
+.msk-map-marker{
+    margin-top: 2px;
+}
+
+#dropdownMenu1{
+    width: 100%;
+}
+
+.dropdown-menu{
+    width: 100%;
+}
+
+.msk-col-search{
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.msk-greeting-text{
+    color: orangered;
+    padding-left: 50px;
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    padding-right: 50px;
+}
+
+
+
+#ho-about{
+    background-color: white !important;
+}
+
+.msk-heading{
+    font-size: 25px;
+}
+
+.msk-description > p{
+    font-size: 15px !important;
+}
+
+.ho-features{
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.ho-features-heading{
+    font-size: 30px;
+    margin-left: 20px;
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+hr {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    border-style: inset;
+}
+
+@media screen and (min-width: 768px) {
+    .ho-features{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .msk-greeting-text{
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 35px;
+    }
+}
+
+
+@media screen and (max-width: 410px) {
+    .hungry-owl-text{
+        margin-top: -41px;
+        font-size: 35px;
+    }
+    .ho-button-text{
+        display: none;
+    }
+}
+
+
+.ho-logo{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.ho-profile-btn{
+    height: 45px;
+}
+
+.ho-img-circle{
+    width:25px;
+    border-radius: 50%;
+}
+
+.ho-profile-col{
+    margin-left: -20px;
+    margin-top: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.badge.pull-right{
+    margin-top: -22px;
+    margin-right: 15px;
+}
+
+.dropdown-menu > li > .glyphicon{
+    color: black;
+}
+
+.greeting-layer{
+    z-index: 3 !important;
+}
+
+.ho-navbar-text{
+    margin-left: 45px !important;
+    margin-top: -27px !important;
+    font-size: 35px !important;
+}
+.ho-navbar-logo{
+    width: 50px !important;
+}
+
+.nav-dropdown-menu{
+    margin-left: -70px;
+}
+
+.centered{
+    margin-top: 100px;
+}
+
+.zero-padding{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.zero-padding-tb{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.ho-main-body{
+    margin-top: 90px !important;
+    margin-bottom: 90px !important;
+}
+
+
+.msk-navbar-header{
+    height: 70px;
+}
+
+.ho-toggle-button{
+    margin-top: 18px;
+}
+
+.navbar-brand{
+    padding-top: 5px;
+}
+.ho-buttons-margin{
+    margin-top: 25px;
+}
+
+.ho-dropdown-padding{
+    padding-top: 12px;
+}
+
+
+.ho-all-padding{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.search-result{
+    border: 1px black;
+    border-style: solid;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.ho-top-padding{
+    padding-top: 15px;
+}
+.ho-left-padding{
+    padding-left: 15px;
+}
+.ho-right-padding{
+    padding-right: 15px;
+}
+.ho-bottom-padding{
+    padding-top: 15px;
+}
+
+.ho-result-hr{
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-style: inset;
+}
+
+.zero-margin{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.ho-result-heading{
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+#cuisine-btn, #price-btn, #rating-btn{
+    width: 100%;
+    height: 50px;
+}
+
+.ho-bottom-margin{
+    margin-bottom: 15px;
+}
+
+#rating-btn{
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+#price-btn{
+    border-radius: 0px;
+}
+
+#cuisine-btn{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.ho-filter-caret{
+    float: right;
+    border-top-width: 8px;
+    border-left-width: 8px;
+    border-right-width: 8px;
+    margin-top: 5px;
+}
+
+
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+    border: none;
+    float: left;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.rating > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.rating > label {
+    color: #ddd;
+    float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+
+.ho-brief-details{
+    padding-left: 6px;
+    padding-top: 4px;
+}
+
+.ho-dashboard-greeting{
+    color: orangered;
+    padding-left: 25px;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+    padding-right: 25px;
+}
+
+a.ho-dashboard-link:hover{
+    text-decoration: none ;
+    background-color: lightgray;
+}
+
+a.ho-dashboard-link {
+    font-size: 15px;
+    width: 100%;
+    color: black;
+    text-align: left;
+    border-radius: 0px !important;
+}
+.nav-pills>li{
+    margin-left:0px !important;
+    margin-right:0px !important;
+}
+
+.ho-menu-break{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.ho-5px-all-padding{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+.ho-modal-content{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+li.msk-table-heading{
+    background-color: lightgray;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+textarea{
+    width: 100%;
+    resize: none;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    margin-bottom: -6px;
+    -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+    -moz-box-sizing: border-box; /* FF1+ */
+    box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+}
+
+.ho-post-btn{
+    width: 100%;
+    height: 50px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 12px;
+}
+
+.ho-menu-li{
+    width: 100%;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+    background-color: lightgray;
+}
+
+.ho-loc-input{
+    height:50px;
+}
+
+
+.ho-posts{
+    font-size: 15px;
+    font-weight: 400;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.ho-board-heading{
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.ho-section-heading,
+.ho-section-content{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.ho-section-heading{
+    font-size: 17px;
+    font-weight: 600;
+ }
+
+.restaurant-bookmark{
+    border: 1px solid gray;
+    margin-left: 1px;
+    margin-right: 1px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover{
+    color: #d9534f;
+    font-weight:600 ;
+}
+
+
+.ho-radius{
+    width: 100%;
+    height: 45px;
+    border-radius: 5px;
+    color: black;
+}
+
+.ho-place{
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: black;
+}
+
+.zero-top-margin{
+    margin-top: 0px!important;
+}
+
+.ho-ul{
+    list-style-type: none;
+    display: -webkit-inline-box;
+}
+
+.ho-ul>li{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.ho-list{
+    list-style-type: none;
+    background-color: white;
+    border: 1px solid;
+    border-radius: 2px;
+    width: 50% !important;
+    margin-left:-40px ;
+    padding: 5px;
+}

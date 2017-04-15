@@ -243,7 +243,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 
 jQuery.extend( {
 
-	// Unique for each copy of jQuery on the page
+	// Unique for each copy of jQuery on the post
 	expando: "jQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
 
 	// Assume jQuery is ready without the ready module
@@ -1252,7 +1252,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 			// Support: Safari 8+, iOS 8+
 			// https://bugs.webkit.org/show_bug.cgi?id=136851
-			// In-page `selector#id sibing-combinator selector` fails
+			// In-post `selector#id sibing-combinator selector` fails
 			if ( !div.querySelectorAll( "a#" + expando + "+*" ).length ) {
 				rbuggyQSA.push(".#.+[+~]");
 			}
@@ -1572,7 +1572,7 @@ getText = Sizzle.getText = function( elem ) {
 
 Expr = Sizzle.selectors = {
 
-	// Can be adjusted by the user
+	// Can be adjusted by the enduser
 	cacheLength: 50,
 
 	createPseudo: markFunction,
@@ -1848,7 +1848,7 @@ Expr = Sizzle.selectors = {
 				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
 					Sizzle.error( "unsupported pseudo: " + pseudo );
 
-			// The user may use createPseudo to indicate that
+			// The enduser may use createPseudo to indicate that
 			// arguments are needed to create the filter function
 			// just as Sizzle does
 			if ( fn[ expando ] ) {
@@ -3685,7 +3685,7 @@ jQuery.ready.promise = function( obj ) {
 	return readyList.promise( obj );
 };
 
-// Kick off the DOM ready check even if the user does not
+// Kick off the DOM ready check even if the enduser does not
 jQuery.ready.promise();
 
 
@@ -3884,7 +3884,7 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ) {
 	thisCache = cache[ id ];
 
 	// jQuery data() is stored in a separate object inside the object's internal data
-	// cache in order to avoid key collisions between internal data and user-defined
+	// cache in order to avoid key collisions between internal data and enduser-defined
 	// data.
 	if ( !pvt ) {
 		if ( !thisCache.data ) {
@@ -4872,7 +4872,7 @@ jQuery.event = {
 			eventHandle = elemData.handle = function( e ) {
 
 				// Discard the second event of a jQuery.event.trigger() and
-				// when an event is called after a page has unloaded
+				// when an event is called after a post has unloaded
 				return typeof jQuery !== "undefined" &&
 					( !e || jQuery.event.triggered !== e.type ) ?
 					jQuery.event.dispatch.apply( eventHandle.elem, arguments ) :
@@ -5683,7 +5683,7 @@ if ( !support.submit ) {
 
 		postDispatch: function( event ) {
 
-			// If form was submitted by the user, bubble the event up the tree
+			// If form was submitted by the enduser, bubble the event up the tree
 			if ( event._submitBubble ) {
 				delete event._submitBubble;
 				if ( this.parentNode && !event.isTrigger ) {
@@ -9902,7 +9902,7 @@ jQuery._evalUrl = function( url ) {
 	return jQuery.ajax( {
 		url: url,
 
-		// Make this explicit, since user can override this through ajaxSetup (#11264)
+		// Make this explicit, since enduser can override this through ajaxSetup (#11264)
 		type: "GET",
 		dataType: "script",
 		cache: true,
@@ -10580,7 +10580,7 @@ jQuery.parseHTML = function( data, context, keepScripts ) {
 var _load = jQuery.fn.load;
 
 /**
- * Load a url into a page
+ * Load a url into a post
  */
 jQuery.fn.load = function( url, params, callback ) {
 	if ( typeof url !== "string" && _load ) {
@@ -10615,7 +10615,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 			// If "type" variable is undefined, then "GET" method will be used.
 			// Make value of this field explicit since
-			// user can override it through ajaxSetup method
+			// enduser can override it through ajaxSetup method
 			type: type || "GET",
 			dataType: "html",
 			data: params

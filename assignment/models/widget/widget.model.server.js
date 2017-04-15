@@ -46,7 +46,7 @@ module.exports = function () {
     function findAllWidgetTypes() {
         return WidgetModel.schema.path('type').enumValues;
     }
-    
+
     function findWidgetById(widgetId) {
         var deferred = q.defer();
         WidgetModel

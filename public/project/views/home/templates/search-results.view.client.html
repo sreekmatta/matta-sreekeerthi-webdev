@@ -1,0 +1,277 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="col-xs-6 msk-navbar-header zero-padding">
+            <a class="navbar-brand" href="#!/">
+                <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
+                <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
+            </a>
+        </div>
+
+        <div class="col-xs-6">
+            <div class="dropdown pull-right ho-dropdown-padding">
+                <button class="btn btn-default dropdown-toggle ho-profile-btn"
+                        type="button" data-toggle="dropdown">
+                    <img class="ho-img-circle" src="images/backup-img/icon.png">
+                    <span class="ho-button-text">Sree</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu nav-dropdown-menu">
+                    <li><a href="#">
+                        <span class="glyphicon glyphicon-dashboard"></span>
+                        Dashboard</a>
+                    </li>
+                    <li><a href="#">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Profile</a>
+                    </li>
+                    <li><a href="#">
+                        <span class="glyphicon glyphicon-th"></span>
+                        Notifications</a>
+                        <span class="badge pull-right">2</span>
+                    </li>
+                    <li><a href="#">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        Followers</a>
+                        <span class="badge pull-right">99</span>
+                    </li>
+                    <li><a href="#">
+                        <span class="glyphicon glyphicon-bookmark"></span>
+                        Following</a>
+                        <span class="badge pull-right">52</span>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="ho-main-body">
+        <div class="row msk-search-bar">
+            <div class="col-xs-1 col-md-2"></div>
+            <div class="col-xs-10 col-md-8 zero-padding">
+                <div class="col-xs-12 col-sm-2 msk-col-search dropdown pull-left">
+                    <select name="radius" id="radius" class="ho-radius">
+                        <option value="2">Around 2 miles</option>
+                        <option value="5">Around 5 miles</option>
+                        <option value="10">Around 10 miles</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-8 msk-col-search search-bar">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle search-bar-height"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span>Search</span>
+                            </button>
+                        </div><!-- /btn-group -->
+                        <select name="place" id="resname" class="search-bar-height ho-place">
+                            <option value="0">All Places</option>
+                            <option value="Cafe">Cafes</option>
+                            <option value="Bars">Bars</option>
+                            <option value="Pizza">Pizzeria</option>
+                        </select>
+                    </div><!-- /input-group -->
+                </div>
+                <div class="col-xs-12 col-sm-2 msk-col-search">
+                    <a ng-click="model.searchRestaurants()"
+                       class="btn btn-block btn-danger search-bar-height">Search</a>
+                </div>
+            </div>
+            <div class="col-xs-1 col-md-2"></div>
+        </div>
+        <br>
+        <hr class="ho-result-hr">
+        <div class="row">
+            <h3 class="ho-result-heading">Restaurants List</h3>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="search-result ho-all-padding">
+                    <h3 class="zero-top-margin">Filters</h3>
+                    <div class="">
+                        <div class="checkbox">
+                            <label><input id="delivery" type="checkbox" value="delivery">
+                                Delivery Available
+                            </label>
+                        </div>
+                    </div>
+                    <hr class="ho-result-hr zero-margin">
+                    <div class="ho-cuisines">
+                        <h4>Distance from You</h4>
+                        <div class="radio">
+                            <label><input name="radius" type="radio" value="2" checked>2 miles</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="radius" type="radio" value="5">5 miles</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="radius" type="radio" value="10">10 miles</label>
+                        </div>
+                    </div>
+                    <hr class="ho-result-hr zero-margin">
+                    <div class="ho-cuisines">
+                        <h4>Cuisines</h4>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="American">American</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Indian">Indian</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Chinese">Chinese</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Thai">Thai</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Japanese">Japanese</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Italian">Italian</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Turkish">Turkish</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Mediterranean">Mediterranean</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Middle Eastern">Middle Eastern</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Taiwanese">Taiwanese</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Korean">Korean</label>
+                        </div>
+                        <div class="radio">
+                            <label><input name="cuisine" type="radio" value="Lebanese">Lebanese</label>
+                        </div>
+                    </div>
+                    <hr class="ho-result-hr zero-margin">
+                    <div class="">
+                        <br>
+                        <a type="button" class="btn btn-danger btn-block"
+                           data-toggle="modal"
+                           ng-click="model.searchRestaurantsByFilters()">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            Search
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-9">
+                <div ng-repeat="restaurant in model.restaurants | pagination: model.curPage * model.pageSize | limitTo: model.pageSize"  class="search-result">
+                    <div class="row ho-all-padding restaurant-name-section">
+                        <div class="col-xs-3">
+                            <img src="{{restaurant.logoUrl}}" width="80" height="80">
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="ho-brief-details">{{restaurant.name}}</div>
+                            <div class="ho-brief-details">{{restaurant.streetAddress}}
+                                <br>{{restaurant.city}},{{restaurant.state}}</div>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-danger pull-right" data-toggle="modal">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                &nbsp;
+                                {{restaurant.phone}}
+                            </button>
+                        </div>
+                    </div>
+                    <hr class="ho-result-hr">
+                    <div class="ho-all-padding restaurant-info-section">
+
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#info" target="_self">Info</a></li>
+                            <li><a data-toggle="tab" href="#review" target="_self">Review</a></li>
+                        </ul>
+
+                        <div class="tab-content ho-left-padding ho-top-padding">
+                            <div id="info" class="tab-pane fade in active">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        Cuisines:
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <span ng-repeat="foodTypeValues in restaurant.foodTypes">
+                                            <span>{{foodTypeValues}} | </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row" ng-if="restaurant.open">
+                                    <div class="col-xs-4">
+                                        Open Now:
+                                    </div>
+                                    <div class="col-xs-8">
+                                        {{restaurant.open}}
+                                    </div>
+                                </div>
+
+                                <div class="row" ng-if="restaurant.deliveryMin">
+                                    <div class="col-xs-4">
+                                        Minimum Order:
+                                    </div>
+                                    <div class="col-xs-8">
+                                        ${{restaurant.deliveryMin}}
+                                    </div>
+                                </div>
+
+                                <div class="row" ng-if="restaurant.deliveryPrice">
+                                    <div class="col-xs-4">
+                                        Delivery Fees:
+                                    </div>
+                                    <div class="col-xs-8">
+                                        ${{restaurant.deliveryPrice}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="review" class="tab-pane fade">
+                                <div class="row">
+                                    <div class="col-xs-1">
+                                        <img src="images/icon.png" class="ho-img-circle">
+                                    </div>
+                                    <div class="col-xs-11">
+                                        <span>Keerthi</span>
+                                        <p>
+                                          The food was awesome but the people are little rude.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-9">
+                <div class="pagination-div" ng-show="model.restaurants.length">
+                    <ul class="ho-ul">
+                        <li>
+                            <button type="button" ng-disabled="model.curPage == 0"
+                                    ng-click="model.curPage = model.curPage-1"
+                            class="btn btn-default">PREV</button>
+                        </li>
+                        <li>
+                            <span>Page {{model.curPage + 1}} of {{ model.numberOfPages() }}</span>
+                        </li>
+                        <li>
+                            <button type="button"
+                                    ng-disabled="model.curPage == (model.restaurants.length/model.pageSize) - 1"
+                                    ng-click="model.curPage = model.curPage+1"
+                                    class="btn btn-default">NEXT </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

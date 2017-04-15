@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="col-xs-6 msk-navbar-header zero-padding">
+                <a class="navbar-brand" href="#!/">
+                    <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
+                    <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
+                </a>
+            </div>
+            <div class="col-xs-6">
+            </div>
+    </nav>
+
+    <div class="ho-main-body">
+        <div class="col-sm-2 col-xs-1">
+        </div>
+        <div class="col-sm-8 col-xs-10">
+            <h2>Welcome to HungryOwl</h2>
+            <hr>
+            <label for ="firstName">First Name</label>
+            <input ng-model="user.firstName"
+                   type="text"
+                   id="firstName"
+                   class="form-control"
+                   placeholder="firstName"/>
+            <label for ="lastName">Last Name</label>
+            <input ng-model="user.lastName"
+                   type="text"
+                   id="lastName"
+                   class="form-control"
+                   placeholder="lastName"/>
+            <label for ="email">E-mail</label>
+            <input ng-model="user.email"
+                   type="text"
+                   id="email"
+                   class="form-control"
+                   placeholder="email"/>
+
+            <label for ="username">Username</label>
+            <input ng-model="user.username"
+                   type="text"
+                   id="username"
+                   class="form-control"
+                   placeholder="username"/>
+
+            <label for ="password">Password</label>
+            <input ng-model="user.password"
+                   type="password"
+                   id="password"
+                   class="form-control"
+                   placeholder="password"/>
+
+            <label for ="retypepassword">Retype Password</label>
+            <input ng-model="user.retypepassword"
+                   type="password"
+                   id="retypepassword"
+                   class="form-control"
+                   placeholder="Retype Password"/>
+
+            <div class="ho-buttons-margin">
+                <a class="btn btn-success btn-block"
+                   ng-click="model.register(user)">Register</a>
+                <a href="/auth/facebook" class="btn btn-primary btn-block">
+                    <span class="fa fa-facebook"></span>
+                    Register with Facebook
+                </a>
+                <a class="btn btn-danger  btn-block"
+                   href="#!/login">Cancel</a>
+            </div>
+        </div>
+        <div class="col-sm-2 col-xs-1">
+        </div>
+    </div>
+
+</div>

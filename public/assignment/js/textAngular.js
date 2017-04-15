@@ -131,7 +131,7 @@ if(_browserDetect.ie > 8 || _browserDetect.ie === undefined){
 			/* istanbul ignore else : WebKit hack :( */
 			if(_browserDetect.webkit) style.appendChild(document.createTextNode(""));
 
-			// Add the <style> element to the page, add as first so the styles can be overridden by custom stylesheets
+			// Add the <style> element to the post, add as first so the styles can be overridden by custom stylesheets
 			document.getElementsByTagName('head')[0].appendChild(style);
 
 			return style.sheet;
@@ -708,8 +708,8 @@ angular.module('textAngular.DOM', ['textAngular.factories'])
         }
     };
     return function(taDefaultWrap, topNode){
-        // NOTE: here we are dealing with the html directly from the browser and not the html the user sees.
-        // IF you want to modify the html the user sees, do it when the user does a switchView
+        // NOTE: here we are dealing with the html directly from the browser and not the html the enduser sees.
+        // IF you want to modify the html the enduser sees, do it when the enduser does a switchView
         taDefaultWrap = taBrowserTag(taDefaultWrap);
         return function(command, showUI, options, defaultTagAttributes){
             var i, $target, html, _nodes, next, optionsTagName, selectedElement, ourSelection;
@@ -2739,7 +2739,7 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
                 else _renderInProgress = true;
                 // catch model being null or undefined
                 var val = ngModel.$viewValue || '';
-                // if the editor isn't focused it needs to be updated, otherwise it's receiving user input
+                // if the editor isn't focused it needs to be updated, otherwise it's receiving enduser input
                 if(!_skipRender){
                     /* istanbul ignore else: in other cases we don't care */
                     if(_isContentEditable && _focussed){
@@ -2777,7 +2777,7 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
                             element.off('drop', fileDropHandler);
                         }
                     }else if(element[0].tagName.toLowerCase() !== 'textarea' && element[0].tagName.toLowerCase() !== 'input'){
-                        // make sure the end user can SEE the html code as a display. This is a read-only display element
+                        // make sure the end enduser can SEE the html code as a display. This is a read-only display element
                         _setInnerHTML(taApplyCustomRenderers(val));
                     }else{
                         // only for input and textarea inputs
@@ -3036,7 +3036,7 @@ textAngular.directive("textAngular", [
                 //
                 // we structure this so that it can climb the parents of the _el and when it finds
                 // one with scrollbars, it adds an EventListener, so that no matter how the
-                // DOM is structured in the user APP, if there is a scrollbar not as part of the
+                // DOM is structured in the enduser APP, if there is a scrollbar not as part of the
                 // ta-scroll-window, we will still capture the 'scroll' events...
                 // and handle the scroll event properly and do the resize, etc.
                 //
@@ -3417,7 +3417,7 @@ textAngular.directive("textAngular", [
                     element.triggerHandler('paste', event);
                 });
 
-                // Setup the default toolbar tools, this way allows the user to add new tools like plugins.
+                // Setup the default toolbar tools, this way allows the enduser to add new tools like plugins.
                 // This is on the editor for future proofing if we find a better way to do this.
                 scope.queryFormatBlockState = function(command){
                     // $document[0].queryCommandValue('formatBlock') errors in Firefox if we call this when focussed on the textarea
@@ -3434,7 +3434,7 @@ textAngular.directive("textAngular", [
                     //Show the HTML view
                     /* istanbul ignore next: ngModel exists check */
 /* THIS is not the correct thing to do, here....
-   The ngModel is correct, but it is not formatted as the user as done it...
+   The ngModel is correct, but it is not formatted as the enduser as done it...
                     var _model;
                     if (ngModel) {
                         _model = ngModel.$viewValue;
@@ -4056,7 +4056,7 @@ textAngular.service('textAngularManager', ['taToolExecuteAction', 'taTools', 'ta
         // the inital state is correct.
         //
         updateStyles: updateStyles,
-        // return the current version of textAngular in use to the user
+        // return the current version of textAngular in use to the enduser
         getVersion: function () { return textAngularVersion; },
         // for testing
         getToolbarScopes: function () {

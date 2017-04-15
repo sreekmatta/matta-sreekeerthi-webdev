@@ -64,14 +64,14 @@
   }
 
   /**
-   * Handle the jQuery UI widget's touchstart events
-   * @param {Object} event The widget element's touchstart event
+   * Handle the jQuery UI review's touchstart events
+   * @param {Object} event The review element's touchstart event
    */
   mouseProto._touchStart = function (event) {
 
     var self = this;
 
-    // Ignore the event if another widget is already being handled
+    // Ignore the event if another review is already being handled
     if (touchHandled || !self._mouseCapture(event.originalEvent.changedTouches[0])) {
       return;
     }
@@ -93,7 +93,7 @@
   };
 
   /**
-   * Handle the jQuery UI widget's touchmove events
+   * Handle the jQuery UI review's touchmove events
    * @param {Object} event The document's touchmove event
    */
   mouseProto._touchMove = function (event) {
@@ -111,7 +111,7 @@
   };
 
   /**
-   * Handle the jQuery UI widget's touchend events
+   * Handle the jQuery UI review's touchend events
    * @param {Object} event The document's touchend event
    */
   mouseProto._touchEnd = function (event) {
@@ -140,15 +140,15 @@
 
   /**
    * A duck punch of the $.ui.mouse _mouseInit method to support touch events.
-   * This method extends the widget with bound touch event handlers that
-   * translate touch events to mouse events and pass them to the widget's
+   * This method extends the review with bound touch event handlers that
+   * translate touch events to mouse events and pass them to the review's
    * original mouse event handling methods.
    */
   mouseProto._mouseInit = function () {
     
     var self = this;
 
-    // Delegate the touch handlers to the widget's element
+    // Delegate the touch handlers to the review's element
     self.element.bind({
       touchstart: $.proxy(self, '_touchStart'),
       touchmove: $.proxy(self, '_touchMove'),
@@ -166,7 +166,7 @@
     
     var self = this;
 
-    // Delegate the touch handlers to the widget's element
+    // Delegate the touch handlers to the review's element
     self.element.unbind({
       touchstart: $.proxy(self, '_touchStart'),
       touchmove: $.proxy(self, '_touchMove'),

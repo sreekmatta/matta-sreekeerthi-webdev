@@ -1,0 +1,490 @@
+body, html {
+	height: 100%;
+	color: #777;
+	font-family: 'Lato', sans-serif !important;
+}
+.home-background {
+	background-image: url('../img/home2.jpg');
+	min-height: 100%;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+a:hover {
+	cursor:pointer;
+}
+.container-fluid{
+	padding-left:0px ;
+}
+.element{
+	color: white;
+	background-color: salmon;
+}
+
+.sree-keerthi-matta-text{
+	margin-top: 320px;
+}
+.sree-keerthi-matta{
+	font-size: 4vw;
+	color: #0F0F0F;
+}
+.sree-keerthi-matta-pic{
+	text-align: -webkit-center;
+}
+
+.about-me {
+	top: 30px;
+	position: absolute;
+	margin-right: 0px !important;
+	padding-bottom: 15px;
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.msk-profile-pic{
+	border: salmon 2px solid;
+	height:115px;
+	width:115px;
+	width:115px;
+	margin-bottom: 20px;
+	}
+
+.msk-profile-pic:hover{
+	-webkit-filter: drop-shadow(8px 8px 8px salmon); /* Safari 6.0 - 9.0 */
+	filter: drop-shadow(8px 8px 8px salmon);
+}
+
+.grad-student{
+	font-size: 18px;
+    font-weight: bold;
+	}
+.gitam-university, .northeastern-university{
+	font-size: 16px;
+	}
+
+.contact{
+	font-size: 16px;
+	}
+	
+.well{
+	padding: 5px !important;
+	line-height: 30px;
+	}
+	
+@media screen and (max-width: 996px) {
+    .northeastern-university {
+  		display : block;
+	}
+	.at {
+		font-weight: bold;
+	}
+}
+
+
+/* Trim */
+.hvr-trim {
+	border-radius: 15px;
+	font-size: 20px;
+    color: white;
+	padding-top: 3rem;
+	text-align: center;
+	width: 135px;
+	height: 90px;
+    background: grey;
+  	display: inline-block;
+  	vertical-align: middle;
+ 	-webkit-transform: perspective(1px) translateZ(0);
+  	transform: perspective(1px) translateZ(0);
+  	box-shadow: 0 0 1px transparent;
+  	position: relative;
+}
+.hvr-trim:before {
+	border-radius: 15px;
+  	content: '';
+  	position: absolute;
+  	border: white solid 4px;
+  	top: 4px;
+  	left: 4px;
+  	right: 4px;
+  	bottom: 4px;
+  	opacity: 0;
+  	-webkit-transition-duration: 0.3s;
+  	transition-duration: 0.3s;
+  	-webkit-transition-property: opacity;
+  	transition-property: opacity;
+}
+.hvr-trim:hover:before, .hvr-trim:focus:before, .hvr-trim:active:before {
+  opacity: 1;
+}
+
+.hvr-trim.skill-1{
+	padding-top: 1rem;
+	}
+
+.skills{
+	text-align: center;
+	padding-bottom: 20px;
+	}
+	
+.education-summary{
+	padding-left:15px;
+	padding-right:15px;
+	}
+
+.copyright{
+	margin-bottom: 15px;
+	margin-top: 15px;
+	}
+
+.get-connected{
+	padding-left: 30px;
+    padding-right: 30px;
+	font-size: 50px;
+    word-spacing: 20px;
+	}
+
+.project-pic{
+	width: 100%;
+	height: 100%;
+}
+
+.row.project-row{
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-left: 10px;
+	padding-top: 15px !important;
+	padding-bottom: 15px !important;
+}
+
+.col-md-8.project-details{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+@media screen and (max-width: 610px) {
+	.sree-keerthi-matta {
+		font-size: 25px;
+	}
+}
+
+@media screen and (max-width: 530px) {
+	.col-xs-4.skills{
+		width: 100%;
+	}
+}
+
+
+@media screen and (min-width: 400px) and (max-width: 530px) {
+	.col-xs-4.skills{
+		width: 50%;
+	}
+}
+
+.sree-keerthi-matta-navbar{
+	-webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+	transition: background-color 2s;
+	background-color: transparent!important;
+	border-color: transparent !important;
+}
+
+.black{
+	-webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+	transition: background-color 2s;
+	background-color: black!important;
+	border-color: transparent !important;
+}
+
+.navbar-toggle{
+	background-color: salmon;
+	border: white !important;
+	margin-top: 15px !important;
+}
+
+.navbar-toggle:hover{
+	background-color: lightsalmon !important;
+}
+
+.navbar-brand{
+	border-bottom-left-radius: 10px;
+	background-color: salmon;
+	border-top-right-radius: 10px;
+	margin-left: 8px !important;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	font-size: 30px !important;
+}
+a.navbar-brand:hover{
+	background-color: salmon !important;
+	opacity: 0.8 !important;
+}
+
+a.navbar-section:hover{
+	border-bottom-left-radius: 10px;
+	border-top-right-radius: 10px;
+	background-color: salmon !important;
+	opacity: 0.8 !important;
+}
+
+.black-font{
+	color: black !important;
+}
+
+a.navbar-section{
+	font-weight: bold;
+	margin-top: 8px !important;
+	margin-left: 5px !important;
+	margin-bottom: 8px;
+}
+
+.white-font{
+	color:white !important;
+}
+
+.label{
+	font-size: 70% !important;
+}
+
+.container-margin{
+	padding-top: 72px !important;
+	padding-bottom: 72px !important;
+}
+
+.project-title{
+	font-size: 25px;
+	margin-top: -5px;
+}
+
+div.top-layer{
+	background-color: whitesmoke;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+	opacity: 0.75;
+	filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+.entire-row{
+	z-index: 2;
+}
+
+#skills{
+	background: radial-gradient(90% 30%, #3B3C36, #343434);
+}
+
+#experience{
+	background: radial-gradient(90% 30%, #3B3C36, #343434);
+	color: white;
+}
+
+#contact{
+	background: radial-gradient(90% 30%, #3B3C36, #343434);
+	color: white;
+}
+
+h2.section-heading{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	border-bottom-left-radius: 10px;
+	background-color: salmon;
+	border-top-right-radius: 10px;
+	margin-left: 8px !important;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 15px;
+	color: white;
+}
+
+h2.web-dev-heading{
+	width: 280px;
+}
+
+h2.skills-heading{
+	width: 97px;
+}
+
+h2.education-heading{
+	width: 163px;
+}
+
+h2.experience-heading{
+	width: 182px;
+}
+
+h2.projects-heading{
+	width: 141px;
+}
+
+h2.contact-heading{
+	width: 139px;
+}
+
+a > .fa-linkedin-square:hover{
+	color: #0e76a8 !important;
+}
+
+a > .fa-github-square:hover{
+	color: #000000 !important;
+}
+
+a > .fa-facebook-square:hover{
+	color: #3b5998 !important;
+}
+
+a > .fa-instagram:hover{
+	color:  #fb3958 !important;
+}
+
+a > .fa-twitter-square:hover{
+	color: #0084b4 !important;
+}
+
+a > .fa-pinterest-square:hover{
+	color: #C92228 !important;
+}
+
+a > .fa {
+	color: #777 !important;
+}
+
+.parallax {
+	/* The image used */
+	background-image: url("../img/project-back.jpg");
+	height: 50px;
+
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+span.glyphicon-education{
+	font-size: 25px !important;
+	top: 5px;
+}
+
+div.contact-details{
+	margin-top: 19px;
+	word-spacing: 0px !important;
+	text-align: left;
+	padding: 18px !important;
+
+}
+
+.contact-details > h4 > .glyphicon{
+	font-size: 22px !important;
+}
+
+a.btn-resume{
+	color: black;
+	background: salmon;
+	border: salmon;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-size: 25px;
+	border-radius: 0px;
+	border-top: white 2px solid;
+	border-bottom: white 2px solid;
+}
+
+a.btn-resume:hover{
+	background-color: lightsalmon;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transition-property: background-color;
+	transition-property: background-color;
+}
+
+
+
+@media screen and (max-width: 990px) {
+	h4.text-right {
+		text-align: left !important;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.margin-left-right {
+		margin-left: 10px !important;
+		margin-right: 10px !important;
+	}
+
+	.padding-left{
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+	.padding-right{
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.next-line-xs {
+		width:100%;
+	}
+}
+
+@media screen and (max-width: 990px) {
+	.next-line-sm {
+		width:100%;
+	}
+}
+
+.full-width{
+	width:100% !important;
+}
+
+.margin-left-right {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.padding-left{
+	padding-left: 20px;
+}
+.padding-right{
+	padding-right: 20px;
+}
+
+.all-skills{
+margin-top: 20px;
+}
+
+
+.project-pic, .project-details{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.university-col{
+	width: 260px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: white;
+}
+
+.project-summary{
+	line-height: 20px !important;
+}
+
+.project-summary > p.text-justify {
+	padding-bottom: 10px !important;
+}
+.project-links{
+	margin-top: 20px;
+}
+
+.project-title{
+	margin-bottom: 15px;
+}
+
+
+.cs5610-links{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

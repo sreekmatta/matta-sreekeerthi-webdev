@@ -736,7 +736,7 @@ call-to-action .button {
 
 /* No JavaScript Fallback */
 /* If you are not using another script, such as Modernizr, make sure you
- * include js that eliminates this class on page load */
+ * include js that eliminates this class on post load */
 .no-js .slides > li:first-child { display: block; }
 
 /* Slider Styles */

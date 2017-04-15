@@ -1,0 +1,243 @@
+<div>
+    <div class="row">
+        <h3 class="ho-board-heading">Foodie Board</h3>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 ho-bottom-margin">
+            <div class="row search-result zero-margin">
+                <ul class="nav nav-pills">
+
+                    <li class="active ho-menu-li">
+                        <a data-toggle="pill" href="#home"
+                           target="_self" class="btn ho-dashboard-link">Home
+                        </a>
+                    </li>
+                    <li class="ho-menu-li">
+                        <a data-toggle="pill" href="#bookmarks"
+                           target="_self" class="btn ho-dashboard-link">Bookmarks
+                        </a>
+                    </li>
+                    <li class="ho-menu-li"><a data-toggle="pill" href="#myreviews"
+                                              target="_self" class="btn ho-dashboard-link">My Reviews
+                    </a>
+                    </li>
+                    <li class="ho-menu-li"><a data-toggle="pill" href="#followers"
+                                              target="_self" class="btn ho-dashboard-link">Followers</a>
+                    </li>
+                    <li class="ho-menu-li"><a data-toggle="pill" href="#following"
+                                              target="_self" class="btn ho-dashboard-link">Following</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <div class="ho-write-post">
+                        <ul class="list-group">
+                            <li class="list-group-item msk-table-heading">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        Post here
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item msk-table-heading zero-padding-tb">
+                                <div class="row">
+                                    <div class="col-xs-12 zero-padding">
+                                        <textarea rows="4"
+                                                  ng-model="post.post_text">
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item msk-table-heading zero-padding zero-padding-tb">
+                                <div class="row zero-padding">
+                                    <div class="col-xs-8" style="padding-right:0px;">
+                                        <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon1">
+                                                  <a id="location-find"
+                                                     class="btn btn-primary btn-block"
+                                                     ng-click="model.getLocation()" >
+                                                      <span class="glyphicon glyphicon-map-marker"></span>
+                                                  </a>
+                                                </span>
+                                            <input wbdv-search=""
+                                                   id="restaurant"
+                                                   type="text"
+                                                   class="form-control ho-loc-input" placeholder="Check in"
+                                                   aria-describedby="basic-addon1">
+                                            <input id="restaurant-id"
+                                                   type="hidden"
+                                            ng-model="post._restaurant">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4" style="padding-left:0px;">
+                                        <a ng-click="model.createPost(post)"
+                                           class="btn btn-danger ho-post-btn">Post</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div id="lat" hidden></div>
+                        <div id="lon" hidden></div>
+                    </div>
+
+                    <div class="ho-posts-ul">
+
+                        <ul class="list-group">
+                            <li ng-repeat="post in model.posts" class="list-group-item ho-posts">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        {{post.post_text}} <b>at</b>
+                                        <span class="glyphicon glyphicon-map-marker">
+                                        </span>
+                                        {{model.restaurantNames}}
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="bookmarks" class="tab-pane fade search-result">
+                    <div class="ho-section-heading">
+                        Restaurant Bookmarks
+                    </div>
+                    <div class="ho-section-content">
+                        <div class="">
+                            <h4>Nothing in your Bookmarks yet.</h4>
+                            <h5>Add restaurants to your Bookmarks for easy future reference.</h5>
+                        </div>
+                        <div class="row ho-5px-all-padding restaurant-bookmark">
+                            <div class="col-xs-3 zero-padding">
+                                <img src="images/icon.png" width="50" height="50">
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="ho-brief-details">Restaurant Name</div>
+                                <div class="ho-brief-details">Street</div>
+                            </div>
+                            <div class="col-xs-3 zero-padding">
+                                <a href="#!/" class="btn btn-success ho-5px-all-padding pull-right">4.5</a>
+                            </div>
+                        </div>
+                        <div class="row ho-5px-all-padding restaurant-bookmark">
+                            <div class="col-xs-3 zero-padding">
+                                <img src="images/icon.png" width="50" height="50">
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="ho-brief-details">Restaurant Name</div>
+                                <div class="ho-brief-details">Street</div>
+                            </div>
+                            <div class="col-xs-3 zero-padding">
+                                <a href="#!/" class="btn btn-success ho-5px-all-padding pull-right">4.5</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myreviews" class="tab-pane fade search-result">
+                    <div class="ho-section-heading">
+                        My Reviews
+                    </div>
+                    <div class="ho-section-content">
+                        <div class="">
+                            <h4>You haven't written any reviews yet.</h4>
+                            <h5>Add your first review now.</h5>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="followers" class="tab-pane fade search-result">
+                    <div class="ho-section-heading">
+                        Followers
+                    </div>
+                    <div class="ho-section-content">
+                        <div class="">
+                            <h4>You don't have any followers yet.</h4>
+                            <h5>Share Reviews to get more Followers.</h5>
+                        </div>
+                        <div class="row ho-5px-all-padding restaurant-bookmark">
+                            <div class="col-xs-3 zero-padding">
+                                <img src="images/icon.png" width="50" height="50">
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="ho-brief-details">Person name</div>
+                                <div class="ho-brief-details">0 reviews, 0 posts</div>
+                            </div>
+                            <div class="col-xs-3 zero-padding">
+                                <a href="#!/"
+                                   class="btn btn-default ho-5px-all-padding pull-right">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row ho-5px-all-padding restaurant-bookmark">
+                            <div class="col-xs-3 zero-padding">
+                                <img src="images/icon.png" width="50" height="50">
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="ho-brief-details">Person name</div>
+                                <div class="ho-brief-details">0 reviews, 0 posts</div>
+                            </div>
+                            <div class="col-xs-3 zero-padding">
+                                <a href="#!/"
+                                   class="btn btn-default ho-5px-all-padding pull-right">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="following" class="tab-pane fade search-result">
+                    <div class="ho-section-heading">
+                        Following
+                    </div>
+                    <div class="ho-section-content">
+                        <div class="">
+                            <h4>You are not following anyone yet.</h4>
+                            <h5>Find friends today.</h5>
+                            <div class="row ho-5px-all-padding restaurant-bookmark">
+                                <div class="col-xs-3 zero-padding">
+                                    <img src="images/icon.png" width="50" height="50">
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="ho-brief-details">Person name</div>
+                                    <div class="ho-brief-details">0 reviews, 0 posts</div>
+                                </div>
+                                <div class="col-xs-3 zero-padding">
+                                    <a href="#!/"
+                                       class="btn btn-default ho-5px-all-padding pull-right">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row ho-5px-all-padding restaurant-bookmark">
+                                <div class="col-xs-3 zero-padding">
+                                    <img src="images/icon.png" width="50" height="50">
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="ho-brief-details">Person name</div>
+                                    <div class="ho-brief-details">0 reviews, 0 posts</div>
+                                </div>
+                                <div class="col-xs-3 zero-padding">
+                                    <a href="#!/"
+                                       class="btn btn-default ho-5px-all-padding pull-right">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
