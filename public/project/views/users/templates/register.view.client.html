@@ -7,6 +7,7 @@
                 </a>
             </div>
             <div class="col-xs-6">
+                <a href="#!/login" class="btn btn-danger">Login</a>
             </div>
     </nav>
 
@@ -16,6 +17,11 @@
         <div class="col-sm-8 col-xs-10">
             <h2>Welcome to HungryOwl</h2>
             <hr>
+            <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{model.errorMessage}}
+            </div>
             <label for ="firstName">First Name</label>
             <input ng-model="user.firstName"
                    type="text"

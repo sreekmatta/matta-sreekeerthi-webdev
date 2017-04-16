@@ -1,159 +1,162 @@
-<div id="wrapper">
-    <!-- Navigation -->
+<div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header msk-navbar-header">
-            <button type="button" class="navbar-toggle ho-toggle-button" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand ho-navbar-logo-text" href="#!/">
+        <div class="col-xs-6 msk-navbar-header zero-padding">
+            <a class="navbar-brand" href="#!/">
                 <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
                 <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
             </a>
         </div>
-        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li class="active">
-                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#demo">
-                        <i class="fa fa-fw fa-arrows-v"></i>Pending Requests<i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="demo" class="collapse">
-                        <li>
-                            <a href="#">Approval Requests</a>
-                        </li>
-                        <li>
-                            <a href="#">Delete Requests</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-clock-o"></i>Recent Tasks</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-user"></i>Profile</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i>Logout</a>
-                </li>
-            </ul>
+
+        <div class="col-xs-6">
+            <div class="dropdown pull-right ho-dropdown-padding">
+                <button class="btn btn-default dropdown-toggle ho-profile-btn"
+                        type="button" data-toggle="dropdown">
+                    <img class="ho-img-circle" src="images/backup-img/icon.png">
+                    <span class="ho-button-text">{{model.currentUser.username}}</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu nav-dropdown-menu">
+                    <li ng-show="model.currentUser.userType=='ADMIN'"><a href="#!/enduser/{{model.currentUser._id}}">
+                        <span class="glyphicon glyphicon-dashboard"></span>
+                        Admin Dashboard</a>
+                    </li>
+                    <li ng-show="model.currentUser.userType=='ADMIN'">
+                        <a href="#!/enduser/{{model.currentUser._id}}">
+                            <span class="glyphicon glyphicon-dashboard"></span>
+                            Foodie Dashboard</a>
+                    </li>
+                    <li><a href="#!/enduser/{{model.currentUser._id}}/profile">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Profile</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
         </div>
-        <!-- /.navbar-collapse -->
     </nav>
 
-    <div id="page-wrapper ">
-        <div class="container-fluid ho-main-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ol class="breadcrumb">
-                        <li class="active">
-                            <i class="fa fa-dashboard"></i> Dashboard
-                        </li>
-                    </ol>
+    <div class="ho-main-body">
+        <div class="ho-dashboard-greeting">
+            Find the best places  to eat around you
+        </div>
+        <div class="msk-search-bar">
+            <div class="col-xs-1 col-md-2"></div>
+            <div class="col-xs-10 col-md-8 zero-padding">
+                <div class="col-xs-12 col-sm-2 msk-col-search dropdown pull-left">
+                    <select name="radius" id="radius" class="ho-radius">
+                        <option value="2">Around 2 miles</option>
+                        <option value="5">Around 5 miles</option>
+                        <option value="10">Around 10 miles</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-sm-8 msk-col-search search-bar">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle search-bar-height"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span>Search</span>
+                            </button>
+                        </div><!-- /btn-group -->
+                        <select name="place" id="resname" class="search-bar-height ho-place">
+                            <option value="0">All Places</option>
+                            <option value="Cafe">Cafes</option>
+                            <option value="Bars">Bars</option>
+                            <option value="Pizza">Pizzeria</option>
+                        </select>
+                    </div><!-- /input-group -->
+                </div>
+                <div class="col-xs-12 col-sm-2 msk-col-search">
+                    <a ng-click="model.searchRestaurants()"
+                       class="btn btn-block btn-danger search-bar-height">Search</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6 col-xs-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>Approve Requests</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
+            <div class="col-xs-1 col-md-2"></div>
+        </div>
+        <div class="row ho-dashboard ho-left-padding ho-right-padding">
+            <div>
+                <div class="row">
+                    <h3 class="ho-board-heading">Admin Dashboard</h3>
                 </div>
-                <div class="col-sm-6 col-xs-12">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user-times fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>Delete <span title="Restaurants/Foodies">Users</span></div>
-                                </div>
-                            </div>
+                <div class="row">
+                    <div class="col-sm-3 ho-bottom-margin">
+                        <div class="row search-result zero-margin">
+                            <ul class="nav nav-pills">
+
+                                <li class="active ho-menu-li">
+                                    <a data-toggle="pill" href="#users"
+                                       target="_self" class="btn ho-dashboard-link">Manage Users
+                                    </a>
+                                </li>
+                                <li class="ho-menu-li">
+                                    <a data-toggle="pill" href="#restaurants"
+                                       target="_self" class="btn ho-dashboard-link">Manage Restaurants
+                                    </a>
+                                </li>
+                                <li class="ho-menu-li">
+                                    <a data-toggle="pill" href="#posts"
+                                       target="_self" class="btn ho-dashboard-link">Manage Posts</a>
+                                </li>
+                            </ul>
                         </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Recent Tasks</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">just now</span>
-                                    <i class="fa fa-fw fa-calendar"></i> Calendar updated
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">4 minutes ago</span>
-                                    <i class="fa fa-fw fa-comment"></i> Commented on a post
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">23 minutes ago</span>
-                                    <i class="fa fa-fw fa-truck"></i> Order 392 shipped
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">46 minutes ago</span>
-                                    <i class="fa fa-fw fa-money"></i> Invoice 653 has been paid
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">1 hour ago</span>
-                                    <i class="fa fa-fw fa-user"></i> A new user has been added
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">2 hours ago</span>
-                                    <i class="fa fa-fw fa-check"></i> Completed task: "pick up dry cleaning"
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">yesterday</span>
-                                    <i class="fa fa-fw fa-globe"></i> Saved the world
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">two days ago</span>
-                                    <i class="fa fa-fw fa-check"></i> Completed task: "fix error on sales page"
-                                </a>
+
+                    <div class="col-sm-9">
+                        <div class="tab-content">
+                            <div id="users" class="tab-pane fade in active">
+                                <div class="ho-posts-ul">
+                                    <ul class="list-group">
+                                        <li class="list-group-item ho-posts zero-padding-tb">
+                                            <h4>Manage User Profiles</h4>
+
+                                            <h5>Please click the below 'Manage Users' button to Delete/Edit
+                                                User Profiles</h5>
+                                            <a href="#!/admin/{{model.currentUser._id}}/manage/user" class="btn btn-danger">Manage Users</a>
+                                            <br><br>
+                                            <h5>Please click the below 'Add New User' button to create New
+                                                User Profiles</h5>
+                                            <a href="" class="btn btn-success">Add New User</a>
+                                            <h6>Note**: Users equals Foodies(Users are 3 types Admin/Foodie/Restaurant)</h6>
+                                        </li>
+                                    </ul>
+                                </div>
+
                             </div>
-                            <div class="text-right">
-                                <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
+                            <div id="restaurants" class="tab-pane fade search-result">
+                                <div class="ho-posts-ul">
+                                    <ul class="list-group">
+                                        <li class="list-group-item ho-posts zero-padding-tb" style="border:none;">
+                                            <h4>Manage Restaurant Profiles</h4>
+
+                                            <h5>Please click the below 'Manage Restaurants' button to Delete/Edit
+                                                Restaurant Profiles</h5>
+                                            <a href="#!/admin/{{model.currentUser._id}}/manage/restaurant" class="btn btn-danger">Manage Restaurants</a>
+                                            <br><br>
+                                            <h5>Please click the below 'Add New Restaurant' button to create New
+                                                Restaurant Profiles</h5>
+                                            <a href="" class="btn btn-success">Add New Restaurant</a>
+
+                                            <h6>Note**: Please note that deletion of restaurants cannot be undone</h6>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="posts" class="tab-pane fade search-result">
+                                <li class="list-group-item ho-posts zero-padding-tb" style="border:none;">
+                                    <h4>Manage User Posts</h4>
+
+                                    <h5>Please click the below 'Manage Posts' button to Delete User Posts</h5>
+                                    <a href="" class="btn btn-danger">Manage Posts</a>
+                                    <br>
+                                    <h6>Note**: Please note that deletion of posts cannot be undone</h6>
+                                </li>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /.container-fluid -->
     </div>
-    <!-- /#post-wrapper -->
 </div>
-<!-- /#wrapper -->

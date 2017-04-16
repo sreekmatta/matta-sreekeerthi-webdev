@@ -1,8 +1,47 @@
-module.exports = function (app,enduserModel) {
+module.exports = function (app,enduserModel,passport) {
+    var passport      = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
 
-    var passport = require('passport');
+    passport.use(new LocalStrategy(localStrategy));
 
-    app.post('/rest/login', passport.authenticate('local'), login);
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    function localStrategy(username, password, done) {
+        console.log(username);
+        console.log(password);
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    console.log('[0]');
+                    console.log(user);
+                    if (!user) {
+                        console.log('[1]');
+                        return done(null, false);
+                    }
+                    console.log('[2]');
+                    return done(null, user);
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    };
+
+    // app.post('/rest/login',passport.authenticate('local'),
+    //     function (req, res) {
+    //         var user = req.user;
+    //         res.json(user);
+    //     });
+    app.post('/rest/login',findUserByCredentials);
+
     app.post('/rest/logout', logout);
     app.get ('/rest/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/rest/auth/facebook/callback',
@@ -10,6 +49,7 @@ module.exports = function (app,enduserModel) {
             successRedirect: '/#/enduser',
             failureRedirect: '/#/login'
         }));
+    app.get("/rest/enduser/getall",getAllUsers);
     app.post("/rest/enduser", createUser);
     app.get("/rest/enduser", findUser);
     app.get("/rest/enduser/:userId", findUserById);
@@ -19,11 +59,7 @@ module.exports = function (app,enduserModel) {
     app.get('/rest/loggedin', loggedin);
 
 
-    var facebookConfig = {
-        clientID     : process.env.FACEBOOK_CLIENT_ID,
-        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-    };
+
 
 
     //passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
@@ -33,23 +69,13 @@ module.exports = function (app,enduserModel) {
     //         .findUserByFacebookId(profile.id);
     // }
 
-    var users = [
-        {"_id": "123", "username": "alice",    "password": "alice",    "firstName": "Alice",  "lastName": "Wonder","email": "alice@gmail.com" },
-        {"_id": "234", "username": "bob",      "password": "bob",      "firstName": "Bob",    "lastName": "Marley","email": "bob@gmail.com"  },
-        {"_id": "345", "username": "charly",   "password": "charly",   "firstName": "Charly", "lastName": "Garcia","email": "charly@gmail.com"  },
-        {"_id": "456", "username": "jannunzi", "password": "jannunzi", "firstName": "Jose",   "lastName": "Annunzi","email": "jose@gmail.com" }
-    ];
 
-    var LocalStrategy = require('passport-local').Strategy;
-    //var FacebookStrategy = require('passport-facebook').Strategy;
 
     //session information is maintained for currently logged in enduser
-    passport.serializeUser(serializeUser);
     function serializeUser(user, done) {
         done(null, user);
     }
 
-    passport.deserializeUser(deserializeUser);
     function deserializeUser(user, done) {
         enduserModel
             .findUserById(user._id)
@@ -58,28 +84,10 @@ module.exports = function (app,enduserModel) {
                     done(null, user);
                 },
                 function(err){
+                    console.log(err);
                     done(err, null);
                 }
             );
-    }
-
-    passport.use(new LocalStrategy(localStrategy));
-    function localStrategy(username, password, done) {
-        enduserModel
-            .findUserByCredentials(username, password)
-            .then(
-                function(user) {
-                    if (!user) { return done(null, false); }
-                    return done(null, user);
-                },
-                function(err) {
-                    if (err) { return done(err); }
-                }
-            );
-    }
-    function login(req, res) {
-        var user = req.user;
-        res.json(user);
     }
 
     function logout(req, res) {
@@ -97,6 +105,7 @@ module.exports = function (app,enduserModel) {
 
     function register (req, res) {
         var user = req.body;
+
         enduserModel
             .createUser(user)
             .then(
@@ -109,6 +118,9 @@ module.exports = function (app,enduserModel) {
                                 res.json(user);
                             }
                         });
+                    }
+                    {
+                        res.json(null);//username already exists
                     }
                 }
             );
@@ -171,9 +183,11 @@ module.exports = function (app,enduserModel) {
     }
 
     function findUserByCredentials(req, res){
-
-        var username = req.query.username;
-        var password = req.query.password;
+        var user = req.body;
+        var username = user.username;
+        var password = user.password;
+        // var username = req.query.username;
+        // var password = req.query.password;
 
         enduserModel
             .findUserByCredentials(username,password)
@@ -185,11 +199,21 @@ module.exports = function (app,enduserModel) {
 
     }
 
-    function deleteUser(userId){
+    function deleteUser(req,res){
+        var userId
         enduserModel
             .deleteUser(userId)
             .then(function (user) {
                 res.json(user);
+            }, function (error) {
+                res.sendStatus(500)
+            });
+    }
+    function getAllUsers(req,res) {
+        enduserModel
+            .findAllUsers()
+            .then(function (users) {
+                res.json(users);
             }, function (error) {
                 res.sendStatus(500)
             });

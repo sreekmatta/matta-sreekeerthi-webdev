@@ -1,6 +1,3 @@
-/**
- * Created by sreematta on 2/9/2017.
- */
 (function () {
     angular
         .module("HungryOwlAppMaker")
@@ -17,9 +14,14 @@
                 .register(user)
                 .then(
                     function (response) {
-                        var user = response.data;
-                        $rootScope.currentUser = user;
-                        $location.url("/enduser/" + user._id);
+                        if(response.data!=null){
+                            var user = response.data;
+                            $rootScope.currentUser = user;
+                            $location.url("/enduser/" + user._id);
+                        }
+                        else
+                            viewModel.errorMessage = "Username already exists";
+
                     });
         }
         }

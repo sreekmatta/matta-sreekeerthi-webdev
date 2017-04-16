@@ -9,6 +9,7 @@ module.exports = function () {
         findUserByCredentials:findUserByCredentials,
         updateUser:updateUser,
         deleteUser:deleteUser,
+        findAllUsers:findAllUsers,
         setModel: setModel
     };
 
@@ -27,12 +28,21 @@ module.exports = function () {
 
     function createUser(user) {
         var deferred = q.defer();
-        EnduserModel
-            .create(user, function (err, user) {
-                if(err) {
-                    deferred.abort(err);
-                } else {
-                    deferred.resolve(user);
+
+        EnduserModel.findOne({username:user.username},
+            function (err,existingUser){
+                if(existingUser == null){
+                    EnduserModel
+                        .create(user, function (err, user) {
+                            if(err) {
+                                deferred.abort(err);
+                            } else {
+                                deferred.resolve(user);
+                            }
+                        });
+                }
+                else{
+                    deferred.resolve(null);
                 }
             });
         return deferred.promise;
@@ -66,6 +76,7 @@ module.exports = function () {
 
 
     function findUserByCredentials(username,password){
+        console.log("landed here:"+username);
         var deferred = q.defer();
         EnduserModel
             .find({username:username,password:password}, function (err, user) {
@@ -74,6 +85,20 @@ module.exports = function () {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(user[0]);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function findAllUsers(){
+        var deferred = q.defer();
+        EnduserModel
+            .find({}, function (err, users) {
+                if(!users) {
+                    console.log("err");
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(users);
                 }
             });
         return deferred.promise;

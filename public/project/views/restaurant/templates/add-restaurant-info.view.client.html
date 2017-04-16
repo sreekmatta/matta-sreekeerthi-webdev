@@ -12,32 +12,17 @@
                 <button class="btn btn-default dropdown-toggle ho-profile-btn"
                         type="button" data-toggle="dropdown">
                     <img class="ho-img-circle" src="images/backup-img/icon.png">
-                    <span class="ho-button-text">Sree</span>
+                    <span class="ho-button-text">{{currentUser.username}}</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu nav-dropdown-menu">
-                    <li><a href="#!/enduser/{{model.user._id}}">
+                    <li><a href="#!/restaurant/{{currentUser._id}}">
                         <span class="glyphicon glyphicon-dashboard"></span>
                         Dashboard</a>
                     </li>
-                    <li><a href="#!/enduser/{{model.user._id}}/profile">
+                    <li><a href="#!/restaurant/{{currentUser._id}}/profile">
                         <span class="glyphicon glyphicon-user"></span>
                         Profile</a>
-                    </li>
-                    <li><a href="#">
-                        <span class="glyphicon glyphicon-th"></span>
-                        Notifications</a>
-                        <span class="badge pull-right">2</span>
-                    </li>
-                    <li><a href="#">
-                        <i class="fa fa-users" aria-hidden="true"></i>
-                        Followers</a>
-                        <span class="badge pull-right">99</span>
-                    </li>
-                    <li><a href="#">
-                        <span class="glyphicon glyphicon-bookmark"></span>
-                        Following</a>
-                        <span class="badge pull-right">52</span>
                     </li>
                     <li class="divider"></li>
                     <li><a href="#">Logout</a></li>

@@ -11,15 +11,12 @@
 
         function login(user) {
             UserService
-                .findUserByCredentials(user.username,user.password)
+                .login(user)
                 .then(
-                    function successCallback(response) {
+                    function (response) {
                         var user = response.data;
                         $rootScope.currentUser = user;
                         $location.url("/enduser/" + user._id);
-                    },
-                    function errorCallback(response) {
-                        viewModel.errorMessage = "User does not exist";
                     }
                 );
         }

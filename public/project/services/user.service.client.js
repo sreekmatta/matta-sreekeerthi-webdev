@@ -13,11 +13,13 @@
             "updateUser": updateUser,
             "findUserByUsername": findUserByUsername,
             "createUser": createUser,
-            "deleteUser": deleteUser
+            "deleteUser": deleteUser,
+            "findAllUsers":findAllUsers
         };
         return api;
 
         function login(user) {
+            //return $http.post("/rest/login", user);
             return $http.post("/rest/login", user);
         }
 
@@ -51,6 +53,9 @@
 
         function deleteUser(userId) {
             return $http.delete("/rest/enduser/"+userId);
+        }
+        function findAllUsers() {
+            return $http.get("/rest/enduser/getall");
         }
     }
 })();

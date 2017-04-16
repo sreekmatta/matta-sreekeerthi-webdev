@@ -8,7 +8,7 @@
         var userId = $routeParams['uid'];
         viewModel.userId = userId;
         viewModel.currentUser = $rootScope.currentUser;
-
+        viewModel.searchRestaurants = searchRestaurants;
         var user = null;
 
         //default values
@@ -33,16 +33,10 @@
         init();
 
         //event handlers
-        viewModel.getDashboardURL = getDashboardURL;
         viewModel.newPost = newPost;
         viewModel.getLocation = getLocation;
         viewModel.createPost = createPost;
         viewModel.getRestaurantById = getRestaurantById;
-
-        function getDashboardURL(){
-            if(viewModel.user.userType == "FOODIE")
-                return 'views/users/templates/foodie/foodie-dashboard.view.client.html';
-        }
 
         function newPost(newPostDetails) {
             var promise = PostService.createPost(userId, newPostDetails);
@@ -123,6 +117,12 @@
                     }
                 }
             );
+        }
+
+        function searchRestaurants() {
+            var resname = $( "#resname").val();
+            var radius = $( "#radius").val();
+            $location.url("/restaurant/search/"+radius+"/"+resname);
         }
     }
 })();

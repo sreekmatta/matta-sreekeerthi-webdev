@@ -26,6 +26,7 @@ module.exports = function () {
                     return model.enduserModel
                         .findUserById(userId)
                         .then(function (user) {
+                            user = user[0];
                             post._user = user._id;
                             user.posts.push(post._id);
                             post.save();

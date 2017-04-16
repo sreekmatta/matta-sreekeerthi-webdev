@@ -35,6 +35,7 @@
             promise.then(
                 function successCallback(response) {
                     if(response.status == 200) {
+                        $rootScope.currentUser = user;
                         viewModel.successMessage = "Profile updated successfully";
                     } else {
                         viewModel.errorMessage = "Error while updating enduser by ID:" + userId;

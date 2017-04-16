@@ -1,7 +1,6 @@
-module.exports = function (app,restaurantModel,$http) {
-
-    var passport = require('passport');
-
+module.exports = function (app,restaurantModel) {
+    var passport      = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
     app.post('/rest/restaurant/login', passport.authenticate('local'), login);
     app.post('/rest/restaurant/logout', logout);
     app.get ('/rest/restaurant/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));

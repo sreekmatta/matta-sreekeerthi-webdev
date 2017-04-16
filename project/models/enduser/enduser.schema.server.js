@@ -17,7 +17,6 @@ module.exports = function () {
         email: String,
         phone:String,
         bookmarks:[{type: mongoose.Schema.Types.ObjectId, ref: 'RestaurantModel'}],
-        reviews:[{type: mongoose.Schema.Types.ObjectId, ref: 'ReviewModel'}],
         posts:[{type: mongoose.Schema.Types.ObjectId, ref: 'PostModel'}],
         followers:[{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],
         following:[{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],

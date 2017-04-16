@@ -11,5 +11,9 @@
     <orderEntry type="library" name="angular-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="angular-route-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="node-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="node-jose-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="jQuery UI-1.10.2" level="application" />
+    <orderEntry type="library" name="jQuery-2.0.0" level="application" />
+    <orderEntry type="library" name="passport" level="project" />
   </component>
 </module>

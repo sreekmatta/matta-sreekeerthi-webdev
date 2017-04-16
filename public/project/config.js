@@ -22,8 +22,34 @@
                 controllerAs: 'model'
             })
             .when("/enduser/:uid",{
-                templateUrl: 'views/users/templates/user-dashboard.view.client.html',
+                templateUrl: 'views/users/templates/foodie/foodie-dashboard.view.client.html',
                 controller: 'UserDashboardController',
+                controllerAs: 'model'
+            })
+
+            .when("/admin/:uid/manage/user",{
+                templateUrl: 'views/users/templates/admin/manage-users.view.client.html',
+                controller: 'ManageUserController',
+                controllerAs: 'model'
+            })
+            .when("/admin/:uid/manage/user/:userId",{
+                templateUrl: 'views/users/templates/admin/manage-users.view.client.html',
+                controller: 'EditUserController',
+                controllerAs: 'model'
+            })
+            .when("/admin/:uid/managerestaurant",{
+                templateUrl: 'views/users/templates/admin/manage-restaurants.view.client.html',
+                controller: 'ManageRestaurantController',
+                controllerAs: 'model'
+            })
+            .when("/admin/:uid/managerestaurant/:resId",{
+                templateUrl: 'views/users/templates/admin/manage-restaurants.view.client.html',
+                controller: 'EditRestaurantController',
+                controllerAs: 'model'
+            })
+            .when("/admin/:uid",{
+                templateUrl: 'views/users/templates/admin/admin-dashboard.view.client.html',
+                controller: 'AdminDashboardController',
                 controllerAs: 'model'
             })
             .when("/enduser/:uid/profile",{
@@ -71,6 +97,7 @@
                 controller: 'RestaurantDetailsController',
                 controllerAs: 'model'
             })
+            .otherwise({redirectTo:'/'});
 
     }
 })();
