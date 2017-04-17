@@ -5,21 +5,19 @@ module.exports = function (app,enduserModel) {
     var bcrypt = require("bcrypt-nodejs");
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-    if (process.env.GOOGLE_CLIENT_ID)
-    {
         var googleConfig = {
             clientID     : process.env.GOOGLE_CLIENT_ID,
             clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL  : process.env.GOOGLE_CALLBACK_URL
+            callbackURL  : "https://matta-sreekeerthi-webdev.herokuapp.com/auth/google/callback"
         };
-    }
-    else{
-        var googleConfig = {
-            clientID:"780276115989-cjlp3nj1rft5c9af1tbj24sq7vk0r2pu.apps.googleusercontent.com",
-            clientSecret: "_Z23Ya-90y0N_ftgMOmK1h6y",
-            callbackURL: "http://localhost:3000/auth/google/callback"
-        };
-    }
+
+    // else{
+    //     var googleConfig = {
+    //         clientID:"780276115989-cjlp3nj1rft5c9af1tbj24sq7vk0r2pu.apps.googleusercontent.com",
+    //         clientSecret: "_Z23Ya-90y0N_ftgMOmK1h6y",
+    //         callbackURL: "http://localhost:3000/auth/google/callback"
+    //     };
+    // }
 
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));

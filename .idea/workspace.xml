@@ -5,46 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f1a6fd1-d5c6-408c-bd69-b414d8600189" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/project/views/users/templates/user-dashboard.view.client.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/models/enduser/enduser.model.server.js" afterPath="$PROJECT_DIR$/project/models/enduser/enduser.model.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/models/enduser/enduser.schema.server.js" afterPath="$PROJECT_DIR$/project/models/enduser/enduser.schema.server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/services/enduser.service.server.js" afterPath="$PROJECT_DIR$/project/services/enduser.service.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/services/restaurant.service.server.js" afterPath="$PROJECT_DIR$/project/services/restaurant.service.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/config.js" afterPath="$PROJECT_DIR$/public/project/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/services/user.service.client.js" afterPath="$PROJECT_DIR$/public/project/services/user.service.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/home/controllers/home.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/home/controllers/home.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/home/controllers/search-results.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/home/controllers/search-results.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/home/templates/home.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/home/templates/home.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/home/templates/search-results.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/home/templates/search-results.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/controllers/add-restaurant-info.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/restaurant/controllers/add-restaurant-info.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/controllers/add-restaurant-menu.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/restaurant/controllers/add-restaurant-menu.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/controllers/restaurant-details.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/restaurant/controllers/restaurant-details.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/controllers/restaurant-login.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/restaurant/controllers/restaurant-login.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/controllers/restaurant-profile.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/restaurant/controllers/restaurant-profile.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/controllers/restaurant-register.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/restaurant/controllers/restaurant-register.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/templates/add-restaurant-info.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/restaurant/templates/add-restaurant-info.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/templates/add-restaurant-menu.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/restaurant/templates/add-restaurant-menu.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-details.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-details.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-login.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-login.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-profile.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-profile.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-register.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-register.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/controllers/login.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/users/controllers/login.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/controllers/manage-restaurants.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/users/controllers/manage-restaurants.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/controllers/register.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/users/controllers/register.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-add-restaurant.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-add-restaurant.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-add-user.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-add-user.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-dashboard.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-dashboard.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-edit-restaurant.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-edit-restaurant.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-edit-user.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-edit-user.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/admin/manage-restaurants.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/admin/manage-restaurants.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/admin/manage-users.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/admin/manage-users.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/foodie/foodie-dashboard.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/foodie/foodie-dashboard.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/login.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/login.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/profile.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/profile.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/register.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/register.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -88,8 +49,8 @@
       <file leaf-file-name="enduser.service.server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/services/enduser.service.server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+            <state relative-caret-position="198">
+              <caret line="10" column="95" lean-forward="false" selection-start-line="10" selection-start-column="95" selection-end-line="10" selection-end-column="95" />
               <folding />
             </state>
           </provider>
@@ -796,12 +757,12 @@
       <workItem from="1491097028742" duration="10109000" />
       <workItem from="1491419433590" duration="48768000" />
       <workItem from="1491622019115" duration="233926000" />
-      <workItem from="1492329116893" duration="59476000" />
+      <workItem from="1492329116893" duration="59998000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="547681000" />
+    <option name="totallyTimeSpent" value="548203000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -865,7 +826,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/project/services/enduser.service.server.js</url>
-          <line>210</line>
+          <line>208</line>
           <option name="timeStamp" value="142" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -1330,8 +1291,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/services/enduser.service.server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        <state relative-caret-position="198">
+          <caret line="10" column="95" lean-forward="false" selection-start-line="10" selection-start-column="95" selection-end-line="10" selection-end-column="95" />
           <folding />
         </state>
       </provider>
