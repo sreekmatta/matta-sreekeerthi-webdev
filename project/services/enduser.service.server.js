@@ -8,7 +8,7 @@ module.exports = function (app,enduserModel) {
         var googleConfig = {
             clientID     : process.env.GOOGLE_CLIENT_ID,
             clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL  : "https://matta-sreekeerthi-webdev.herokuapp.com/auth/google/callback"
+            callbackURL  : "http://matta-sreekeerthi-webdev.herokuapp.com/auth/google/callback"
         };
 
     // else{
