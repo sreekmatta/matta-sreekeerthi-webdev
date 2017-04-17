@@ -1,6 +1,9 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="col-xs-6 msk-navbar-header zero-padding">
+        <div class="col-xs-1">
+            <a href="" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            </a></div>
+        <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
                 <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
                 <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
@@ -22,14 +25,14 @@
                     </li>
                     <li><a href="#!/enduser/{{model.currentUser._id}}">
                         <span class="glyphicon glyphicon-dashboard"></span>
-                        Dashboard</a>
+                        Foodie Dashboard</a>
                     </li>
                     <li><a href="#!/enduser/{{model.currentUser._id}}/profile">
                         <span class="glyphicon glyphicon-user"></span>
                         Profile</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a ng-click="LogoutController.logout()">Logout</a></li>
                 </ul>
             </div>
         </div>

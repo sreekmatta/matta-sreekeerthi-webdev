@@ -19,7 +19,8 @@
             findRestaurantByName:findRestaurantByName,
             findRestaurantsNearBy:findRestaurantsNearBy,
             findDeliveringRestaurantsOfCuisine:findDeliveringRestaurantsOfCuisine,
-            findAllRestaurantsOfCuisine:findAllRestaurantsOfCuisine
+            findAllRestaurantsOfCuisine:findAllRestaurantsOfCuisine,
+            findAllRestaurants:findAllRestaurants
         };
         return api;
 
@@ -69,8 +70,6 @@
         }
 
         function findRestaurantByName(lat,lon,resName) {
-            var lat = document.getElementById("lat").innerHTML;
-            var lon = document.getElementById("lon").innerHTML;
             var url = "https://api.eatstreet.com/publicapi/v1/restaurant/search?latitude="+lat+"&longitude="+lon+"&method=both&search="+resName+"&access-token=9519d5bba99b4fc1";
             var results = $http.get(url);
             return results;
@@ -109,6 +108,10 @@
 
         function findRestaurantByIdFromDB(resId) {
             return $http.get("/rest/restaurant/"+resId);
+        }
+
+        function findAllRestaurants() {
+            return $http.get("/rest/restaurant/allrestaurants");
         }
     }
 })();

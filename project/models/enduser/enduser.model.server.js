@@ -79,9 +79,8 @@ module.exports = function () {
         console.log("landed here:"+username);
         var deferred = q.defer();
         EnduserModel
-            .find({username:username,password:password}, function (err, user) {
+            .find({username:username}, function (err, user) {
                 if(!user) {
-                    console.log("err");
                     deferred.reject(err);
                 } else {
                     deferred.resolve(user[0]);
@@ -126,34 +125,17 @@ module.exports = function () {
     }
 
 
-    function deleteUser(uid) {
-        return EnduserModel.findById({_id: uid})
-            .then(function (user) {
-                var websites = user.websites;
-                return Delete(websites, uid);
-            });
-    }
-
-    function Delete(websites, uid) {
-        if(websites.length == 0){
-            return EnduserModel.remove({_id: uid})
-                .then(function (response) {
-                    if(response.result.n == 1 && response.result.ok == 1){
-                        return response;
-                    }
-                }, function (err) {
-                    return err;
-                });
-        }
-
-        return model.restaurantModel.deleteUsersWebsite(websites.shift())
-            .then(function (response) {
-                if(response.result.n == 1 && response.result.ok == 1){
-                    return Delete(websites , uid);
+    function deleteUser(userId) {
+        var deffered = q.defer();
+        EnduserModel
+            .findByIdAndRemove(userId, function (err, user) {
+                if(err)
+                    deffered.reject(err);
+                else {
+                    deffered.resolve(user);
                 }
-            }, function (err) {
-                return err;
             });
+        return deffered.promise;
     }
 
     function setModel(_model) {

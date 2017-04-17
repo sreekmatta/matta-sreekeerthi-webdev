@@ -4,7 +4,9 @@ module.exports = function (app,postModel) {
     app.put("/rest/post/:postId", updatePost);
     app.delete("/rest/post/:postId",deletePost);
     app.get("/rest/enduser/:userId/post",findAllPostsForUser);
+    app.delete("/rest/enduser/:userId/post",deleteAllPostsForUser);
     app.get("/rest/restaurant/:resId/post",findAllPostsForRestaurant);
+    app.get("/rest/restaurant/:resId/post",deleteAllPostsForRestaurant)
 
     function createPost(req, res) {
         var userId = req.params.userId;
@@ -29,7 +31,16 @@ module.exports = function (app,postModel) {
                 res.sendStatus(500).send(error);
             });
     }
-
+    function deleteAllPostsForUser(req,res) {
+        var userId = req.params.userId;
+        postModel
+            .deleteAllPostsForUser(userId)
+            .then(function(PostsForUser) {
+                res.json(PostsForUser);
+            }, function (error) {
+                res.sendStatus(500).send(error);
+            });
+    }
     function findPostById(req,res){
         var postId = req.params.postId;
         postModel
@@ -68,6 +79,17 @@ module.exports = function (app,postModel) {
         var resId = req.params.resId;
         postModel
             .findAllPostsForRestaurant(resId)
+            .then(function(PostsForRestaurant) {
+                res.json(PostsForRestaurant);
+            }, function (error) {
+                res.sendStatus(500).send(error);
+            });
+    }
+
+    function deleteAllPostsForRestaurant(req,res) {
+        var resId = req.params.resId;
+        postModel
+            .deleteAllPostsForRestaurant(resId)
             .then(function(PostsForRestaurant) {
                 res.json(PostsForRestaurant);
             }, function (error) {

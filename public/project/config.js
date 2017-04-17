@@ -16,6 +16,11 @@
                 controller: 'LoginController',
                 controllerAs: 'model'
             })
+            .when("/logout",{
+                templateUrl: 'views/home/templates/home.view.client.html',
+                controller: 'LogoutController',
+                controllerAs: 'model'
+            })
             .when("/register",{
                 templateUrl: 'views/users/templates/register.view.client.html',
                 controller: 'RegisterController',
@@ -26,25 +31,34 @@
                 controller: 'UserDashboardController',
                 controllerAs: 'model'
             })
-
             .when("/admin/:uid/manage/user",{
                 templateUrl: 'views/users/templates/admin/manage-users.view.client.html',
                 controller: 'ManageUserController',
                 controllerAs: 'model'
             })
-            .when("/admin/:uid/manage/user/:userId",{
-                templateUrl: 'views/users/templates/admin/manage-users.view.client.html',
-                controller: 'EditUserController',
+            .when("/admin/:uid/manage/user/add",{
+                templateUrl: 'views/users/templates/admin/admin-add-user.view.client.html',
+                controller: 'ManageUserController',
                 controllerAs: 'model'
             })
-            .when("/admin/:uid/managerestaurant",{
+            .when("/admin/:uid/manage/user/:userId",{
+                templateUrl: 'views/users/templates/admin/admin-edit-user.view.client.html',
+                controller: 'ManageUserController',
+                controllerAs: 'model'
+            })
+            .when("/admin/:uid/manage/restaurant",{
                 templateUrl: 'views/users/templates/admin/manage-restaurants.view.client.html',
                 controller: 'ManageRestaurantController',
                 controllerAs: 'model'
             })
-            .when("/admin/:uid/managerestaurant/:resId",{
-                templateUrl: 'views/users/templates/admin/manage-restaurants.view.client.html',
-                controller: 'EditRestaurantController',
+            .when("/admin/:uid/manage/restaurant/add",{
+                templateUrl: 'views/users/templates/admin/admin-add-restaurant.view.client.html',
+                controller: 'ManageRestaurantController',
+                controllerAs: 'model'
+            })
+            .when("/admin/:uid/manage/restaurant/:resId",{
+                templateUrl: 'views/users/templates/admin/admin-edit-restaurant.view.client.html',
+                controller: 'ManageRestaurantController',
                 controllerAs: 'model'
             })
             .when("/admin/:uid",{
@@ -62,6 +76,11 @@
                 controller: 'SearchResultsController',
                 controllerAs: 'model'
             })
+            .when("/restaurant/:rid/:lat/:lon",{
+                templateUrl: 'views/restaurant/templates/restaurant-details.view.client.html',
+                controller: 'RestaurantDetailsController',
+                controllerAs: 'model'
+            })
             .when("/restaurant/:rid/profile",{
                 templateUrl: 'views/restaurant/templates/restaurant-profile.view.client.html',
                 controller: 'RestaurantProfileController',
@@ -77,6 +96,7 @@
                 controller: 'RestaurantRegisterController',
                 controllerAs: 'model'
             })
+
             .when("/restaurant/:rid/addInfo",{
                 templateUrl: 'views/restaurant/templates/add-restaurant-info.view.client.html',
                 controller: 'AddRestaurantInfoController',
@@ -92,11 +112,7 @@
                 controller: 'RestaurantDetailsController',
                 controllerAs: 'model'
             })
-            .when("/restaurant/:rid",{
-                templateUrl: 'views/restaurant/templates/restaurant-details.view.client.html',
-                controller: 'RestaurantDetailsController',
-                controllerAs: 'model'
-            })
+
             .otherwise({redirectTo:'/'});
 
     }

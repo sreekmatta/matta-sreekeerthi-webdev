@@ -8,6 +8,7 @@ module.exports = function () {
         findRestaurantByCredentials:findRestaurantByCredentials,
         updateRestaurant:updateRestaurant,
         deleteRestaurant:deleteRestaurant,
+        findAllRestaurants:findAllRestaurants,
         setModel: setModel
     };
 
@@ -109,7 +110,30 @@ module.exports = function () {
 
 
     function deleteRestaurant(rid) {
-
+        var deffered = q.defer();
+        RestaurantModel
+            .findByIdAndRemove(rid, function (err, restau) {
+                if(err)
+                    deffered.reject(err);
+                else {
+                    deffered.resolve(restau);
+                }
+            });
+        return deffered.promise;
+    }
+    
+    function findAllRestaurants() {
+        var deferred = q.defer();
+        RestaurantModel
+            .find({}, function (err, restaurants) {
+                if(!restaurants) {
+                    console.log("err");
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(restaurants);
+                }
+            });
+        return deferred.promise;
     }
 
     function setModel(_model) {

@@ -12,7 +12,6 @@
         //event handlers
         viewModel.updateUser = updateUser;
         viewModel.deleteUser = deleteUser;
-        viewModel.logout = logout;
 
         function init() {
             var userId = $routeParams['uid'];
@@ -61,16 +60,6 @@
                 });
         }
 
-
-        function logout() {
-            UserService
-                .logout()
-                .then(
-                    function (response) {
-                        $rootScope.currentUser = null;
-                        $location.url("/");
-                    });
-        }
 
     }
 })();

@@ -1,6 +1,9 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="col-xs-6 msk-navbar-header zero-padding">
+        <div class="col-xs-1">
+            <a href="" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            </a></div>
+        <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
                 <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
                 <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
@@ -80,6 +83,17 @@
                 <div class="row">
                     <h3 class="ho-board-heading">Manage Users</h3>
                 </div>
+                <div ng-show="model.successMessage" class="alert alert-success" role="alert">
+                    <span class="glyphicon glyphicon-ok-circle msk-msg-glyphicon" aria-hidden="true"></span>
+                    <span class="sr-only">Profile:</span>
+                    {{model.successMessage}}
+                </div>
+                <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    {{model.errorMessage}}
+                </div>
+
                 <div class="row left-margin right-margin">
                     <input type="text" id="myInput" ng-keyup="model.searchUsers()"
                            placeholder="Search for username.." title="Type in a username">
@@ -92,7 +106,7 @@
                         <tr ng-repeat="user in model.allUsers">
                             <td>{{user.username}}</td>
                             <td>
-                                <a href=""
+                                <a ng-click="model.deleteUser(user._id)"
                                 class="btn btn-danger">Delete</a>
                                 <a href="#!/admin/{{model.currentUser._id}}/manage/user/{{user._id}}"
                                 class="btn btn-primary">Edit</a>

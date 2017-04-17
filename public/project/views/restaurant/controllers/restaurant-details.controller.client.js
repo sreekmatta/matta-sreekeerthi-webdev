@@ -48,14 +48,12 @@
                 resId = rid;
                 var promise = RestaurantService.findRestaurantByIdFromDB(rid);
                 promise.then(
-                    function (restaurant) {
+                    function successCallback(restaurant) {
                         restaurant = restaurant.data;
                         if (restaurant != undefined) {
                             viewModel.restaurant = restaurant;
                             viewModel.userType = restaurant.userType;
                             viewModel.resName = restaurant.name;
-                        } else {
-                            viewModel.errorMessage = "Error while loading restaurant menu";
                         }
                     }
                 );
@@ -73,6 +71,39 @@
                     }
                 }
             );
+
+            var lat = $routeParams['lat'];
+            var lon = $routeParams['lon'];
+
+            if(lat!=undefined & lon!=undefined & viewModel.restaurant == undefined){
+                var promise = RestaurantService.findRestaurantByName(lat,lon,rid)
+                promise.then(
+                    function (restaurant) {
+                        if (restaurant.data != undefined) {
+                            var restauarantArr = restaurant.data;
+                            restauarantArr= restauarantArr.restaurants
+                            viewModel.restaurant = restauarantArr[0];
+                            resId = viewModel.restaurant.apiKey;
+                            var promise = RestaurantService.findRestaurantMenuById(resId);
+                            promise.then(
+                                function (restaurantMenu) {
+                                    restaurantMenu = restaurantMenu.data;
+                                    if (restaurantMenu != undefined) {
+                                        viewModel.restaurantMenu = restaurantMenu;
+                                    } else {
+                                        viewModel.errorMessage = "Error while loading restaurant menu";
+                                    }
+                                }
+                            );
+                        } else {
+                            viewModel.errorMessage = "Error while loading Restaurant";
+                        }
+                    }
+                );
+
+
+
+            }
         }
         init();
 
@@ -86,7 +117,6 @@
         function getHTMLContent(html) {
             return $sce.trustAsHtml(html);
         }
-
     }
 
 })();

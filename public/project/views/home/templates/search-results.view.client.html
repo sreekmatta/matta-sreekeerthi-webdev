@@ -1,6 +1,9 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="col-xs-6 msk-navbar-header zero-padding">
+        <div class="col-xs-1">
+            <a href="" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            </a></div>
+        <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
                 <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
                 <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
@@ -28,7 +31,7 @@
                     <li><a href="#">Logout</a></li>
                 </ul>
             </div>
-            <div ng-hide="currentUser">
+            <div ng-hide="currentUser" class="ho-nav-buttons">
                 <a href="#!/login" class="btn btn-danger">Login</a>
                 <a href="#!/register" class="btn btn-danger">Sign Up</a>
             </div>
@@ -72,7 +75,6 @@
             <div class="col-xs-1 col-md-2"></div>
         </div>
         <br>
-        <hr class="ho-result-hr">
         <div class="row">
             <h3 class="ho-result-heading">Restaurants List</h3>
         </div>
@@ -160,7 +162,7 @@
                             <img src="{{restaurant.logoUrl}}" width="80" height="80">
                         </div>
                         <div class="col-xs-6">
-                            <div class="ho-brief-details">{{restaurant.name}}</div>
+                            <a href="#!/restaurant/{{restaurant.name}}/{{restaurant.latitude}}/{{restaurant.longitude}}"><div class="ho-brief-details ho-restaurant-name">{{restaurant.name}}</div></a>
                             <div class="ho-brief-details">{{restaurant.streetAddress}}
                                 <br>{{restaurant.city}},{{restaurant.state}}</div>
                         </div>
@@ -172,15 +174,15 @@
                             </button>
                         </div>
                     </div>
+
                     <hr class="ho-result-hr">
                     <div class="ho-all-padding restaurant-info-section">
 
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#info" target="_self">Info</a></li>
-                            <li><a data-toggle="tab" href="#review" target="_self">Review</a></li>
-                        </ul>
+                        <!--<ul class="nav nav-tabs">-->
+                            <!--<li class="active"><a data-toggle="tab" href="#info" target="_self">Info</a></li>-->
+                        <!--</ul>-->
 
-                        <div class="tab-content ho-left-padding ho-top-padding">
+                        <div class="tab-content ho-left-padding">
                             <div id="info" class="tab-pane fade in active">
                                 <div class="row">
                                     <div class="col-xs-4">
@@ -216,19 +218,6 @@
                                     </div>
                                     <div class="col-xs-8">
                                         ${{restaurant.deliveryPrice}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="review" class="tab-pane fade">
-                                <div class="row">
-                                    <div class="col-xs-1">
-                                        <img src="images/icon.png" class="ho-img-circle">
-                                    </div>
-                                    <div class="col-xs-11">
-                                        <span>Keerthi</span>
-                                        <p>
-                                          The food was awesome but the people are little rude.
-                                        </p>
                                     </div>
                                 </div>
                             </div>

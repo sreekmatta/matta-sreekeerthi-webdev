@@ -6,6 +6,8 @@ module.exports = function () {
         findAllPostsForUser:findAllPostsForUser,
         findAllPostsForRestaurant:findAllPostsForRestaurant,
         findPostById:findPostById,
+        deleteAllPostsForRestaurant:deleteAllPostsForRestaurant,
+        deleteAllPostsForUser:deleteAllPostsForUser,
         updatePost:updatePost,
         setModel: setModel
     };
@@ -49,12 +51,36 @@ module.exports = function () {
             });
         return deferred.promise;
     }
-
+    function deleteAllPostsForUser(userId) {
+        var deferred = q.defer();
+        PostModel
+            .remove({_user:userId}, function (err, PostsForUser) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(PostsForUser);
+                }
+            });
+        return deferred.promise;
+    }
 
     function findAllPostsForRestaurant(resId) {
         var deferred = q.defer();
         PostModel
             .find({_restaurant:resId}, function (err, PostsForRestaurant) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(PostsForRestaurant);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function deleteAllPostsForRestaurant(resId) {
+        var deferred = q.defer();
+        PostModel
+            .delete({_restaurant:resId}, function (err, PostsForRestaurant) {
                 if(err) {
                     deferred.reject(err);
                 } else {
@@ -96,7 +122,6 @@ module.exports = function () {
 
         return deferred.promise;
     }
-
 
     function setModel(_model) {
         model = _model;

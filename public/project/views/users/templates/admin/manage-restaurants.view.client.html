@@ -1,6 +1,9 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="col-xs-6 msk-navbar-header zero-padding">
+        <div class="col-xs-1">
+            <a href="" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            </a></div>
+        <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
                 <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
                 <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
@@ -78,31 +81,25 @@
         <div class="row ho-dashboard ho-left-padding ho-right-padding">
             <div>
                 <div class="row">
-                    <h3 class="ho-board-heading">Manage Foodie</h3>
+                    <h3 class="ho-board-heading">Manage Restaurant</h3>
                 </div>
-                <div class="row">
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+                <div class="row left-margin right-margin">
+                    <input type="text" id="myInput" ng-keyup="model.searchAllRestaurants()" placeholder="Search for names..">
 
                     <table id="myTable">
                         <tr class="header">
-                            <th style="width:60%;">Name</th>
-                            <th style="width:40%;">Country</th>
+                            <th style="width:60%;">Restaurant</th>
+                            <th style="width:40%;">Manage</th>
                         </tr>
-                        <tr>
-                            <td>Alfreds Futterkiste</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>Berglunds snabbkop</td>
-                            <td>Sweden</td>
-                        </tr>
-                        <tr>
-                            <td>Island Trading</td>
-                            <td>UK</td>
-                        </tr>
-                        <tr>
-                            <td>Koniglich Essen</td>
-                            <td>Germany</td>
+                        <tr ng-repeat="restaurant in model.allRestaurants">
+                            <td>{{restaurant.username}}</td>
+                            <td>
+                                <a ng-click="model.deleteRestaurant(restaurant._id)"
+                                   class="btn btn-danger">Delete</a>
+
+                                <a href="#!/admin/{{model.currentUser._id}}/manage/restaurant/{{restaurant._id}}"
+                                   class="btn btn-primary">Edit</a>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -110,26 +107,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function myFunction() {
-        // Declare variables
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-</script>

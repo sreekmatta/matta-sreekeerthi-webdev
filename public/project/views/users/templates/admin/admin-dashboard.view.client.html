@@ -1,6 +1,9 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="col-xs-6 msk-navbar-header zero-padding">
+        <div class="col-xs-1">
+            <a href="" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            </a></div>
+        <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
                 <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
                 <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
@@ -95,10 +98,6 @@
                                        target="_self" class="btn ho-dashboard-link">Manage Restaurants
                                     </a>
                                 </li>
-                                <li class="ho-menu-li">
-                                    <a data-toggle="pill" href="#posts"
-                                       target="_self" class="btn ho-dashboard-link">Manage Posts</a>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -108,17 +107,16 @@
                             <div id="users" class="tab-pane fade in active">
                                 <div class="ho-posts-ul">
                                     <ul class="list-group">
-                                        <li class="list-group-item ho-posts zero-padding-tb">
+                                        <li class="list-group-item ho-posts">
                                             <h4>Manage User Profiles</h4>
 
-                                            <h5>Please click the below 'Manage Users' button to Delete/Edit
+                                            <h5>Click on 'Manage Users' button to Delete/Edit
                                                 User Profiles</h5>
                                             <a href="#!/admin/{{model.currentUser._id}}/manage/user" class="btn btn-danger">Manage Users</a>
                                             <br><br>
-                                            <h5>Please click the below 'Add New User' button to create New
+                                            <h5>Click on 'Add New User' button to create New
                                                 User Profiles</h5>
-                                            <a href="" class="btn btn-success">Add New User</a>
-                                            <h6>Note**: Users equals Foodies(Users are 3 types Admin/Foodie/Restaurant)</h6>
+                                            <a href="#!/admin/{{model.currentUser._id}}/manage/user/add" class="btn btn-success">Add New User</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -130,28 +128,16 @@
                                         <li class="list-group-item ho-posts zero-padding-tb" style="border:none;">
                                             <h4>Manage Restaurant Profiles</h4>
 
-                                            <h5>Please click the below 'Manage Restaurants' button to Delete/Edit
+                                            <h5>Click on 'Manage Restaurants' button to Delete/Edit
                                                 Restaurant Profiles</h5>
                                             <a href="#!/admin/{{model.currentUser._id}}/manage/restaurant" class="btn btn-danger">Manage Restaurants</a>
                                             <br><br>
-                                            <h5>Please click the below 'Add New Restaurant' button to create New
+                                            <h5>Click on 'Add New Restaurant' button to create New
                                                 Restaurant Profiles</h5>
-                                            <a href="" class="btn btn-success">Add New Restaurant</a>
-
-                                            <h6>Note**: Please note that deletion of restaurants cannot be undone</h6>
+                                            <a href="#!/admin/{{model.currentUser._id}}/manage/restaurant/add" class="btn btn-success">Add New Restaurant</a>
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div id="posts" class="tab-pane fade search-result">
-                                <li class="list-group-item ho-posts zero-padding-tb" style="border:none;">
-                                    <h4>Manage User Posts</h4>
-
-                                    <h5>Please click the below 'Manage Posts' button to Delete User Posts</h5>
-                                    <a href="" class="btn btn-danger">Manage Posts</a>
-                                    <br>
-                                    <h6>Note**: Please note that deletion of posts cannot be undone</h6>
-                                </li>
                             </div>
                         </div>
                     </div>

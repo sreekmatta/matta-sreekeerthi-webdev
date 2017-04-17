@@ -1,5 +1,6 @@
 module.exports = function (app,restaurantModel) {
-    var passport      = require('passport');
+    var passport = require('passport');
+
     var LocalStrategy = require('passport-local').Strategy;
     app.post('/rest/restaurant/login', passport.authenticate('local'), login);
     app.post('/rest/restaurant/logout', logout);
@@ -9,6 +10,7 @@ module.exports = function (app,restaurantModel) {
             successRedirect: '/#/restaurant',
             failureRedirect: '/#/restaurant/login'
         }));
+    app.get('/rest/restaurant/allrestaurants', findAllRestaurants)
     app.post("/rest/restaurant", createRestaurant);
     app.get("/rest/restaurant", findRestaurant);
     app.get("/rest/restaurant/:rid", findRestaurantById);
@@ -175,11 +177,23 @@ module.exports = function (app,restaurantModel) {
 
     }
 
-    function deleteRestaurant(rid){
+    function deleteRestaurant(req,res){
+
+        var rid = req.params.rid;
         restaurantModel
             .deleteRestaurant(rid)
             .then(function (restaurant) {
                 res.json(restaurant);
+            }, function (error) {
+                res.sendStatus(500)
+            });
+    }
+
+    function findAllRestaurants(req,res) {
+        restaurantModel
+            .findAllRestaurants()
+            .then(function (restaurants) {
+                res.json(restaurants);
             }, function (error) {
                 res.sendStatus(500)
             });

@@ -40,6 +40,8 @@
         }
 
         function findRestaurantsNearBy() {
+
+
             var promise = RestaurantService.findRestaurantsNearBy(lat,lon,radius,resname);
             promise.then(
                 function (restaurants) {
@@ -50,7 +52,18 @@
                         viewModel.errorMessage = "Error while loading Restaurants";
                     }
                 }
+
             );
+
+            var allRes = [];
+            RestaurantService
+                .findAllRestaurants()
+                .then(
+                    function (response) {
+                        allRes = response.data;
+                        viewModel.restaurants = allRes.concat(viewModel.restaurants);
+                    });
+
         }
         viewModel.numberOfPages = function() {
             return Math.ceil(viewModel.restaurants.length / viewModel.pageSize);
@@ -98,7 +111,15 @@
                     }
                 );
             }
-        }
 
+            var allRes = [];
+            RestaurantService
+                .findAllRestaurants()
+                .then(
+                    function (response) {
+                        allRes = response.data;
+                        viewModel.restaurants = allRes.concat(viewModel.restaurants);
+                    });
+        }
     }
 })();
