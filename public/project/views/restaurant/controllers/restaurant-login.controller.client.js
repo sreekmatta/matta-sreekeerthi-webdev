@@ -5,6 +5,7 @@
 
     function RestaurantLoginController(RestaurantService,$location,$rootScope) {
         var viewModel = this;
+        viewModel.currentUser = $rootScope.currentUser;
 
         //event handlers
         viewModel.login = login;

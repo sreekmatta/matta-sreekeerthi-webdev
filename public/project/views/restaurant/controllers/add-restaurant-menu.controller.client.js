@@ -8,6 +8,7 @@
         var rid = $routeParams['rid'];
         viewModel.rid = rid;
         //event handlers
+        viewModel.currentUser = $rootScope.currentUser;
 
         viewModel.updateProfile = updateProfile;
 

@@ -5,6 +5,7 @@
 
     function RegisterController(UserService,$location,$rootScope) {
         var viewModel = this;
+        viewModel.currentUser = $rootScope.currentUser;
 
         //event handlers
         viewModel.register = register;

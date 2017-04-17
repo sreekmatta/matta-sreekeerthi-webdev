@@ -8,8 +8,10 @@
         var rid = $routeParams['rid'];
         viewModel.rid = rid;
         //event handlers
+        viewModel.currentUser = $rootScope.currentUser;
 
         viewModel.updateProfile = updateProfile;
+        viewModel.searchRestaurants = searchRestaurants;
 
         function init() {
             RestaurantService
@@ -38,6 +40,12 @@
                         viewModel.errorMessage = "Restaurant does not exist";
                     }
                 );
+        }
+
+        function searchRestaurants() {
+            var resname = $( "#resname").val();
+            var radius = $( "#radius").val();
+            $location.url("/restaurant/search/"+radius+"/"+resname);
         }
 
     }

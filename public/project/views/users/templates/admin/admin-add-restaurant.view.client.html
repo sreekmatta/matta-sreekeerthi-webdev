@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="col-xs-1">
-            <a href="" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            <a href="#!/admin/{{model.currentUser._id}}" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
             </a></div>
         <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
@@ -19,21 +19,21 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu nav-dropdown-menu">
-                    <li ng-show="model.currentUser.userType=='ADMIN'"><a href="#!/enduser/{{model.currentUser._id}}">
-                        <span class="glyphicon glyphicon-dashboard"></span>
-                        Admin Dashboard</a>
-                    </li>
                     <li ng-show="model.currentUser.userType=='ADMIN'">
-                        <a href="#!/enduser/{{model.currentUser._id}}">
+                        <a href="#!/admin/{{model.currentUser._id}}">
                             <span class="glyphicon glyphicon-dashboard"></span>
-                            Foodie Dashboard</a>
+                            Admin Dashboard</a>
+                    </li>
+                    <li><a href="#!/enduser/{{model.currentUser._id}}">
+                        <span class="glyphicon glyphicon-dashboard"></span>
+                        Foodie Dashboard</a>
                     </li>
                     <li><a href="#!/enduser/{{model.currentUser._id}}/profile">
                         <span class="glyphicon glyphicon-user"></span>
                         Profile</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="#!/logout">Logout</a></li>
                 </ul>
             </div>
         </div>

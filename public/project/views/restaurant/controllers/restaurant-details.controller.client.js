@@ -9,6 +9,7 @@
         var resName = $routeParams['resName'];
         viewModel.resId = resId;
         viewModel.resName = resName;
+        viewModel.currentUser = $rootScope.currentUser;
 
 
         var rid = $routeParams['rid'];

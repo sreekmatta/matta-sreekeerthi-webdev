@@ -1,6 +1,3 @@
-/**
- * Created by sreematta on 2/9/2017.
- */
 (function () {
     angular
         .module("HungryOwlAppMaker")
@@ -8,6 +5,7 @@
 
     function RestaurantRegisterController(RestaurantService,$location,$rootScope) {
         var viewModel = this;
+        viewModel.currentUser = $rootScope.currentUser;
 
         //event handlers
         viewModel.register = register;

@@ -14,27 +14,59 @@
         </div>
         <div class="col-xs-3"></div>
         <div class="col-xs-6">
-            <div ng-show="currentUser" class="dropdown pull-right ho-dropdown-padding">
-                <button class="btn btn-default dropdown-toggle ho-profile-btn"
-                        type="button" data-toggle="dropdown">
-                    <img class="ho-img-circle" src="images/backup-img/icon.png">
-                    <span class="ho-button-text">{{currentUser.username}}</span>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu nav-dropdown-menu">
-                    <li><a href="#!/enduser/{{currentUser._id}}">
-                        <span class="glyphicon glyphicon-dashboard"></span>
-                        Dashboard</a>
-                    </li>
-                    <li><a href="#!/enduser/{{currentUser._id}}/profile">
-                        <span class="glyphicon glyphicon-user"></span>
-                        Profile</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
+            <div ng-hide="model.currentUser=='0'">
+                <div ng-show="model.currentUser.userType=='RESTAURANT'" class="dropdown pull-right ho-dropdown-padding">
+                    <button class="btn btn-default dropdown-toggle ho-profile-btn"
+                            type="button" data-toggle="dropdown">
+                        <img class="ho-img-circle" src="images/backup-img/icon.png">
+                        <span class="ho-button-text">{{model.currentUser.username}}</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu nav-dropdown-menu">
+                        <li ng-show="model.currentUser.userType=='ADMIN'">
+                            <a href="#!/admin/{{model.currentUser._id}}">
+                                <span class="glyphicon glyphicon-dashboard"></span>
+                                Admin Dashboard</a>
+                        </li>
+                        <li><a href="#!/restaurant/{{model.currentUser._id}}">
+                            <span class="glyphicon glyphicon-dashboard"></span>
+                            Restaurant Dashboard</a>
+                        </li>
+                        <li><a href="#!/enduser/{{model.currentUser._id}}/profile">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#!/logout">Logout</a></li>
+                    </ul>
+                </div>
+                <div ng-hide="model.currentUser.userType=='RESTAURANT'" class="dropdown pull-right ho-dropdown-padding">
+                    <button class="btn btn-default dropdown-toggle ho-profile-btn"
+                            type="button" data-toggle="dropdown">
+                        <img class="ho-img-circle" src="images/backup-img/icon.png">
+                        <span class="ho-button-text">{{model.currentUser.username}}</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu nav-dropdown-menu">
+                        <li ng-show="model.currentUser.userType=='ADMIN'">
+                            <a href="#!/admin/{{model.currentUser._id}}">
+                                <span class="glyphicon glyphicon-dashboard"></span>
+                                Admin Dashboard</a>
+                        </li>
+                        <li><a href="#!/enduser/{{model.currentUser._id}}">
+                            <span class="glyphicon glyphicon-dashboard"></span>
+                            Foodie Dashboard</a>
+                        </li>
+                        <li><a href="#!/enduser/{{model.currentUser._id}}/profile">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#!/logout">Logout</a></li>
+                    </ul>
+                </div>
             </div>
-            <div ng-hide="currentUser" class="ho-nav-buttons">
+            <div ng-hide="model.currentUser!='0'" class="ho-nav-buttons">
                 <a href="#!/login" class="btn btn-danger">Login</a>
                 <a href="#!/register" class="btn btn-danger">Sign Up</a>
             </div>

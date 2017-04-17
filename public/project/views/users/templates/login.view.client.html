@@ -1,14 +1,14 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="col-xs-1">
-            <a href="" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            <a href="#!/" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
             </a></div>
         <div class="col-xs-5 msk-navbar-header zero-padding">
-                <a class="navbar-brand" href="#!/">
-                    <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
-                    <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
-                </a>
-            </div>
+            <a class="navbar-brand" href="#!/">
+                <img class="ho-navbar-logo" src="images/hungry-owl-plain-logo.png">
+                <div class="hungry-owl-text ho-navbar-text">HungryOwl</div>
+            </a>
+        </div>
 
         <div class="col-xs-6">
             <a href="#!/register" class="btn btn-danger ho-nav-buttons" >Sign Up</a>
@@ -18,40 +18,49 @@
     <div class="ho-main-body">
         <div class="col-sm-2 col-xs-1">
         </div>
-        <div class="col-sm-8 col-xs-10">
+
+        <div ng-show="model.currentUser.userType" class="col-sm-8 col-xs-10 font-18">
+            You are already Logged In<br>
+            Please click <a href="#!/enduser/{{model.currentUser._id}}" class="join-btn">
+            <span class="glyphicon glyphicon-dashboard"></span>
+            Here</a> to navigate to your dashboard.
+        </div>
+        <div ng-show="model.currentUser.userType==undefined" class="col-sm-8 col-xs-10">
             <h2>Please Login</h2>
             <hr>
 
-                <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span>
-                    {{model.errorMessage}}
+            <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{model.errorMessage}}
+            </div>
+
+            <label for ="username">Username</label>
+            <input ng-model="user.username"
+                   type="text"
+                   id="username"
+                   class="form-control"
+                   placeholder="username123"/>
+
+            <label for ="password">Password</label>
+            <input ng-model="user.password"
+                   type="password"
+                   id="password"
+                   class="form-control"
+                   placeholder="Password@1234"/>
+
+            <div class="ho-buttons-margin">
+                <a class="btn btn-primary btn-block"
+                   ng-click="model.login(user)" >Login</a>
+                <a href="/auth/google" class="btn btn-danger btn-block">
+                    <span class="fa fa-google-plus"></span>
+                    Login with Google
+                </a>
+                <div class="font-18">
+                    New to HungryOwl? <a class="join-btn" href="#!/register">Join</a>
+                    Today.
                 </div>
-
-                <label for ="username">Username</label>
-                <input ng-model="user.username"
-                       type="text"
-                       id="username"
-                       class="form-control"
-                       placeholder="username123"/>
-
-                <label for ="password">Password</label>
-                <input ng-model="user.password"
-                       type="password"
-                       id="password"
-                       class="form-control"
-                       placeholder="Password@1234"/>
-
-                <div class="ho-buttons-margin">
-                    <a class="btn btn-primary btn-block"
-                       ng-click="model.login(user)" >Login</a>
-                    <a href="/auth/facebook" class="btn btn-primary btn-block">
-                        <span class="fa fa-facebook"></span>
-                        Login with Facebook
-                    </a>
-                    <a class="btn btn-success btn-block"
-                       href="#!/register">Register</a>
-                </div>
+            </div>
 
         </div>
         <div class="col-sm-2 col-xs-1">

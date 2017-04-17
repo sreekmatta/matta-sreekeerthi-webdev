@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="col-xs-1">
-            <a href="" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            <a href="#!/" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
             </a></div>
         <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
@@ -18,7 +18,13 @@
     <div class="ho-main-body">
         <div class="col-sm-2 col-xs-1">
         </div>
-        <div class="col-sm-8 col-xs-10">
+        <div ng-show="model.currentUser" class="col-sm-8 col-xs-10 font-18">
+            You are already Logged In<br>
+            Please click <a href="#!/enduser/{{model.currentUser._id}}" class="join-btn">
+            <span class="glyphicon glyphicon-dashboard"></span>
+            Here</a> to navigate to your dashboard.
+        </div>
+        <div ng-hide="model.currentUser" class="col-sm-8 col-xs-10">
             <h2>Restaurant Login</h2>
             <hr>
             <form>

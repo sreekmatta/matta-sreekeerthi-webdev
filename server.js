@@ -14,9 +14,9 @@ var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 
 app.use(session({
-    secret: 'This is a secret'//,
-    //resave: true,
-    //saveUninitialized: true
+    secret: 'This is a secret',
+    resave: true,
+    saveUninitialized: true
 }));
 
 app.use(cookieParser());

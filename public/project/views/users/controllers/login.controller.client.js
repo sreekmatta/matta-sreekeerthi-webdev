@@ -5,6 +5,7 @@
 
     function LoginController(UserService,$location,$rootScope,$route) {
         var viewModel = this;
+        viewModel.currentUser = $rootScope.currentUser;
 
         //event handlers
         viewModel.login = login;

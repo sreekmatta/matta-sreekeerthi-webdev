@@ -19,7 +19,6 @@
         return api;
 
         function login(user) {
-            //return $http.post("/rest/login", user);
             return $http.post("/rest/login", user);
         }
 

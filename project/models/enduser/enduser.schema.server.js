@@ -15,6 +15,9 @@ module.exports = function () {
         username: String,
         password: String,
         email: String,
+        google: {
+            id:    String
+        },
         phone:String,
         bookmarks:[{type: mongoose.Schema.Types.ObjectId, ref: 'RestaurantModel'}],
         posts:[{type: mongoose.Schema.Types.ObjectId, ref: 'PostModel'}],

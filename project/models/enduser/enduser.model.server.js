@@ -10,6 +10,7 @@ module.exports = function () {
         updateUser:updateUser,
         deleteUser:deleteUser,
         findAllUsers:findAllUsers,
+        findUserByGoogleId:findUserByGoogleId,
         setModel: setModel
     };
 
@@ -74,6 +75,9 @@ module.exports = function () {
         return deferred.promise;
     }
 
+    function findUserByGoogleId(id) {
+        return EnduserModel.findOne({"google.id":id});
+    }
 
     function findUserByCredentials(username,password){
         console.log("landed here:"+username);

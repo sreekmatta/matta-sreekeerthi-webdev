@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="col-xs-1">
-            <a href="" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            <a href="#!/enduser/{{model.currentUser._id}}" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
             </a></div>
         <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
@@ -15,15 +15,20 @@
                 <button class="btn btn-default dropdown-toggle ho-profile-btn"
                         type="button" data-toggle="dropdown">
                     <img class="ho-img-circle" src="images/backup-img/icon.png">
-                    <span class="ho-button-text">{{currentUser.username}}</span>
+                    <span class="ho-button-text">{{model.currentUser.username}}</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu nav-dropdown-menu">
-                    <li><a href="#!/enduser/{{currentUser._id}}">
-                        <span class="glyphicon glyphicon-dashboard"></span>
-                        Dashboard</a>
+                    <li ng-show="model.currentUser.userType=='ADMIN'">
+                        <a href="#!/admin/{{model.currentUser._id}}">
+                            <span class="glyphicon glyphicon-dashboard"></span>
+                            Admin Dashboard</a>
                     </li>
-                    <li><a href="#!/enduser/{{currentUser._id}}/profile">
+                    <li><a href="#!/enduser/{{model.currentUser._id}}">
+                        <span class="glyphicon glyphicon-dashboard"></span>
+                        Foodie Dashboard</a>
+                    </li>
+                    <li><a href="#!/enduser/{{model.currentUser._id}}/profile">
                         <span class="glyphicon glyphicon-user"></span>
                         Profile</a>
                     </li>

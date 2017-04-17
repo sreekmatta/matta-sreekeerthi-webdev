@@ -3,20 +3,43 @@ module.exports = function (app,enduserModel) {
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
     var bcrypt = require("bcrypt-nodejs");
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+    if (process.env.GOOGLE_CLIENT_ID)
+    {
+        var googleConfig = {
+            clientID     : process.env.GOOGLE_CLIENT_ID,
+            clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+            callbackURL  : process.env.GOOGLE_CALLBACK_URL
+        };
+    }
+    else{
+        var googleConfig = {
+            clientID:"780276115989-cjlp3nj1rft5c9af1tbj24sq7vk0r2pu.apps.googleusercontent.com",
+            clientSecret: "_Z23Ya-90y0N_ftgMOmK1h6y",
+            callbackURL: "http://localhost:3000/auth/google/callback"
+        };
+    }
+
+
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            failureRedirect: '/project/index.html#'
+
+        }), function(req, res){
+            var t  = req.user;
+            var url = '/project/index.html#!/enduser/'+t._id;
+            res.redirect(url);
+        });
+
 
     app.post("/rest/enduser", createUser);
     app.post("/rest/login", passport.authenticate('local'), login);
     //app.post('/rest/login',findUserByCredentials);
     app.post("/rest/logout", logout);
     app.post("/rest/register", register);
-    app.get ("/rest/auth/facebook", passport.authenticate('facebook', { scope : 'email' }));
-    app.get("/rest/auth/facebook/callback",
-        passport.authenticate('facebook', {
-            successRedirect: '/#/enduser',
-            failureRedirect: '/#/login'
-        }));
     app.get("/rest/enduser/getall",getAllUsers);
-
     app.get("/rest/enduser", findUser);
     app.get("/rest/enduser/:userId", findUserById);
     app.put("/rest/enduser/:userId", updateUser);
@@ -46,21 +69,59 @@ module.exports = function (app,enduserModel) {
 
     passport.use(new LocalStrategy(localStrategy));
     function localStrategy(username, password, done) {
+
         enduserModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
-                    if(user.username === username && user.password === password) {
+                    // if the user exists, compare passwords with bcrypt.compareSync
+                    if(user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     } else {
                         return done(null, false);
                     }
+                });
+    }
+
+
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+    function googleStrategy(token, refreshToken, profile, done) {
+
+        console.log("NEW PROFILE", profile,token,refreshToken);
+        enduserModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+
+                        console.log("NEW PROFILE", profile);
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.displayName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            google: {
+                                id:    profile.id
+                            }
+                        };
+                        console.log(newGoogleUser,"NEW GOOGLE USER");
+                        return enduserModel
+                            .createUser(newGoogleUser)
+                            .then(function(user){
+                                return done(null, user);
+                            });
+                    }
                 },
                 function(err) {
                     if (err) { return done(err); }
-                }
-            );
+                })
     }
+
 
     function login(req, res) {
         var user = req.user;
@@ -95,9 +156,6 @@ module.exports = function (app,enduserModel) {
                                 res.json(user);
                             }
                         });
-                    }
-                    {
-                        res.json(null);//username already exists
                     }
                 }
             );

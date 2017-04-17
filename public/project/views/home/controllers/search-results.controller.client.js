@@ -11,11 +11,12 @@
             };
         });
 
-    function SearchResultsController($location,$routeParams,RestaurantService,$filter) {
+    function SearchResultsController($location,$routeParams,RestaurantService,$filter,$rootScope) {
         var viewModel = this;
         var restaurants = [];
         var radius = $routeParams['radius'];
         var resname = $routeParams['resname'];
+        viewModel.currentUser = $rootScope.currentUser;
 
         //default values
         var lat = "42.343165899999995"

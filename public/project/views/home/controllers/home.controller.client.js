@@ -3,8 +3,9 @@
         .module("HungryOwlAppMaker")
         .controller("HomeController", HomeController);
 
-    function HomeController($location,RestaurantService) {
+    function HomeController($location,RestaurantService,$rootScope) {
         var viewModel = this;
+        viewModel.currentUser = $rootScope.currentUser;
 
         viewModel.searchRestaurants = searchRestaurants;
 

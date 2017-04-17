@@ -11,6 +11,7 @@
         viewModel.restaurant = null;
 
         viewModel.currentUser = $rootScope.currentUser;
+
         viewModel.searchRestaurants = searchRestaurants;
         viewModel.searchAllRestaurants = searchAllRestaurants;
         viewModel.deleteRestaurant = deleteRestaurant;
