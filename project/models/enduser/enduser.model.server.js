@@ -11,6 +11,9 @@ module.exports = function () {
         deleteUser:deleteUser,
         findAllUsers:findAllUsers,
         findUserByGoogleId:findUserByGoogleId,
+        searchForUsername:searchForUsername,
+        followUser:followUser,
+        getUsersOnSetOfIDS:getUsersOnSetOfIDS,
         setModel: setModel
     };
 
@@ -111,19 +114,20 @@ module.exports = function () {
         var deferred = q.defer();
         EnduserModel
             .update({_id:userId},
-                    {   username: user.username,
-                        password: user.password,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        email: user.email,
-                        phone:user.phone},
-                    function (err,user) {
-            if(err){
-                deferred.reject(err);
-            } else {
-                deferred.resolve(user);
-            }
-            });
+                {   username: user.username,
+                    password: user.password,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                    bookmarks: user.bookmarks,
+                    phone:user.phone},
+                function (err,user) {
+                    if(err){
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(user);
+                    }
+                });
 
         return deferred.promise;
     }
@@ -140,6 +144,63 @@ module.exports = function () {
                 }
             });
         return deffered.promise;
+    }
+
+    function searchForUsername(uname) {
+        var deferred = q.defer();
+        EnduserModel
+            .find({username: { "$regex": uname, "$options": "i" }}, function (err, users) {
+                if(!users) {
+                    console.log("err");
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(users);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function followUser(mainPersonID,followerID) {
+        var deferred = q.defer();
+        EnduserModel
+            .find({_id:mainPersonID}, function (err, users) {
+            var mainPerson = users[0];
+                if(!mainPerson) {
+                    console.log("err");
+                    deferred.reject(err);
+                } else {
+                    EnduserModel
+                        .find({_id:followerID}, function (err, users) {
+                            var follower = users[0];
+                            if(!follower) {
+                                console.log("err");
+                                deferred.reject(err);
+                            } else {
+                                mainPerson.followers.push(follower._id);
+                                follower.following.push(mainPerson._id)
+                                mainPerson.save();
+                                follower.save();
+                                EnduserModel
+                                    .find({ _id: { $in: mainPerson.followers}},
+                                        function (err, users) {
+
+                                        deferred.resolve(users);
+                                    });
+                            }
+                        });
+                }
+            });
+        return deferred.promise;
+    }
+
+    function getUsersOnSetOfIDS(userIds){
+        var deferred = q.defer();
+        EnduserModel
+            .find({ _id: { $in: userIds}},
+                function (err, users) {
+                    deferred.resolve(users);
+                });
+        return deferred.promise;
     }
 
     function setModel(_model) {

@@ -19,10 +19,9 @@ module.exports = function () {
             id:    String
         },
         phone:String,
-        bookmarks:[{type: mongoose.Schema.Types.ObjectId, ref: 'RestaurantModel'}],
+        followers:[{type: mongoose.Schema.Types.ObjectId, ref: 'EnduserModel'}],
+        following:[{type: mongoose.Schema.Types.ObjectId, ref: 'EnduserModel'}],
         posts:[{type: mongoose.Schema.Types.ObjectId, ref: 'PostModel'}],
-        followers:[{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],
-        following:[{type: mongoose.Schema.Types.ObjectId, ref: 'UserModel'}],
         dateCreated: {type:Date ,default:Date.now}
     }, {collection: 'project.user'});
 

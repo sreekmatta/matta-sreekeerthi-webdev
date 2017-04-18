@@ -29,6 +29,12 @@
                 controllerAs: 'model',
                 resolve: { loggedin: checkLoggedin }
             })
+            .when("/enduser/:uid/find/friends/:frienduname",{
+                templateUrl: 'views/users/templates/find-friends.view.client.html',
+                controller: 'UserDashboardController',
+                controllerAs: 'model',
+                resolve: { loggedin: checkLoggedin }
+            })
             .when("/enduser/:uid",{
                 templateUrl: 'views/users/templates/foodie/foodie-dashboard.view.client.html',
                 controller: 'UserDashboardController',
@@ -92,7 +98,8 @@
             .when("/restaurant/:rid/:lat/:lon",{
                 templateUrl: 'views/restaurant/templates/restaurant-details.view.client.html',
                 controller: 'RestaurantDetailsController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: { loggedin: checkLoggedin}
             })
             .when("/restaurant/:rid/profile",{
                 templateUrl: 'views/restaurant/templates/restaurant-profile.view.client.html',

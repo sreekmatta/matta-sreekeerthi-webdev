@@ -71,7 +71,7 @@
     </nav>
 
     <div class="ho-main-body">
-        <div class="msk-search-bar">
+        <div class="row msk-search-bar">
             <div class="col-xs-1 col-md-2"></div>
             <div class="col-xs-10 col-md-8 zero-padding">
                 <div class="col-xs-12 col-sm-2 msk-col-search dropdown pull-left">
@@ -106,112 +106,123 @@
             </div>
             <div class="col-xs-1 col-md-2"></div>
         </div>
+        <div class="row restaurant-description">
+            <div class="row restaurant-title-main">
+                <div class="col-xs-3 ho-top-margin">
+                    <img src="{{model.restaurant.logoUrl}}">
+                </div>
+                <div class="col-xs-9 ho-bottom-margin ho-top-margin res-details">
+                    <h3>
+                        <a id="bookmark-link" ng-hide="model.isCurrRestaurantBookmarked"
+                           ng-click="model.bookmarkRestaurant(model.currentUser)"
+                           class="unchecked-bookmark" data-toggle="tooltip" data-placement="top"
+                           title="Please login to bookmark this restaurant">
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                        </a>
+                        <a ng-hide="!model.isCurrRestaurantBookmarked" ng-click="model.bookmarkRestaurant(model.currentUser)" class="checked-bookmark"><span class="glyphicon glyphicon-bookmark"></span></a>
 
-        <div class="row">
-            <div class="col-xs-3 ho-top-margin">
-                <img src="{{model.restaurant.logoUrl}}">
-            </div>
-            <div class="col-xs-9 ho-bottom-margin">
-                <h3>{{model.restaurant.name}}</h3>
-                <div class="ho-brief-details" ng-if="model.restaurant.streetAddress">{{model.restaurant.streetAddress}}
-                    <br>
-                    <div ng-if="model.restaurant.city">{{model.restaurant.city}},{{model.restaurant.state}}</div>
+                        {{model.restaurant.name}}</h3>
+                    <div class="ho-brief-details" ng-if="model.restaurant.streetAddress">{{model.restaurant.streetAddress}}
+                        <br>
+                        <div ng-if="model.restaurant.city">{{model.restaurant.city}},{{model.restaurant.state}}</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="">
+            <div class="restaurant-details">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#info" target="_self">Info</a></li>
+                    <li><a data-toggle="tab" href="#menu" target="_self">Menu Card</a></li>
+                    <li><a data-toggle="tab" href="#posts" target="_self">Been Here</a></li>
+                </ul>
 
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#info" target="_self">Info</a></li>
-                <li><a data-toggle="tab" href="#menu" target="_self">Menu Card</a></li>
-                <li><a data-toggle="tab" href="#posts" target="_self">Been Here</a></li>
-            </ul>
-
-            <div class="tab-content ho-all-padding ho-deco">
-                <div id="info" class="tab-pane fade in active">
-                    <div class="row" ng-if="model.userType == 'RESTAURANT'">
-                        <a href="#!/restaurant/{{model.resId}}/addInfo" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Details</a>
-                    </div>
-                    <div class="row" ng-if="model.restaurant.foodTypes[0]">
-                        <div class="col-sm-3 col-xs-5">
-                            Cuisines:
+                <div class="tab-content ho-all-padding ho-deco">
+                    <div id="info" class="tab-pane fade in active">
+                        <div class="row" ng-if="model.userType == 'RESTAURANT'">
+                            <a href="#!/restaurant/{{model.resId}}/addInfo" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Details</a>
                         </div>
-                        <div class="col-sm-9 col-xs-7">
+                        <div class="row" ng-if="model.restaurant.foodTypes[0]">
+                            <div class="col-sm-3 col-xs-5">
+                                Cuisines:
+                            </div>
+                            <div class="col-sm-9 col-xs-7">
                         <span ng-repeat="foodTypeValues in model.restaurant.foodTypes">
-                            <span>{{foodTypeValues}} | </span>
+                            <span ng-show="foodTypeValues!=''">{{foodTypeValues}} | </span>
                         </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" ng-if="model.restaurant.open">
-                        <div class="col-sm-3 col-xs-5">
-                            Open Now:
+                        <div class="row" ng-if="model.restaurant.open">
+                            <div class="col-sm-3 col-xs-5">
+                                Open Now:
+                            </div>
+                            <div class="col-sm-9 col-xs-7">
+                                <span ng-if="model.restaurant.open==true">YES</span>
+                                <span ng-if="model.restaurant.open==false">NO</span>
+                            </div>
                         </div>
-                        <div class="col-sm-9 col-xs-7">
-                            {{model.restaurant.open}}
-                        </div>
-                    </div>
 
-                    <div class="row" ng-if="model.restaurant.deliveryMin">
-                        <div class="col-sm-3 col-xs-5">
-                            Minimum Order:
+                        <div class="row" ng-if="model.restaurant.deliveryMin">
+                            <div class="col-sm-3 col-xs-5">
+                                Minimum Order:
+                            </div>
+                            <div class="col-sm-9 col-xs-7">
+                                {{model.restaurant.deliveryMin | currency}}
+                            </div>
                         </div>
-                        <div class="col-sm-9 col-xs-7">
-                            $ {{model.restaurant.deliveryMin}}
-                        </div>
-                    </div>
 
-                    <div class="row" ng-if="model.restaurant.deliveryPrice">
-                        <div class="col-sm-3 col-xs-5">
-                            Delivery Fees:
+                        <div class="row" ng-if="model.restaurant.deliveryPrice">
+                            <div class="col-sm-3 col-xs-5">
+                                Delivery Fees:
+                            </div>
+                            <div class="col-sm-9 col-xs-7">
+                                {{model.restaurant.deliveryPrice | currency}}
+                            </div>
                         </div>
-                        <div class="col-sm-9 col-xs-7">
-                            $ {{model.restaurant.deliveryPrice}}
+                        <div class="row" ng-if="model.restaurant.acceptsCash">
+                            <div class="col-sm-3 col-xs-5">
+                                Cash Accepted:
+                            </div>
+                            <div class="col-sm-9 col-xs-7">
+                                <span ng-if="model.restaurant.acceptsCash==true">YES</span>
+                                <span ng-if="model.restaurant.acceptsCash==false">NO</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" ng-if="model.restaurant.acceptsCash">
-                        <div class="col-sm-3 col-xs-5">
-                            Cash Accepted:
+                        <div class="row" ng-if="model.restaurant.hours">
+                            <div class="col-sm-3 col-xs-5">
+                                Open hours:
+                            </div>
+                            <div class="col-sm-9 col-xs-7">
+                                <div ng-repeat="time in model.restaurant.hours">
+                                    {{time}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-9 col-xs-7">
-                            {{model.restaurant.acceptsCash}}
-                        </div>
-                    </div>
-                    <div class="row" ng-if="model.restaurant.hours">
-                        <div class="col-sm-3 col-xs-5">
-                            Open hours:
-                        </div>
-                        <div class="col-sm-9 col-xs-7">
-                            <div ng-repeat="time in model.restaurant.hours">
-                                {{time}}</div>
-                        </div>
-                    </div>
 
 
-                </div>
-                <div id="menu" class="tab-pane fade">
-                    <div class="row" ng-if="model.userType == 'RESTAURANT'">
-                        <a href="#!/restaurant/{{model.resId}}/addMenu" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Menu</a>
                     </div>
-                    <div ng-if="model.restaurantMenu" ng-repeat="section in model.restaurantMenu" class="row left-margin">
-                        <div class="row pull-left">
-                            <h4>{{section.name}}</h4>
-
-                            <h5 ng-if="section.description">
-                                {{section.description}}
-                            </h5>
+                    <div id="menu" class="tab-pane fade">
+                        <div class="row" ng-if="model.userType == 'RESTAURANT'">
+                            <a href="#!/restaurant/{{model.resId}}/addMenu" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Menu</a>
                         </div>
-                        <br><br><br>
-                        <div class="row">
-                            <div class="" ng-repeat="itemVal in section.items">
-                                <h5>{{itemVal.name}} - $ {{itemVal.basePrice}}</h5>
+                        <div ng-if="model.restaurantMenu" ng-repeat="section in model.restaurantMenu" class="row left-margin">
+                            <div class="row pull-left">
+                                <h4>{{section.name}}</h4>
+
+                                <h5 ng-if="section.description">
+                                    {{section.description}}
+                                </h5>
+                            </div>
+                            <br><br><br>
+                            <div class="row">
+                                <div class="" ng-repeat="itemVal in section.items">
+                                    <h5>{{itemVal.name}} - $ {{itemVal.basePrice}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="model.userType == 'RESTAURANT'" class="row left-margin">
+                            <div ng-bind-html="model.getHTMLContent(model.restaurant.menu)">
                             </div>
                         </div>
                     </div>
-                    <div ng-if="model.userType == 'RESTAURANT'" class="row left-margin">
-                        <div ng-bind-html="model.getHTMLContent(model.restaurant.menu)">
-                        </div>
-                    </div>
-
                     <div id="posts" class="tab-pane fade">
                         <div class="row" ng-repeat="post in model.posts" ng-if="model.posts.length>0">
                             <div class="col-xs-1">
@@ -234,3 +245,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+

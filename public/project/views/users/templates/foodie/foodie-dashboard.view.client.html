@@ -21,8 +21,8 @@
                 <ul class="dropdown-menu nav-dropdown-menu">
                     <li ng-show="model.currentUser.userType=='ADMIN'">
                         <a href="#!/admin/{{model.currentUser._id}}">
-                        <span class="glyphicon glyphicon-dashboard"></span>
-                        Admin Dashboard</a>
+                            <span class="glyphicon glyphicon-dashboard"></span>
+                            Admin Dashboard</a>
                     </li>
                     <li><a href="#!/enduser/{{model.currentUser._id}}">
                         <span class="glyphicon glyphicon-dashboard"></span>
@@ -81,7 +81,24 @@
         <div class="row ho-dashboard ho-left-padding ho-right-padding">
             <div>
                 <div class="row">
-                    <h3 class="ho-board-heading">Foodie Dashboard</h3>
+                    <h3 class="ho-board-heading">
+                        <span ng-show="model.currentUser._id==model.user._id">Foodie</span>
+                        <span ng-show="model.currentUser._id!=model.user._id">Friend's</span>
+                        Dashboard</h3>
+                    <div ng-show="model.currentUser._id!=model.user._id"
+                         class="ho-board-heading friend-info">
+                        Username: {{model.user.username | uppercase }}
+                        &nbsp;&nbsp;
+                        <a ng-click="model.followUser(model.user._id,model.currentUser._id)"
+                           class="btn btn-primary"> Follow
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+                        <br>
+                        First Name: {{model.user.firstName}}
+                        <br>
+                        Last Name: {{model.user.lastName}}
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3 ho-bottom-margin">
@@ -90,20 +107,22 @@
 
                                 <li class="active ho-menu-li">
                                     <a data-toggle="pill" href="#home"
-                                       target="_self" class="btn ho-dashboard-link">Home
+                                       target="_self" class="btn ho-dashboard-link">
+                                        <span ng-show="model.currentUser._id==model.user._id">Home</span>
+                                        <span ng-show="model.currentUser._id!=model.user._id">Friend's Feed</span>
                                     </a>
                                 </li>
-                                <li class="ho-menu-li">
-                                    <a data-toggle="pill" href="#bookmarks"
-                                       target="_self" class="btn ho-dashboard-link">Bookmarks
+                                <li ng-show="model.currentUser._id==model.user._id" class="ho-menu-li">
+                                    <a data-toggle="pill" href="#findfriends"
+                                       target="_self" class="btn ho-dashboard-link">Find Friends
                                     </a>
                                 </li>
-                                <!--<li class="ho-menu-li"><a data-toggle="pill" href="#followers"-->
-                                                          <!--target="_self" class="btn ho-dashboard-link">Followers</a>-->
-                                <!--</li>-->
-                                <!--<li class="ho-menu-li"><a data-toggle="pill" href="#following"-->
-                                                          <!--target="_self" class="btn ho-dashboard-link">Following</a>-->
-                                <!--</li>-->
+                                <li class="ho-menu-li"><a data-toggle="pill" href="#followers"
+                                                          target="_self" class="btn ho-dashboard-link">Followers</a>
+                                </li>
+                                <li class="ho-menu-li"><a data-toggle="pill" href="#following"
+                                                          target="_self" class="btn ho-dashboard-link">Following</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -111,7 +130,7 @@
                     <div class="col-sm-9">
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
-                                <div class="ho-write-post">
+                                <div class="ho-write-post" ng-show="model.currentUser._id==model.user._id">
                                     <ul class="list-group">
                                         <li class="list-group-item msk-table-heading">
                                             <div class="row">
@@ -183,117 +202,135 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div id="bookmarks" class="tab-pane fade search-result">
+                            <div ng-show="model.currentUser._id==model.user._id" id="findfriends" class="tab-pane fade search-result">
                                 <div class="ho-section-heading">
-                                    Restaurant Bookmarks
+                                    Find Friends
                                 </div>
                                 <div class="ho-section-content">
                                     <div class="">
-                                        <h4>Nothing in your Bookmarks yet.</h4>
-                                        <h5>Add restaurants to your Bookmarks for easy future reference.</h5>
+                                        <h3>Search for Friends by their Username</h3>
                                     </div>
-                                    <div ng-repeat="bookmark in model.bookmarks">
+
+                                    <div class="row ho-5px-all-padding">
+                                        <div class="col-xs-9">
+                                            <input ng-model="friend.username"
+                                                   type="text"
+                                                   id="username"
+                                                   class="form-control"
+                                                   placeholder="User123"/>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <a ng-click="model.findFriendByUsername(friend)"
+                                               class="btn btn-block btn-primary ho-5px-all-padding pull-right">Find</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row ho-5px-all-padding">
+                                        <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                                            <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{model.errorMessage}}
+                                        </div>
+                                        <ul class="list-group" ng-show="model.friends">
+                                            <h4>Friends list</h4>
+
+                                            <li class="list-group-item list-group-item-success">
+                                                <div class="row">
+                                                    <div class="col-xs-4">Username</div>
+                                                    <div class="col-xs-4">Name</div>
+                                                    <div class="col-xs-4">Follow</div>
+                                                </div>
+                                            </li>
+
+                                            <li ng-repeat="friend in model.friends" class="list-group-item">
+                                                <a href="#!/enduser/{{friend._id}}">
+                                                    <div class="row">
+                                                        <div class="col-xs-5">{{friend.username}}</div>
+                                                        <div class="col-xs-5">{{friend.firstName}} {{friend.lastName}} </div>
+                                                        <div class="col-xs-2">
+                                                            <a href="#!/enduser/{{friend._id}}"
+                                                               class="btn btn-block btn-default">
+                                                                <span class="glyphicon glyphicon-user"></span>
+                                                            </a></div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="followers" class="tab-pane fade search-result">
+                                <div class="ho-section-heading">
+                                    Followers
+                                </div>
+                                <div class="ho-section-content">
+                                    <div class="">
+                                        <h4>You don't have any followers yet.</h4>
+                                        <h5>Share Reviews to get more Followers.</h5>
+                                    </div>
+                                    <div class="row ho-5px-all-padding restaurant-bookmark" ng-show="model.allFollowers">
+                                        <ul class="list-group">
+                                            <li class="list-group-item list-group-item-success">
+                                                <div class="row">
+                                                    <div class="col-xs-4">Username</div>
+                                                    <div class="col-xs-4">Name</div>
+                                                    <div class="col-xs-4">Follow</div>
+                                                </div>
+                                            </li>
+
+                                            <li ng-repeat="follower in model.allFollowers track by $index" class="list-group-item">
+                                                <a href="#!/enduser/{{follower._id}}">
+                                                    <div class="row">
+                                                        <div class="col-xs-5">{{follower.username}}</div>
+                                                        <div class="col-xs-5">{{follower.firstName}} {{follower.lastName}} </div>
+                                                        <div class="col-xs-2">
+                                                            <a href="#!/enduser/{{follower._id}}"
+                                                               class="btn btn-block btn-default">
+                                                                <span class="glyphicon glyphicon-user"></span>
+                                                            </a></div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="following" class="tab-pane fade search-result">
+                                <div class="ho-section-heading">
+                                    Following
+                                </div>
+                                <div class="ho-section-content">
+                                    <div class="">
+                                        <h4>You are not following anyone yet.</h4>
+                                        <h5>Find friends today.</h5>
                                         <div class="row ho-5px-all-padding restaurant-bookmark">
-                                            <div class="col-xs-3 zero-padding">
-                                                <img src="images/icon.png" width="50" height="50">
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <div class="ho-brief-details">Restaurant Name</div>
-                                                <div class="ho-brief-details">Street</div>
-                                            </div>
-                                            <div class="col-xs-3 zero-padding">
-                                                <a href="#!/" class="btn btn-success ho-5px-all-padding pull-right">4.5</a>
-                                            </div>
+                                            <ul class="list-group" ng-show="model.allFollowing">
+                                                <li class="list-group-item list-group-item-success">
+                                                    <div class="row">
+                                                        <div class="col-xs-4">Username</div>
+                                                        <div class="col-xs-4">Name</div>
+                                                        <div class="col-xs-4">Follow</div>
+                                                    </div>
+                                                </li>
+
+                                                <li ng-repeat="followingPerson in model.allFollowing track by $index" class="list-group-item">
+                                                    <a href="#!/enduser/{{followingPerson._id}}">
+                                                        <div class="row">
+                                                            <div class="col-xs-5">{{followingPerson.username}}</div>
+                                                            <div class="col-xs-5">{{followingPerson.firstName}} {{followingPerson.lastName}} </div>
+                                                            <div class="col-xs-2">
+                                                                <a href="#!/enduser/{{followingPerson._id}}"
+                                                                   class="btn btn-block btn-default">
+                                                                    <span class="glyphicon glyphicon-user"></span>
+                                                                </a></div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--<div id="followers" class="tab-pane fade search-result">-->
-                                <!--<div class="ho-section-heading">-->
-                                    <!--Followers-->
-                                <!--</div>-->
-                                <!--<div class="ho-section-content">-->
-                                    <!--<div class="">-->
-                                        <!--<h4>You don't have any followers yet.</h4>-->
-                                        <!--<h5>Share Reviews to get more Followers.</h5>-->
-                                    <!--</div>-->
-                                    <!--<div class="row ho-5px-all-padding restaurant-bookmark">-->
-                                        <!--<div class="col-xs-3 zero-padding">-->
-                                            <!--<img src="images/icon.png" width="50" height="50">-->
-                                        <!--</div>-->
-                                        <!--<div class="col-xs-6">-->
-                                            <!--<div class="ho-brief-details">Person name</div>-->
-                                            <!--<div class="ho-brief-details">0 reviews, 0 posts</div>-->
-                                        <!--</div>-->
-                                        <!--<div class="col-xs-3 zero-padding">-->
-                                            <!--<a href="#!/"-->
-                                               <!--class="btn btn-default ho-5px-all-padding pull-right">-->
-                                                <!--<span class="glyphicon glyphicon-user"></span>-->
-                                                <!--<span class="glyphicon glyphicon-plus"></span>-->
-                                            <!--</a>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="row ho-5px-all-padding restaurant-bookmark">-->
-                                        <!--<div class="col-xs-3 zero-padding">-->
-                                            <!--<img src="images/icon.png" width="50" height="50">-->
-                                        <!--</div>-->
-                                        <!--<div class="col-xs-6">-->
-                                            <!--<div class="ho-brief-details">Person name</div>-->
-                                            <!--<div class="ho-brief-details">0 reviews, 0 posts</div>-->
-                                        <!--</div>-->
-                                        <!--<div class="col-xs-3 zero-padding">-->
-                                            <!--<a href="#!/"-->
-                                               <!--class="btn btn-default ho-5px-all-padding pull-right">-->
-                                                <!--<span class="glyphicon glyphicon-user"></span>-->
-                                                <!--<span class="glyphicon glyphicon-plus"></span>-->
-                                            <!--</a>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div id="following" class="tab-pane fade search-result">-->
-                                <!--<div class="ho-section-heading">-->
-                                    <!--Following-->
-                                <!--</div>-->
-                                <!--<div class="ho-section-content">-->
-                                    <!--<div class="">-->
-                                        <!--<h4>You are not following anyone yet.</h4>-->
-                                        <!--<h5>Find friends today.</h5>-->
-                                        <!--<div class="row ho-5px-all-padding restaurant-bookmark">-->
-                                            <!--<div class="col-xs-3 zero-padding">-->
-                                                <!--<img src="images/icon.png" width="50" height="50">-->
-                                            <!--</div>-->
-                                            <!--<div class="col-xs-6">-->
-                                                <!--<div class="ho-brief-details">Person name</div>-->
-                                                <!--<div class="ho-brief-details">0 reviews, 0 posts</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-xs-3 zero-padding">-->
-                                                <!--<a href="#!/"-->
-                                                   <!--class="btn btn-default ho-5px-all-padding pull-right">-->
-                                                    <!--<span class="glyphicon glyphicon-user"></span>-->
-                                                    <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                                <!--</a>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                        <!--<div class="row ho-5px-all-padding restaurant-bookmark">-->
-                                            <!--<div class="col-xs-3 zero-padding">-->
-                                                <!--<img src="images/icon.png" width="50" height="50">-->
-                                            <!--</div>-->
-                                            <!--<div class="col-xs-6">-->
-                                                <!--<div class="ho-brief-details">Person name</div>-->
-                                                <!--<div class="ho-brief-details">0 reviews, 0 posts</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-xs-3 zero-padding">-->
-                                                <!--<a href="#!/"-->
-                                                   <!--class="btn btn-default ho-5px-all-padding pull-right">-->
-                                                    <!--<span class="glyphicon glyphicon-user"></span>-->
-                                                    <!--<span class="glyphicon glyphicon-ok"></span>-->
-                                                <!--</a>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
                         </div>
                     </div>
                 </div>

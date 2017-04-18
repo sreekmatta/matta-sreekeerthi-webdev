@@ -67,8 +67,8 @@
                 </div>
             </div>
             <div ng-hide="model.currentUser!='0'" class="ho-nav-buttons">
-                <a href="#!/login" class="btn btn-danger">Login</a>
-                <a href="#!/register" class="btn btn-danger">Sign Up</a>
+                <a href="#!/login" class="btn btn-danger ho-login-btn pull-right">Login</a>
+                <a href="#!/register" class="btn btn-danger pull-right hide-on-mobile">Sign Up</a>
             </div>
         </div>
     </div>
@@ -111,7 +111,10 @@
                 <div class="col-xs-12 font-18">
                     Do you own a Restaurant?
                     <a href="#!/restaurant/register"
-                       class="join-btn">Join</a> Today to brand it.
+                       class="join-btn">Sign up</a>
+                    or
+                    <a href="#!/restaurant/login"
+                       class="join-btn">Login</a> here.
                 </div>
             </div>
             <div class="col-xs-1 col-md-2"></div>

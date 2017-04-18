@@ -22,6 +22,33 @@
                     user = user.data;
                     if(user!= undefined) {
                         viewModel.user = user;
+                        if(user.followers){
+                            var promise = UserService.getAllUsersByIds(user.followers);
+                            promise.then(
+                                function (users) {
+                                    var users = users.data;
+                                    if(users!= undefined) {
+                                        viewModel.allFollowers = users;
+                                    } else {
+                                        viewModel.errorMessage = "Sorry, Error occurred while loading followers";
+                                    }
+                                }
+                            );
+                        }
+
+                        if(user.following){
+                            var promise = UserService.getAllUsersByIds(user.following);
+                            promise.then(
+                                function (users) {
+                                    var users = users.data;
+                                    if(users!= undefined) {
+                                        viewModel.allFollowing = users;
+                                    } else {
+                                        viewModel.errorMessage = "Sorry, Error occurred while loading people you follow";
+                                    }
+                                }
+                            );
+                        }
                     } else {
                         viewModel.errorMessage = "Error while loading user by ID:" + userId;
                     }
@@ -123,6 +150,50 @@
             var resname = $( "#resname").val();
             var radius = $( "#radius").val();
             $location.url("/restaurant/search/"+radius+"/"+resname);
+        }
+
+
+        viewModel.findFriendByUsername = findFriendByUsername;
+
+        function findFriendByUsername(friendUsername) {
+            friendUsername = friendUsername.username;
+            if(friendUsername){
+                var promise = UserService.findFriendByUsername(friendUsername);
+                promise.then(
+                    function (friends) {
+                        friends = friends.data;
+                        if(friends!= undefined) {
+                            viewModel.friends = friends;
+                        } else {
+                            viewModel.errorMessage = "Sorry, No results matching the Username:" + friendUsername;
+                        }
+                    }
+                );
+            }
+            else{
+                viewModel.errorMessage = "Please search by Username";
+            }
+        }
+
+        viewModel.followUser = followUser;
+
+        function followUser(mainUserId, followerUserId) {
+            var promise = UserService.followUser(mainUserId, followerUserId);
+            promise.then(
+                function (users) {
+                    var users = users.data;
+                    if(users!= undefined) {
+                        viewModel.allFollowers = users;
+                    } else {
+                        viewModel.errorMessage = "Sorry, Error occurred while following the current user";
+                    }
+                }
+            );
+        }
+        viewModel.setFollowers = setFollowers;
+        function setFollowers() {
+
+
         }
     }
 })();

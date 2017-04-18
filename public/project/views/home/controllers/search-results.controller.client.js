@@ -19,8 +19,8 @@
         viewModel.currentUser = $rootScope.currentUser;
 
         //default values
-        var lat = "42.343165899999995"
-        var lon ="-71.1011797";
+        var lat = "42.34";
+        var lon = "-71.10";
         viewModel.curPage = 0;
         viewModel.pageSize = 10;
 
@@ -41,8 +41,6 @@
         }
 
         function findRestaurantsNearBy() {
-
-
             var promise = RestaurantService.findRestaurantsNearBy(lat,lon,radius,resname);
             promise.then(
                 function (restaurants) {

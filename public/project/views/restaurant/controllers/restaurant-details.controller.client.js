@@ -3,7 +3,7 @@
         .module("HungryOwlAppMaker")
         .controller("RestaurantDetailsController", RestaurantDetailsController);
 
-    function RestaurantDetailsController(PostService,RestaurantService,$sce,$location,$rootScope,$routeParams) {
+    function RestaurantDetailsController($route,PostService,UserService,RestaurantService,$sce,$location,$rootScope,$routeParams) {
         var viewModel = this;
         var resId = $routeParams['resid'];
         var resName = $routeParams['resName'];
@@ -101,9 +101,6 @@
                         }
                     }
                 );
-
-
-
             }
         }
         init();
@@ -119,5 +116,4 @@
             return $sce.trustAsHtml(html);
         }
     }
-
 })();

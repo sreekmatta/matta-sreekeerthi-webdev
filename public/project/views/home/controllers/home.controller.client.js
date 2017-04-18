@@ -3,7 +3,7 @@
         .module("HungryOwlAppMaker")
         .controller("HomeController", HomeController);
 
-    function HomeController($location,RestaurantService,$rootScope) {
+    function HomeController($location,RestaurantService,$rootScope,$scope) {
         var viewModel = this;
         viewModel.currentUser = $rootScope.currentUser;
 
@@ -14,5 +14,6 @@
             var radius = $( "#radius").val();
             $location.url("/restaurant/search/"+radius+"/"+resname);
         }
+
     }
 })();

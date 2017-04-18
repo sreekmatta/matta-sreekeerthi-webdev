@@ -14,9 +14,23 @@
             "findUserByUsername": findUserByUsername,
             "createUser": createUser,
             "deleteUser": deleteUser,
-            "findAllUsers":findAllUsers
+            "findAllUsers":findAllUsers,
+            "findFriendByUsername":findFriendByUsername,
+            "followUser":followUser,
+            "getAllUsersByIds":getAllUsersByIds
         };
         return api;
+
+        function getAllUsersByIds(userIds) {
+            return $http.post("/get/users/ids",userIds);
+        }
+        function followUser(mainPersonID,followerID) {
+            return $http.post("/rest/following/"+mainPersonID+"/follower/"+followerID);
+        }
+
+        function findFriendByUsername(username) {
+            return $http.get("/rest/enduser/findfriends/"+username);
+        }
 
         function login(user) {
             return $http.post("/rest/login", user);

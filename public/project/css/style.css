@@ -717,3 +717,78 @@ a.join-btn:hover{
 .ho-restaurant-name{
     font-size: 18px;
 }
+
+.restaurant-description{
+    border: 2px solid lightgray;
+    border-style: outset;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+}
+
+.restaurant-title-main{
+    padding-bottom: 30px;
+    border: 1px solid lightgray;
+    margin-top: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.unchecked-bookmark{
+    color: darkgray;
+}
+.checked-bookmark{
+    color: blue;
+}
+
+a.checked-bookmark:hover,a.unchecked-bookmark:hover{
+    background-color: transparent;
+}
+
+.not-active {
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+
+@media screen and (max-width: 770px) {
+
+    .res-details{
+        width: 100%;
+    }
+}
+
+.ho-login-btn{
+    width: 73px;
+}
+
+
+@media screen and (max-width: 480px) {
+    .hide-on-mobile{
+        display: none;
+    }
+}
+
+.list-padding{
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.friend-info{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid;
+    margin-right: 17px;
+    margin-left: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    border-color: lightgray;
+    background-color: white
+}

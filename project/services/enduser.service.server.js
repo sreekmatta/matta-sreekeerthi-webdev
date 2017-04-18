@@ -5,19 +5,12 @@ module.exports = function (app,enduserModel) {
     var bcrypt = require("bcrypt-nodejs");
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-        var googleConfig = {
-            clientID     : process.env.GOOGLE_CLIENT_ID,
-            clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL  : "https://matta-sreekeerthi-webdev.herokuapp.com/auth/google/callback"
-        };
 
-    // else{
-    //     var googleConfig = {
-    //         clientID:"780276115989-cjlp3nj1rft5c9af1tbj24sq7vk0r2pu.apps.googleusercontent.com",
-    //         clientSecret: "_Z23Ya-90y0N_ftgMOmK1h6y",
-    //         callbackURL: "http://localhost:3000/auth/google/callback"
-    //     };
-    // }
+    var googleConfig = {
+        clientID     : "780276115989-cjlp3nj1rft5c9af1tbj24sq7vk0r2pu.apps.googleusercontent.com",
+        clientSecret : "_Z23Ya-90y0N_ftgMOmK1h6y",
+        callbackURL  : "http://localhost:3000/auth/google/callback"
+    };
 
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
@@ -43,7 +36,9 @@ module.exports = function (app,enduserModel) {
     app.put("/rest/enduser/:userId", updateUser);
     app.delete("/rest/enduser/:userId", deleteUser);
     app.get("/rest/loggedin", loggedin);
-
+    app.get("/rest/enduser/findfriends/:username",searchForUsername);
+    app.post("/rest/following/:mainPersonID/follower/:followerID",followUser);
+    app.post("/get/users/ids",getUsersOnSetOfIDS);
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -256,5 +251,42 @@ module.exports = function (app,enduserModel) {
             }, function (error) {
                 res.sendStatus(500)
             });
+    }
+
+    function searchForUsername(req,res) {
+        var username = req.params.username;
+        enduserModel
+            .searchForUsername(username)
+            .then(function (users) {
+                res.json(users);
+            }, function (error) {
+                res.sendStatus(500);
+            });
+    }
+
+    function followUser(req,res) {
+        var mainPersonID = req.params.mainPersonID;
+        var followerID = req.params.followerID;
+        enduserModel
+            .followUser(mainPersonID,followerID)
+            .then(function (user) {
+                res.json(user);
+            }, function (error) {
+                res.sendStatus(500);
+            });
+
+    }
+
+    function getUsersOnSetOfIDS(req,res) {
+        var userIds = req.body;
+        enduserModel
+            .getUsersOnSetOfIDS(userIds)
+            .then(function (users) {
+                    res.json(users);
+                }, function (error) {
+                    res.sendStatus(500);
+                }
+            );
+
     }
 };
