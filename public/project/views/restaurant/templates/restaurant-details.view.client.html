@@ -112,16 +112,7 @@
                     <img src="{{model.restaurant.logoUrl}}">
                 </div>
                 <div class="col-xs-9 ho-bottom-margin ho-top-margin res-details">
-                    <h3>
-                        <a id="bookmark-link" ng-hide="model.isCurrRestaurantBookmarked"
-                           ng-click="model.bookmarkRestaurant(model.currentUser)"
-                           class="unchecked-bookmark" data-toggle="tooltip" data-placement="top"
-                           title="Please login to bookmark this restaurant">
-                            <span class="glyphicon glyphicon-bookmark"></span>
-                        </a>
-                        <a ng-hide="!model.isCurrRestaurantBookmarked" ng-click="model.bookmarkRestaurant(model.currentUser)" class="checked-bookmark"><span class="glyphicon glyphicon-bookmark"></span></a>
-
-                        {{model.restaurant.name}}</h3>
+                    <h3>{{model.restaurant.name}}</h3>
                     <div class="ho-brief-details" ng-if="model.restaurant.streetAddress">{{model.restaurant.streetAddress}}
                         <br>
                         <div ng-if="model.restaurant.city">{{model.restaurant.city}},{{model.restaurant.state}}</div>
@@ -168,7 +159,15 @@
                                 {{model.restaurant.deliveryMin | currency}}
                             </div>
                         </div>
-
+                        <div class="row" ng-if="model.restaurant.acceptsCash">
+                            <div class="col-sm-3 col-xs-5">
+                                Offers Delivery:
+                            </div>
+                            <div class="col-sm-9 col-xs-7">
+                                <span ng-if="model.restaurant.offersDelivery==true">YES</span>
+                                <span ng-if="model.restaurant.offersDelivery==false">NO</span>
+                            </div>
+                        </div>
                         <div class="row" ng-if="model.restaurant.deliveryPrice">
                             <div class="col-sm-3 col-xs-5">
                                 Delivery Fees:
@@ -186,13 +185,31 @@
                                 <span ng-if="model.restaurant.acceptsCash==false">NO</span>
                             </div>
                         </div>
+
+                        <div class="row" ng-if="model.restaurant.acceptsCash">
+                            <div class="col-sm-3 col-xs-5">
+                                Card Accepted:
+                            </div>
+                            <div class="col-sm-9 col-xs-7">
+                                <span ng-if="model.restaurant.acceptsCard==true">YES</span>
+                                <span ng-if="model.restaurant.acceptsCard==false">NO</span>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="model.restaurant.phone">
+                            <div class="col-sm-3 col-xs-5">
+                                Contact:
+                            </div>
+                            <div class="col-sm-9 col-xs-7">
+                                {{model.restaurant.phone}}
+                            </div>
+                        </div>
                         <div class="row" ng-if="model.restaurant.hours">
                             <div class="col-sm-3 col-xs-5">
                                 Open hours:
                             </div>
                             <div class="col-sm-9 col-xs-7">
                                 <div ng-repeat="time in model.restaurant.hours">
-                                    {{time}}
+                                    {{time | myFormat}}
                                 </div>
                             </div>
                         </div>
@@ -245,10 +262,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
 

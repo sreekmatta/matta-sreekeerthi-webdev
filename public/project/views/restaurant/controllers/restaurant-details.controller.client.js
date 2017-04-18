@@ -1,7 +1,13 @@
 (function () {
     angular
         .module("HungryOwlAppMaker")
-        .controller("RestaurantDetailsController", RestaurantDetailsController);
+        .controller("RestaurantDetailsController", RestaurantDetailsController)
+        .filter('myFormat', function() {
+            return function(x) {
+                x = x[0];
+                return x;
+            };
+        });
 
     function RestaurantDetailsController($route,PostService,UserService,RestaurantService,$sce,$location,$rootScope,$routeParams) {
         var viewModel = this;

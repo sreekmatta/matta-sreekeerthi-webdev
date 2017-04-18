@@ -26,12 +26,19 @@
         <div ng-show="model.currentUser.userType==undefined" class="col-sm-8 col-xs-10">
             <h2>Restaurant Register</h2>
             <hr>
-            <label for ="firstName">Restaurant Name</label>
+
+            <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{model.errorMessage}}
+            </div>
+
+            <label for ="name">Restaurant Name</label>
             <input ng-model="restaurant.name"
                    type="text"
-                   id="firstName"
+                   id="name"
                    class="form-control"
-                   placeholder="firstName"/>
+                   placeholder="Name"/>
             <label for ="email">E-mail</label>
             <input ng-model="restaurant.email"
                    type="email"
@@ -62,10 +69,6 @@
             <div class="ho-buttons-margin">
                 <a class="btn btn-success btn-block"
                    ng-click="model.register(restaurant)">Restaurant Register</a>
-                <a href="/auth/facebook" class="btn btn-primary btn-block">
-                    <span class="fa fa-facebook"></span>
-                    Register with Facebook
-                </a>
                 <a class="btn btn-danger  btn-block"
                    href="#!/restaurant/login">Cancel</a>
             </div>

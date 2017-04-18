@@ -89,12 +89,18 @@
                          class="ho-board-heading friend-info">
                         Username: {{model.user.username | uppercase }}
                         &nbsp;&nbsp;
-                        <a ng-click="model.followUser(model.user._id,model.currentUser._id)"
+                        <a ng-show="model.user.followers.indexOf(model.currentUser._id)==-1"
+                           ng-click="model.followUser(model.user._id,model.currentUser._id)"
                            class="btn btn-primary"> Follow
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
-                        <br>
+                        &nbsp;&nbsp;
+                        <a ng-show="model.user.followers.indexOf(model.currentUser._id)>-1"
+                           class="btn btn-success"> Following
+                            <!--ng-click="model.followUser(model.user._id,model.currentUser._id)"-->
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a><br>
                         First Name: {{model.user.firstName}}
                         <br>
                         Last Name: {{model.user.lastName}}
@@ -242,7 +248,7 @@
                                                 </div>
                                             </li>
 
-                                            <li ng-repeat="friend in model.friends" class="list-group-item">
+                                            <li ng-if="friend._id!=model.currentUser._id" ng-repeat="friend in model.friends" class="list-group-item">
                                                 <a href="#!/enduser/{{friend._id}}">
                                                     <div class="row">
                                                         <div class="col-xs-5">{{friend.username}}</div>
@@ -265,10 +271,12 @@
                                 </div>
                                 <div class="ho-section-content">
                                     <div class="">
-                                        <h4>You don't have any followers yet.</h4>
-                                        <h5>Share Reviews to get more Followers.</h5>
+                                        <div ng-show="model.allFollowers.length==0">
+                                            <h4>You don't have any followers yet.</h4>
+                                            <h5>Share Reviews to get more Followers.</h5>
+                                        </div>
                                     </div>
-                                    <div class="row ho-5px-all-padding restaurant-bookmark" ng-show="model.allFollowers">
+                                    <div class="row ho-5px-all-padding restaurant-bookmark" ng-show="model.allFollowers.length>0">
                                         <ul class="list-group">
                                             <li class="list-group-item list-group-item-success">
                                                 <div class="row">
@@ -301,10 +309,12 @@
                                 </div>
                                 <div class="ho-section-content">
                                     <div class="">
-                                        <h4>You are not following anyone yet.</h4>
-                                        <h5>Find friends today.</h5>
+                                        <div ng-show="model.allFollowing.length==0">
+                                            <h4>You are not following anyone yet.</h4>
+                                            <h5>Find friends today.</h5>
+                                        </div>
                                         <div class="row ho-5px-all-padding restaurant-bookmark">
-                                            <ul class="list-group" ng-show="model.allFollowing">
+                                            <ul class="list-group" ng-show="model.allFollowing.length>0">
                                                 <li class="list-group-item list-group-item-success">
                                                     <div class="row">
                                                         <div class="col-xs-4">Username</div>

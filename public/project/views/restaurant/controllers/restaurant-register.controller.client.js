@@ -11,14 +11,30 @@
         viewModel.register = register;
 
         function register(restaurant) {
-            RestaurantService
-                .restaurantRegister(restaurant)
-                .then(
-                    function (response) {
-                        var restaurant = response.data;
-                        $rootScope.currentUser = restaurant;
-                        $location.url("/restaurant/" + restaurant._id);
-                    });
+            if (restaurant && restaurant.username && restaurant.password
+                && restaurant.retypepassword
+                && restaurant.email && restaurant.name) {
+                if(restaurant.retypepassword === restaurant.password) {
+
+                    RestaurantService
+                        .restaurantRegister(restaurant)
+                        .then(
+                            function (response) {
+                                var restaurant = response.data;
+                                $rootScope.currentUser = restaurant;
+                                $location.url("/restaurant/" + restaurant._id);
+                            });
+                }
+            }
+            else{
+                if(restaurant && restaurant.username && restaurant.password
+                    && restaurant.retypepassword
+                    && !restaurant.email && restaurant.name)
+                    viewModel.errorMessage = "Please enter a valid E-mail Id";
+                else
+                    viewModel.errorMessage = "All the fields are mandatory";
+
+            }
         }
     }
 

@@ -192,10 +192,11 @@
                     Sorry, No results matching this criteria.<br>
                     Please, search again...
                 </div>
-                <div ng-repeat="restaurant in model.restaurants | pagination: model.curPage * model.pageSize | limitTo: model.pageSize"  class="search-result">
+                <div ng-if="restaurant.name.search('#')==-1" ng-repeat="restaurant in model.restaurants | pagination: model.curPage * model.pageSize | limitTo: model.pageSize"  class="search-result">
                     <div class="row ho-all-padding restaurant-name-section">
                         <div class="col-xs-3">
-                            <img src="{{restaurant.logoUrl}}" width="80" height="80">
+                            <img ng-if="restaurant.logoUrl" src="{{restaurant.logoUrl}}" width="80" height="80">
+                            <img ng-hide="restaurant.logoUrl" src="images/icon.png" width="80" height="80">
                         </div>
                         <div class="col-xs-6">
                             <a href="#!/restaurant/{{restaurant.name}}/{{restaurant.latitude}}/{{restaurant.longitude}}"><div class="ho-brief-details ho-restaurant-name">{{restaurant.name}}</div></a>
