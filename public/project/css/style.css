@@ -766,11 +766,11 @@ a.checked-bookmark:hover,a.unchecked-bookmark:hover{
 }
 
 .ho-login-btn{
-    width: 73px;
+    width: 105px;
 }
 
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 570px) {
     .hide-on-mobile{
         display: none;
     }

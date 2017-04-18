@@ -276,7 +276,7 @@
                                             <h5>Share Reviews to get more Followers.</h5>
                                         </div>
                                     </div>
-                                    <div class="row ho-5px-all-padding restaurant-bookmark" ng-show="model.allFollowers.length>0">
+                                    <div class="row ho-5px-all-padding restaurant-bookmark" ng-if="model.allFollowers.length>0">
                                         <ul class="list-group">
                                             <li class="list-group-item list-group-item-success">
                                                 <div class="row">
@@ -313,8 +313,8 @@
                                             <h4>You are not following anyone yet.</h4>
                                             <h5>Find friends today.</h5>
                                         </div>
-                                        <div class="row ho-5px-all-padding restaurant-bookmark">
-                                            <ul class="list-group" ng-show="model.allFollowing.length>0">
+                                        <div ng-if="model.allFollowing.length>0" class="row ho-5px-all-padding restaurant-bookmark">
+                                            <ul class="list-group">
                                                 <li class="list-group-item list-group-item-success">
                                                     <div class="row">
                                                         <div class="col-xs-4">Username</div>

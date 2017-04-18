@@ -184,6 +184,7 @@
                     var users = users.data;
                     if(users!= undefined) {
                         viewModel.allFollowers = users;
+                        //viewModel.currentUser.following.push(mainUserId);
                     } else {
                         viewModel.errorMessage = "Sorry, Error occurred while following the current user";
                     }
