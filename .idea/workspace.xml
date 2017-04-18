@@ -5,28 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f1a6fd1-d5c6-408c-bd69-b414d8600189" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/project/views/users/controllers/find-friends.controller.client.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/project/views/users/templates/find-friends.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/models/enduser/enduser.model.server.js" afterPath="$PROJECT_DIR$/project/models/enduser/enduser.model.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/models/enduser/enduser.schema.server.js" afterPath="$PROJECT_DIR$/project/models/enduser/enduser.schema.server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/services/enduser.service.server.js" afterPath="$PROJECT_DIR$/project/services/enduser.service.server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/config.js" afterPath="$PROJECT_DIR$/public/project/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/css/style.css" afterPath="$PROJECT_DIR$/public/project/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/services/user.service.client.js" afterPath="$PROJECT_DIR$/public/project/services/user.service.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/home/controllers/home.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/home/controllers/home.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/home/controllers/search-results.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/home/controllers/search-results.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/home/templates/home.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/home/templates/home.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/controllers/restaurant-details.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/restaurant/controllers/restaurant-details.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-details.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-details.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-login.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-login.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-profile.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-profile.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-register.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/restaurant/templates/restaurant-register.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/controllers/user-dashboard.controller.client.js" afterPath="$PROJECT_DIR$/public/project/views/users/controllers/user-dashboard.controller.client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-edit-user.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/admin/admin-edit-user.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/foodie/foodie-dashboard.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/foodie/foodie-dashboard.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/profile.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/profile.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/project/views/users/templates/register.view.client.html" afterPath="$PROJECT_DIR$/public/project/views/users/templates/register.view.client.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -61,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/public/project/views/users/templates/foodie/foodie-dashboard.view.client.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
-              <caret line="319" column="63" lean-forward="true" selection-start-line="319" selection-start-column="63" selection-end-line="319" selection-end-column="63" />
+              <caret line="319" column="63" lean-forward="false" selection-start-line="319" selection-start-column="63" selection-end-line="319" selection-end-column="63" />
               <folding>
                 <element signature="e#4760#4766#0" expanded="true" />
                 <element signature="e#4766#4772#0" expanded="true" />
@@ -73,21 +52,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enduser.service.server.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="enduser.service.server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/services/enduser.service.server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="280" column="24" lean-forward="false" selection-start-line="280" selection-start-column="24" selection-end-line="280" selection-end-column="24" />
+            <state relative-caret-position="198">
+              <caret line="14" column="53" lean-forward="true" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enduser.model.server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="enduser.model.server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/models/enduser/enduser.model.server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="196" column="33" lean-forward="true" selection-start-line="196" selection-start-column="33" selection-end-line="196" selection-end-column="33" />
+            <state relative-caret-position="4246">
+              <caret line="193" column="5" lean-forward="false" selection-start-line="193" selection-start-column="5" selection-end-line="193" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -97,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/public/project/services/user.service.client.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="61">
-              <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+              <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -115,7 +94,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>userMo</find>
       <find>userMo</find>
       <find>require('p</find>
       <find>require('pa</find>
@@ -143,7 +121,6 @@
       <find>first</find>
       <find>followUser</find>
       <find>findF</find>
-      <find>user</find>
       <find>user</find>
     </findStrings>
   </component>
@@ -199,11 +176,11 @@
         <option value="$PROJECT_DIR$/public/project/views/users/templates/find-friends.view.client.html" />
         <option value="$PROJECT_DIR$/public/project/css/style.css" />
         <option value="$PROJECT_DIR$/public/project/index.html" />
-        <option value="$PROJECT_DIR$/project/models/enduser/enduser.model.server.js" />
         <option value="$PROJECT_DIR$/public/project/views/users/controllers/user-dashboard.controller.client.js" />
         <option value="$PROJECT_DIR$/public/project/views/users/templates/foodie/foodie-dashboard.view.client.html" />
-        <option value="$PROJECT_DIR$/project/services/enduser.service.server.js" />
         <option value="$PROJECT_DIR$/public/project/services/user.service.client.js" />
+        <option value="$PROJECT_DIR$/project/models/enduser/enduser.model.server.js" />
+        <option value="$PROJECT_DIR$/project/services/enduser.service.server.js" />
       </list>
     </option>
   </component>
@@ -854,12 +831,12 @@
       <workItem from="1491097028742" duration="10109000" />
       <workItem from="1491419433590" duration="48768000" />
       <workItem from="1491622019115" duration="233926000" />
-      <workItem from="1492329116893" duration="101204000" />
+      <workItem from="1492329116893" duration="101301000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="589409000" />
+    <option name="totallyTimeSpent" value="589506000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -923,7 +900,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/project/services/enduser.service.server.js</url>
-          <line>203</line>
+          <line>178</line>
           <option name="timeStamp" value="142" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -970,7 +947,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/project/services/enduser.service.server.js</url>
-          <line>169</line>
+          <line>171</line>
           <properties />
           <option name="timeStamp" value="292" />
         </line-breakpoint>
@@ -1361,7 +1338,7 @@
     <entry file="file://$PROJECT_DIR$/public/project/views/users/templates/foodie/foodie-dashboard.view.client.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
-          <caret line="319" column="63" lean-forward="true" selection-start-line="319" selection-start-column="63" selection-end-line="319" selection-end-column="63" />
+          <caret line="319" column="63" lean-forward="false" selection-start-line="319" selection-start-column="63" selection-end-line="319" selection-end-column="63" />
           <folding>
             <element signature="e#4760#4766#0" expanded="true" />
             <element signature="e#4766#4772#0" expanded="true" />
@@ -1383,23 +1360,23 @@
     <entry file="file://$PROJECT_DIR$/public/project/services/user.service.client.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="61">
-          <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/services/enduser.service.server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="280" column="24" lean-forward="false" selection-start-line="280" selection-start-column="24" selection-end-line="280" selection-end-column="24" />
+          <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/models/enduser/enduser.model.server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="196" column="33" lean-forward="true" selection-start-line="196" selection-start-column="33" selection-end-line="196" selection-end-column="33" />
+        <state relative-caret-position="4246">
+          <caret line="193" column="5" lean-forward="false" selection-start-line="193" selection-start-column="5" selection-end-line="193" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/services/enduser.service.server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="14" column="53" lean-forward="true" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
           <folding />
         </state>
       </provider>

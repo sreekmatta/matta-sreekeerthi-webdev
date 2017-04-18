@@ -5,13 +5,17 @@ module.exports = function (app,enduserModel) {
     var bcrypt = require("bcrypt-nodejs");
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-
     var googleConfig = {
-        clientID     : "780276115989-cjlp3nj1rft5c9af1tbj24sq7vk0r2pu.apps.googleusercontent.com",
-        clientSecret : "_Z23Ya-90y0N_ftgMOmK1h6y",
-        callbackURL  : "http://localhost:3000/auth/google/callback"
+        clientID     : process.env.GOOGLE_CLIENT_ID,
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL  : "http://matta-sreekeerthi-webdev.herokuapp.com/auth/google/callback"
     };
 
+// var googleConfig = {
+    //     clientID     : "780276115989-cjlp3nj1rft5c9af1tbj24sq7vk0r2pu.apps.googleusercontent.com",
+    //     clientSecret : "_Z23Ya-90y0N_ftgMOmK1h6y",
+    //     callbackURL  : "http://localhost:3000/auth/google/callback"
+    // };
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/auth/google/callback',
