@@ -40,6 +40,7 @@
                             if (response.status == 200) {
                                 $rootScope.currentUser = user;
                                 viewModel.successMessage = "Profile updated successfully";
+                                viewModel.errorMessage = undefined;
                             } else {
                                 viewModel.errorMessage = "Error while updating enduser by ID:" + userId;
                             }
