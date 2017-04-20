@@ -103,7 +103,7 @@
                             <th style="width:60%;">Username</th>
                             <th style="width:40%;">Manage</th>
                         </tr>
-                        <tr ng-repeat="user in model.allUsers">
+                        <tr ng-hide="user.userType=='ADMIN'" ng-repeat="user in model.allUsers">
                             <td>{{user.username}}</td>
                             <td>
                                 <a ng-click="model.deleteUser(user._id)"
