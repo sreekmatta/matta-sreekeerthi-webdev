@@ -195,16 +195,17 @@
                 <div ng-if="restaurant.name.search('#')==-1" ng-repeat="restaurant in model.restaurants | pagination: model.curPage * model.pageSize | limitTo: model.pageSize"  class="search-result">
                     <div class="row ho-all-padding restaurant-name-section">
                         <div class="col-xs-3">
-                            <img ng-if="restaurant.logoUrl" src="{{restaurant.logoUrl}}" width="80" height="80">
-                            <img ng-hide="restaurant.logoUrl" src="images/icon.png" width="80" height="80">
+                            <img ng-if="restaurant.logoUrl" ng-src="{{restaurant.logoUrl}}" width="80" height="80">
+                            <img ng-hide="restaurant.logoUrl" src="images/noimage.png" width="80" height="80">
                         </div>
                         <div class="col-xs-6">
-                            <a href="#!/restaurant/{{restaurant.name}}/{{restaurant.latitude}}/{{restaurant.longitude}}"><div class="ho-brief-details ho-restaurant-name">{{restaurant.name}}</div></a>
+                            <a ng-hide="restaurant._id" href="#!/restaurant/{{restaurant.name}}/{{restaurant.latitude}}/{{restaurant.longitude}}"><div class="ho-brief-details ho-restaurant-name">{{restaurant.name}}</div></a>
+                            <a ng-show="restaurant._id" href="#!/restaurant/{{restaurant._id}}"><div class="ho-brief-details ho-restaurant-name">{{restaurant.name}}</div></a>
                             <div class="ho-brief-details">{{restaurant.streetAddress}}
                                 <br>{{restaurant.city}},{{restaurant.state}}</div>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-danger pull-right" data-toggle="modal">
+                            <button type="button" class="btn btn-danger pull-right ho-phone-btn" data-toggle="modal">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 &nbsp;
                                 {{restaurant.phone}}
@@ -214,11 +215,6 @@
 
                     <hr class="ho-result-hr">
                     <div class="ho-all-padding restaurant-info-section">
-
-                        <!--<ul class="nav nav-tabs">-->
-                        <!--<li class="active"><a data-toggle="tab" href="#info" target="_self">Info</a></li>-->
-                        <!--</ul>-->
-
                         <div class="tab-content ho-left-padding">
                             <div id="info" class="tab-pane fade in active">
                                 <div class="row">
@@ -279,7 +275,7 @@
                         </li>
                         <li>
                             <button type="button"
-                                    ng-disabled="model.curPage == (model.restaurants.length/model.pageSize) - 1"
+                                    ng-disabled="model.curPage==model.numberOfPages()-1"
                                     ng-click="model.curPage = model.curPage+1"
                                     class="btn btn-default">NEXT </button>
                         </li>

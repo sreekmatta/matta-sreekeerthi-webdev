@@ -13,8 +13,10 @@
         var viewModel = this;
         var resId = $routeParams['resid'];
         var resName = $routeParams['resName'];
+        var imageUploaded = $routeParams['imageUploaded'];
         viewModel.resId = resId;
         viewModel.resName = resName;
+
         viewModel.currentUser = $rootScope.currentUser;
 
 
@@ -24,6 +26,26 @@
         viewModel.getHTMLContent = getHTMLContent;
 
         function init() {
+            if(imageUploaded){
+                RestaurantService
+                    .findRestaurantByIdFromDB(restaurant.username,restaurant.password)
+                    .then(
+                        function successCallback(response) {
+                            var restaurant = response.data;
+                            if(restaurant){
+                                $rootScope.currentUser = restaurant;
+                            }
+                            else{
+                                $location.url("/");
+
+                            }
+                        },
+                        function errorCallback(response) {
+                            $location.url("/");
+                        }
+                    );
+            }
+            else
             if(rid==undefined) {
 
                 var promise = RestaurantService.findRestaurant(resName);
@@ -82,7 +104,9 @@
             var lat = $routeParams['lat'];
             var lon = $routeParams['lon'];
 
-            if(lat!=undefined & lon!=undefined & viewModel.restaurant == undefined){
+            if(lat!=undefined && lon!=undefined
+                && viewModel.restaurant == undefined
+                &&!imageUploaded){
                 var promise = RestaurantService.findRestaurantByName(lat,lon,rid)
                 promise.then(
                     function (restaurant) {

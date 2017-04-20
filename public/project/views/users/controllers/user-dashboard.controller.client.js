@@ -99,7 +99,11 @@
         }
 
         function createPost(newPost) {
-            newPost._restaurant = document.getElementById("restaurant-id").value;
+            var res_desc = document.getElementById("restaurant-id").value;
+            res_desc = res_desc.split(",");
+
+            newPost._restaurant = res_desc[0];
+            newPost._restaurant_local = res_desc[1];
             newPost.restaurant_name = document.getElementById("restaurant").value;
             newPost._user = userId;
             var promise = PostService.createPost(userId,newPost);
@@ -184,17 +188,30 @@
                     var users = users.data;
                     if(users!= undefined) {
                         viewModel.allFollowers = users;
-                        //viewModel.currentUser.following.push(mainUserId);
+                        viewModel.user.followers.push(followerUserId);
+                        viewModel.currentUser.following.push(mainUserId);
+                        $route.reload();
                     } else {
                         viewModel.errorMessage = "Sorry, Error occurred while following the current user";
                     }
                 }
             );
         }
-        viewModel.setFollowers = setFollowers;
-        function setFollowers() {
-
-
+        viewModel.unfollowUser = unfollowUser;
+        function unfollowUser(mainUserId,unfollowById) {
+            var promise = UserService.unfollowUser(mainUserId, unfollowById);
+            promise.then(
+                function (response) {
+                    var mainUser = response.data;
+                    if(mainUser!= undefined) {
+                        viewModel.allFollowers = mainUser.followers;
+                        viewModel.user = mainUser;
+                        $route.reload();
+                    } else {
+                        viewModel.errorMessage = "Sorry, Error occurred while following the current user";
+                    }
+                }
+            );
         }
     }
 })();

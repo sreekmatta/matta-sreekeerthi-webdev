@@ -189,8 +189,8 @@ hr {
 
 @media screen and (max-width: 410px) {
     .hungry-owl-text{
-        margin-top: -41px;
-        font-size: 35px;
+        margin-top: -43px;
+        font-size: 32px;
     }
     .ho-button-text{
         display: none;
@@ -201,6 +201,7 @@ hr {
 .ho-logo{
     padding-left: 0px;
     padding-right: 0px;
+    margin-left: -15px;
 }
 
 .ho-profile-btn{
@@ -246,7 +247,7 @@ hr {
 }
 
 .centered{
-    margin-top: 100px;
+    margin-top: 135px;
 }
 
 .zero-padding{
@@ -524,7 +525,7 @@ textarea{
 .ho-section-heading{
     font-size: 17px;
     font-weight: 600;
- }
+}
 
 .restaurant-bookmark{
     border: 1px solid gray;
@@ -674,7 +675,10 @@ a.restaurant-link:hover {
 
 .ho-nav-buttons{
     float: right;
-    margin-top: 16px;
+    margin-top: 20px;
+}
+.ho-negative-margin{
+    margin-right: -25px;
 }
 
 .ho-board-heading-fixed{
@@ -693,21 +697,21 @@ a.restaurant-link:hover {
 }
 
 /*.join-btn{*/
-    /*padding: 10px;*/
-    /*border: 1px solid;*/
-    /*border-radius: 15px;*/
-    /*padding-top: 0px;*/
-    /*padding-bottom: 2px;*/
-    /*background-color: #337ab7;;*/
-    /*font-weight: bold;*/
-    /*color: black;*/
-    /*border-color: white;*/
+/*padding: 10px;*/
+/*border: 1px solid;*/
+/*border-radius: 15px;*/
+/*padding-top: 0px;*/
+/*padding-bottom: 2px;*/
+/*background-color: #337ab7;;*/
+/*font-weight: bold;*/
+/*color: black;*/
+/*border-color: white;*/
 /*}*/
 
 /*a.join-btn:hover{*/
-    /*background-color: gray;*/
-    /*text-decoration: none;*/
-    /*color: white;*/
+/*background-color: gray;*/
+/*text-decoration: none;*/
+/*color: white;*/
 /*}*/
 
 a.join-btn:hover{
@@ -770,7 +774,7 @@ a.checked-bookmark:hover,a.unchecked-bookmark:hover{
 }
 
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 577px) {
     .hide-on-mobile{
         display: none;
     }
@@ -791,4 +795,66 @@ a.checked-bookmark:hover,a.unchecked-bookmark:hover{
     border-radius: 8px;
     border-color: lightgray;
     background-color: white
+}
+
+@media screen and (max-width: 410px) {
+    .ho-restaurant-name {
+        font-size: 15px;
+    }
+
+    .ho-phone-btn{
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 410px){
+    .ho-left {
+        font-size: 30px;
+    }
+
+    .col-xs-6 {
+        width: 48%;
+    }
+
+    .ho-login-btn,.ho-nav-buttons{
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 88px;
+        font-size: 12px;
+    }
+    .ho-navbar-logo {
+        width: 48px !important;
+        margin-left: -10px;
+    }
+    .ho-navbar-text {
+        margin-left: 30px !important;
+        margin-top: -24px !important;
+        font-size: 27px !important;
+    }
+
+    .mobile-nav-btn{
+        margin-top: 5px;
+        width: 48% !important;
+    }
+}
+
+
+.ho-login-btn{
+    margin-left: 6px;
+}
+
+.ui-helper-hidden-accessible{
+    display: none;
+}
+
+.ho-standard-width{
+    width: 155px !important;
+    max-height: 125px !important;
+}
+
+.ho-input-text{
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+    margin-bottom: -15px;
 }

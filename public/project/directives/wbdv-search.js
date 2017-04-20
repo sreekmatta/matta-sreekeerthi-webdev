@@ -28,9 +28,7 @@
 
             element.on('input', function() {
                 var resName = document.getElementById('restaurant').value;
-                var lat = document.getElementById('lat').innerHTML;
-                var lon = document.getElementById('lon').innerHTML;
-                scope.searchController.findRestaurant(lat,lon,resName);
+                scope.searchController.findRestaurant(resName);
             });
         }
 
@@ -46,55 +44,99 @@
         var vm = this;
         vm.findRestaurant = findRestaurant;
 
-        function findRestaurant(lat,lon,resName) {
+        var lat = "42.34";//setting default values
+        var lon = "-71.10";//setting default values
+        function setLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+        }
+
+        function showPosition(position) {
+            lat = position.coords.latitude;
+            lon =  position.coords.longitude;
+        }
+
+
+        function findRestaurant(resName) {
+            setLocation();
             RestaurantService.findRestaurantByName(lat,lon,resName)
                 .then(
-                function successCallback(response) {
-                    var restaurantsTemp = response.data;
-                    var restaurants = [];
-                    var dataFromURL = restaurantsTemp['restaurants'];
+                    function successCallback(response) {
+                        var restaurantsTemp = response.data;
+                        var restaurants = [];
+                        var dataFromURL = restaurantsTemp['restaurants'];
 
 
-                    var n =10;
-                    if(dataFromURL.length<10)
-                        n =dataFromURL.length ;
-                    for (var i = 0; i < n; i++) {
-                        var restaurantDesc = dataFromURL[i];
+                        var n =20;
+                        if(dataFromURL.length<10)
+                            n =dataFromURL.length ;
+                        for (var i = 0; i < n; i++) {
+                            var restaurantDesc = dataFromURL[i];
 
-                        var temp = {
-                            label : restaurantDesc.name,
-                            desc : restaurantDesc.apiKey
-                        };
-                        restaurants.push(temp);
-                    }
-
-
-
-                    $( "#restaurant" ).autocomplete({
-                        minLength: 0,
-                        source: restaurants,
-                        focus: function( event, ui ) {
-                            $( "#restaurant" ).val( ui.item.label );
-                            $( "#restaurant-id" ).val( ui.item.desc );
-                            return false;
-                        },
-                        select: function( event, ui ) {
-                            $( "#restaurant" ).val( ui.item.label );
-                            $( "#restaurant-id" ).val( ui.item.desc );
-                            return false;
+                            var temp = {
+                                label : restaurantDesc.name,
+                                desc : [restaurantDesc.apiKey,false]
+                            };
+                            restaurants.push(temp);
                         }
-                    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-                        return $( "<li class='ho-list'>" )
-                            .append( "<div>"+item.label + "</div>")
-                            .appendTo( ul );
-                    };
-                },
-                function errorCallback(response) {
-                    return {
-                        label:"run new search",
-                        desc:"0"};
-                }
-            );
+
+                        RestaurantService.findRestaurantByNameFromDB(resName)
+                            .then(
+                                function successCallback(response) {
+
+                                    if(response.data){
+                                        var restaurantsFromDB = response.data;
+
+
+                                        var m =10;
+                                        if(restaurantsFromDB.length<10)
+                                            m =restaurantsFromDB.length ;
+
+                                        for (var j = 0; j < m; j++) {
+                                            var restaurantDesc = restaurantsFromDB[j];
+
+                                            var temp = {
+                                                label : restaurantDesc.name,
+                                                desc : [restaurantDesc._id,true]
+                                            };
+                                            restaurants.push(temp);
+                                        }
+
+
+                                        $( "#restaurant" ).autocomplete({
+                                            minLength: 0,
+                                            source: restaurants,
+                                            focus: function( event, ui ) {
+                                                $( "#restaurant" ).val( ui.item.label );
+                                                $( "#restaurant-id" ).val( ui.item.desc );
+                                                return false;
+                                            },
+                                            select: function( event, ui ) {
+                                                $( "#restaurant" ).val( ui.item.label );
+                                                $( "#restaurant-id" ).val( ui.item.desc );
+                                                return false;
+                                            }
+                                        }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+                                            return $( "<li class='ho-list'>" )
+                                                .append( "<div>"+item.label + "</div>")
+                                                .appendTo( ul );
+                                        };
+                                    }
+                                },
+                                function errorCallback() {
+                                    return {
+                                        label:"run new search",
+                                        desc:"0"};
+                                }
+                            );
+                    },
+                    function errorCallback(response) {
+                        return {
+                            label:"run new search",
+                            desc:"0"};
+                    }
+                );
 
 
         }

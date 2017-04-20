@@ -137,6 +137,11 @@
                 controller: 'RestaurantDetailsController',
                 controllerAs: 'model'
             })
+            .when("/restaurant/redirect/:imageUploaded/:rid",{
+                templateUrl: 'views/restaurant/templates/restaurant-details.view.client.html',
+                controller: 'RestaurantDetailsController',
+                controllerAs: 'model'
+            })
 
             .otherwise({redirectTo:'/'});
 
@@ -148,14 +153,18 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
     $http.get('/rest/loggedin')
         .then(function(user) {
             $rootScope.errorMessage = null;
-            if (user !== '0') {
+            if (user.data !== '0') {
                 user = user.data;
                 $rootScope.currentUser = user[0];
                 deferred.resolve();
-            } else {
+            } else
+            if($rootScope.currentUser && $rootScope.currentUser.userType == 'RESTAURANT'){
+                deferred.resolve();
+                //continue saving the current user in the root scope
+            }
+            else{
                 $rootScope.currentUser = null;
-                deferred.reject();
-                $location.url('/');
+                deferred.resolve();
             }
         });
     return deferred.promise;

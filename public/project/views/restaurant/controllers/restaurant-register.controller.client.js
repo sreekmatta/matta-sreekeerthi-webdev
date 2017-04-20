@@ -20,9 +20,14 @@
                         .restaurantRegister(restaurant)
                         .then(
                             function (response) {
-                                var restaurant = response.data;
-                                $rootScope.currentUser = restaurant;
-                                $location.url("/restaurant/" + restaurant._id);
+                                if (response.data != null) {
+                                    var restaurant = response.data;
+                                    $rootScope.currentUser = restaurant;
+                                    $location.url("/restaurant/" + restaurant._id);
+                                }
+                                else{
+                                    viewModel.errorMessage = "Username already exists";
+                                }
                             });
                 }
             }

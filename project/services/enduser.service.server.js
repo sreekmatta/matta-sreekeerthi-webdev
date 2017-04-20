@@ -5,10 +5,11 @@ module.exports = function (app,enduserModel) {
     var bcrypt = require("bcrypt-nodejs");
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+
     var googleConfig = {
         clientID     : process.env.GOOGLE_CLIENT_ID,
         clientSecret : process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL  : "http://matta-sreekeerthi-webdev.herokuapp.com/auth/google/callback"
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL
     };
 
 
@@ -26,7 +27,6 @@ module.exports = function (app,enduserModel) {
 
     app.post("/rest/enduser", createUser);
     app.post("/rest/login", passport.authenticate('local'), login);
-    //app.post('/rest/login',findUserByCredentials);
     app.post("/rest/logout", logout);
     app.post("/rest/register", register);
     app.get("/rest/enduser/getall",getAllUsers);
@@ -38,6 +38,8 @@ module.exports = function (app,enduserModel) {
     app.get("/rest/enduser/findfriends/:username",searchForUsername);
     app.post("/rest/following/:mainPersonID/follower/:followerID",followUser);
     app.post("/get/users/ids",getUsersOnSetOfIDS);
+    app.post("/rest/unfollow/:mainPersonID/unfollower/:followerID",unfollowUser);
+
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -268,6 +270,20 @@ module.exports = function (app,enduserModel) {
         var followerID = req.params.followerID;
         enduserModel
             .followUser(mainPersonID,followerID)
+            .then(function (user) {
+                res.json(user);
+            }, function (error) {
+                res.sendStatus(500);
+            });
+
+    }
+
+
+    function unfollowUser(req,res) {
+        var mainPersonID = req.params.mainPersonID;
+        var unfollowPersonID = req.params.followerID;
+        enduserModel
+            .unfollowUser(mainPersonID,unfollowPersonID)
             .then(function (user) {
                 res.json(user);
             }, function (error) {

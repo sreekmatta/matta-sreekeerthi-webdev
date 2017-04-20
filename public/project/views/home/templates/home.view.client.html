@@ -14,7 +14,7 @@
         </div>
         <div class="col-xs-3"></div>
         <div class="col-xs-6">
-            <div ng-hide="model.currentUser=='0'">
+            <div ng-hide="model.currentUser=='0'||model.currentUser==undefined" class="ho-negative-margin">
                 <div ng-show="model.currentUser.userType=='RESTAURANT'" class="dropdown pull-right ho-dropdown-padding">
                     <button class="btn btn-default dropdown-toggle ho-profile-btn"
                             type="button" data-toggle="dropdown">
@@ -30,9 +30,9 @@
                         </li>
                         <li><a href="#!/restaurant/{{model.currentUser._id}}">
                             <span class="glyphicon glyphicon-dashboard"></span>
-                            Restaurant Dashboard</a>
+                            Dashboard</a>
                         </li>
-                        <li><a href="#!/enduser/{{model.currentUser._id}}/profile">
+                        <li><a href="#!/restaurant/{{model.currentUser._id}}/profile">
                             <span class="glyphicon glyphicon-user"></span>
                             Profile</a>
                         </li>
@@ -66,9 +66,9 @@
                     </ul>
                 </div>
             </div>
-            <div ng-hide="model.currentUser!='0'" class="ho-nav-buttons">
+            <div ng-hide="model.currentUser!='0'&&model.currentUser!=undefined" class="ho-negative-margin ho-nav-buttons">
                 <a href="#!/login" class="btn btn-danger ho-login-btn pull-right">Foodie Login</a>
-                <a href="#!/register" class="btn btn-danger pull-right hide-on-mobile">Foodie Sign Up</a>
+                &nbsp;&nbsp;<a href="#!/register" class="btn btn-danger pull-right hide-on-mobile">Foodie Sign Up</a>
             </div>
         </div>
     </div>

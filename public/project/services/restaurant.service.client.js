@@ -10,6 +10,7 @@
             restaurantRegister: restaurantRegister,
             findRestaurantByCredentials: findRestaurantByCredentials,
             findRestaurantByIdFromDB:findRestaurantByIdFromDB,
+            findRestaurantByNameFromDB:findRestaurantByNameFromDB,
             updateRestaurant: updateRestaurant,
             findRestaurantByUsername: findRestaurantByUsername,
             createRestaurant: createRestaurant,
@@ -54,6 +55,11 @@
 
         function deleteRestaurant(rid) {
             return $http.delete("/rest/restaurant/"+rid);
+        }
+
+
+        function findRestaurantByNameFromDB(resName) {
+            return $http.get("/rest/restaurant/name/"+resName);
         }
 
         function findRestaurant(resName) {

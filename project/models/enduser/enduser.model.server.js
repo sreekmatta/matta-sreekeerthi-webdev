@@ -13,6 +13,7 @@ module.exports = function () {
         findUserByGoogleId:findUserByGoogleId,
         searchForUsername:searchForUsername,
         followUser:followUser,
+        unfollowUser:unfollowUser,
         getUsersOnSetOfIDS:getUsersOnSetOfIDS,
         setModel: setModel
     };
@@ -160,11 +161,42 @@ module.exports = function () {
         return deferred.promise;
     }
 
+    function unfollowUser(mainPersonID,followerID) {
+        var deferred = q.defer();
+        EnduserModel
+            .find({_id:mainPersonID}, function (err, users) {
+                var mainPerson = users[0];
+                if(!mainPerson) {
+                    console.log("err");
+                    deferred.reject(err);
+                } else {
+                    EnduserModel
+                        .find({_id:followerID}, function (err, users) {
+                            var unfollower = users[0];
+                            if(!unfollower) {
+                                console.log("err");
+                                deferred.reject(err);
+                            } else {
+                                var index_m = mainPerson.followers.indexOf(unfollower._id);
+                                mainPerson.followers.splice(index_m, 1);
+
+
+                                var index_u = unfollower.following.indexOf(mainPerson._id);
+                                unfollower.following.splice(index_u, 1);
+                                mainPerson.save();
+                                unfollower.save();
+                                deferred.resolve(mainPerson);
+                            }
+                        });
+                }
+            });
+        return deferred.promise;
+    }
     function followUser(mainPersonID,followerID) {
         var deferred = q.defer();
         EnduserModel
             .find({_id:mainPersonID}, function (err, users) {
-            var mainPerson = users[0];
+                var mainPerson = users[0];
                 if(!mainPerson) {
                     console.log("err");
                     deferred.reject(err);
@@ -184,8 +216,8 @@ module.exports = function () {
                                     .find({ _id: { $in: mainPerson.followers}},
                                         function (err, users) {
 
-                                        deferred.resolve(users);
-                                    });
+                                            deferred.resolve(users);
+                                        });
                             }
                         });
                 }

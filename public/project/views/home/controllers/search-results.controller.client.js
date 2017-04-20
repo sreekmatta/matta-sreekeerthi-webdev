@@ -6,8 +6,12 @@
         {
             return function(input, start)
             {
-                start = +start;
-                return input.slice(start);
+                if(input) {
+                    start = +start;
+                    return input.slice(start);
+                }
+                else
+                    return input;
             };
         });
 
@@ -41,6 +45,7 @@
         }
 
         function findRestaurantsNearBy() {
+
             var promise = RestaurantService.findRestaurantsNearBy(lat,lon,radius,resname);
             promise.then(
                 function (restaurants) {
@@ -50,22 +55,25 @@
                     } else {
                         viewModel.errorMessage = "Error while loading Restaurants";
                     }
+                    RestaurantService
+                        .findAllRestaurants()
+                        .then(
+                            function (response) {
+                                var allRes = response.data;
+                                viewModel.restaurants = allRes.concat(viewModel.restaurants);
+                            });
+
                 }
 
             );
 
-            var allRes = [];
-            RestaurantService
-                .findAllRestaurants()
-                .then(
-                    function (response) {
-                        allRes = response.data;
-                        viewModel.restaurants = allRes.concat(viewModel.restaurants);
-                    });
 
         }
         viewModel.numberOfPages = function() {
-            return Math.ceil(viewModel.restaurants.length / viewModel.pageSize);
+            if(viewModel.restaurants)
+                return Math.ceil(viewModel.restaurants.length / viewModel.pageSize);
+            else
+                return 0;
         };
 
 

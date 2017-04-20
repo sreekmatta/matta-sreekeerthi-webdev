@@ -9,6 +9,8 @@ module.exports = function () {
         updateRestaurant:updateRestaurant,
         deleteRestaurant:deleteRestaurant,
         findAllRestaurants:findAllRestaurants,
+        findRestaurantByName:findRestaurantByName,
+        updateRestaurantImage:updateRestaurantImage,
         setModel: setModel
     };
 
@@ -23,12 +25,20 @@ module.exports = function () {
 
     function createRestaurant(restaurant) {
         var deferred = q.defer();
-        RestaurantModel
-            .create(restaurant, function (err, restaurant) {
-                if(err) {
-                    deferred.abort(err);
-                } else {
-                    deferred.resolve(restaurant);
+        RestaurantModel.findOne({username:restaurant.username},
+            function (err,existingRestaurant){
+                if(existingRestaurant == null){
+                    RestaurantModel
+                        .create(restaurant, function (err, restaurant) {
+                            if(err) {
+                                deferred.abort(err);
+                            } else {
+                                deferred.resolve(restaurant);
+                            }
+                        });
+                }
+                else{
+                    deferred.resolve(null);
                 }
             });
         return deferred.promise;
@@ -45,7 +55,6 @@ module.exports = function () {
                 }
             });
         return deferred.promise;
-
     }
 
     function findRestaurantByUsername(username){
@@ -73,6 +82,22 @@ module.exports = function () {
                     deferred.resolve(restaurant[0]);
                 }
             });
+        return deferred.promise;
+    }
+
+    function updateRestaurantImage(rid,imageUrl) {
+        var deferred = q.defer();
+        RestaurantModel
+            .update({_id:rid},
+                {   logoUrl: imageUrl},
+                function (err,restaurant) {
+                    if(err){
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(restaurant);
+                    }
+                });
+
         return deferred.promise;
     }
 
@@ -121,7 +146,7 @@ module.exports = function () {
             });
         return deffered.promise;
     }
-    
+
     function findAllRestaurants() {
         var deferred = q.defer();
         RestaurantModel
@@ -136,6 +161,20 @@ module.exports = function () {
         return deferred.promise;
     }
 
+    function findRestaurantByName(resName) {
+        var deferred = q.defer();
+        RestaurantModel
+            .find({name: { "$regex": resName, "$options": "i" }},
+                function (err, restaurants) {
+                    if(!restaurants) {
+                        console.log("err");
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(restaurants);
+                    }
+                });
+        return deferred.promise;
+    }
     function setModel(_model) {
         model = _model;
     }

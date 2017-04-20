@@ -21,7 +21,7 @@
                 <ul class="dropdown-menu nav-dropdown-menu">
                     <li><a href="#!/restaurant/{{currentUser._id}}">
                         <span class="glyphicon glyphicon-dashboard"></span>
-                        Restaurant Dashboard</a>
+                        Dashboard</a>
                     </li>
                     <li><a href="#!/restaurant/{{currentUser._id}}/profile">
                         <span class="glyphicon glyphicon-user"></span>
@@ -38,20 +38,15 @@
         <div class="ho-dashboard-greeting">
             Find the best places  to eat around you
         </div>
-        <div class="row msk-search-bar ho-left-padding ho-right-padding">
-            <div class="col-md-1 hidden-xs"></div>
-            <div class="col-xs-12 col-md-10 zero-padding">
+        <div class="msk-search-bar">
+            <div class="col-xs-1 col-md-2"></div>
+            <div class="col-xs-10 col-md-8 zero-padding">
                 <div class="col-xs-12 col-sm-2 msk-col-search dropdown pull-left">
-                    <button class="btn btn-default dropdown-toggle search-bar-height" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="glyphicon glyphicon-map-marker msk-map-marker pull-left"></span>
-                        <span class="pull-left msk-search-loc">Location</span>
-                        <span class="caret pull-right msk-caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Recent Loc-1</a></li>
-                        <li><a href="#">Recent Loc-2</a></li>
-                        <li><a href="#">Recent Loc-3</a></li>
-                    </ul>
+                    <select name="radius" id="radius" class="ho-radius">
+                        <option value="2">Around 2 miles</option>
+                        <option value="5">Around 5 miles</option>
+                        <option value="10">Around 10 miles</option>
+                    </select>
                 </div>
                 <div class="col-xs-12 col-sm-8 msk-col-search search-bar">
                     <div class="input-group">
@@ -60,23 +55,23 @@
                                     data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
                                 <span class="glyphicon glyphicon-search"></span>
-                                <span>Search By</span>
-                                <span class="caret"></span>
+                                <span>Search</span>
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Cuisine</a></li>
-                                <li><a href="#">Cost@2</a></li>
-                                <li><a href="#">Rating</a></li>
-                            </ul>
                         </div><!-- /btn-group -->
-                        <input type="text" class="form-control search-bar-height" aria-label="...">
+                        <select name="place" id="resname" class="search-bar-height ho-place">
+                            <option value="0">All Places</option>
+                            <option value="Cafe">Cafes</option>
+                            <option value="Bars">Bars</option>
+                            <option value="Pizza">Pizzeria</option>
+                        </select>
                     </div><!-- /input-group -->
                 </div>
                 <div class="col-xs-12 col-sm-2 msk-col-search">
-                    <a href="#!/searchresults" class="btn btn-block btn-danger search-bar-height">Search</a>
+                    <a ng-click="model.searchRestaurants()"
+                       class="btn btn-block btn-danger search-bar-height">Search</a>
                 </div>
             </div>
-            <div class="col-md-1 hidden-xs"></div>
+            <div class="col-xs-1 col-md-2"></div>
         </div>
         <div class="row">
             <h3 class="ho-board-heading">Restaurant Info</h3>
