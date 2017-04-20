@@ -110,6 +110,9 @@
             if(!newPost.restaurant_name||newPost.restaurant_name==""){
                 viewModel.errorMessage = "Location is mandatory to share a post!";
             }
+            else if(!newPost._restaurant){
+                viewModel.errorMessage = "Please enter a valid restaurant from search results.";
+            }
             else{
                 var promise = PostService.createPost(userId,newPost);
 
