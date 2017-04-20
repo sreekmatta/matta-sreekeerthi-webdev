@@ -107,7 +107,7 @@
             newPost.restaurant_name = document.getElementById("restaurant").value;
             newPost._user = userId;
 
-            if(!newPost.restaurant_namenew||Post.restaurant_name==""){
+            if(!newPost.restaurant_name||newPost.restaurant_name==""){
                 viewModel.errorMessage = "Location is mandatory to share a post!";
             }
             else{
