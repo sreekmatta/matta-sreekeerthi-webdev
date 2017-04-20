@@ -113,15 +113,15 @@
                         <img class="ho-standard-width" ng-show="model.restaurant.logoUrl" ng-src="{{model.restaurant.logoUrl}}">
                         <img class="ho-standard-width" ng-hide="model.restaurant.logoUrl" src="images/noimage.png">
 
-                        <div ng-if="model.currentUser!='0'&&model.currentUser._id==model.restaurant._id" class="form-group">
-                            <input class="ho-standard-width form-control ho-input-text" name="restaurantImage" type="file"/>
-                            <input ng-model="model.restaurant._id"
-                                   name="name" hidden/>
-                        </div>
-                        <button ng-if="model.currentUser!='0'&&model.currentUser._id==model.restaurant._id"
-                                class="ho-standard-width btn btn-block btn-primary" type="submit">
-                            Upload Poster
-                        </button>
+                        <!--<div ng-if="model.currentUser!='0'&&model.currentUser._id==model.restaurant._id" class="form-group">-->
+                            <!--<input class="ho-standard-width form-control ho-input-text" name="restaurantImage" type="file"/>-->
+                            <!--<input ng-model="model.restaurant._id"-->
+                                   <!--name="name" hidden/>-->
+                        <!--</div>-->
+                        <!--<button ng-if="model.currentUser!='0'&&model.currentUser._id==model.restaurant._id"-->
+                                <!--class="ho-standard-width btn btn-block btn-primary" type="submit">-->
+                            <!--Upload Poster-->
+                        <!--</button>-->
 
                     </form>
                 </div>

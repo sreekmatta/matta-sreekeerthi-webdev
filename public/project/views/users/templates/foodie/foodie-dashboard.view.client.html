@@ -166,14 +166,17 @@
                                                       <span class="glyphicon glyphicon-map-marker"></span>
                                                   </a>
                                                 </span>
+
                                                         <input wbdv-search=""
                                                                id="restaurant"
                                                                type="text"
                                                                class="form-control ho-loc-input" placeholder="Check in"
                                                                aria-describedby="basic-addon1">
+
                                                         <input id="restaurant-id"
                                                                type="hidden"
                                                                ng-model="post._restaurant">
+
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-4" style="padding-left:0px;">
@@ -195,8 +198,14 @@
                                             <h5>Share your first post now.</h5>
                                         </li>
 
+                                        <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                                            <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
+                                            <span class="sr-only">Error:</span>
+                                            {{model.errorMessage}}
+                                        </div>
                                         <li ng-repeat="post in model.posts" class="list-group-item ho-posts">
                                             <div class="row">
+
                                                 <div class="col-xs-12">
                                                     {{post.post_text}} <b>at</b>
                                                     <span class="glyphicon glyphicon-map-marker">

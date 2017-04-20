@@ -106,19 +106,24 @@
             newPost._restaurant_local = res_desc[1];
             newPost.restaurant_name = document.getElementById("restaurant").value;
             newPost._user = userId;
-            var promise = PostService.createPost(userId,newPost);
 
-            promise.then(
-                function (post) {
-                    post = post.data;
-                    if(post != undefined) {
-                        $route.reload();
-                    } else {
-                        viewModel.errorMessage = "Error while posting an Update";
+            if(!newPost.restaurant_namenew||Post.restaurant_name==""){
+                viewModel.errorMessage = "Location is mandatory to share a post!";
+            }
+            else{
+                var promise = PostService.createPost(userId,newPost);
+
+                promise.then(
+                    function (post) {
+                        post = post.data;
+                        if(post != undefined) {
+                            $route.reload();
+                        } else {
+                            viewModel.errorMessage = "Error while posting an Update";
+                        }
                     }
-                }
-            );
-
+                );
+            }
         }
 
 
