@@ -786,7 +786,7 @@ a.checked-bookmark:hover,a.unchecked-bookmark:hover{
 }
 
 .friend-info{
-    margin-top: 15px;
+    margin-top: 15px !important;
     margin-bottom: 15px;
     border: 1px solid;
     margin-right: 17px;
