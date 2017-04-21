@@ -29,6 +29,7 @@
         viewModel.pageSize = 10;
 
 
+        viewModel.numberOfPages = numberOfPages;
         viewModel.searchRestaurantsByFilters = searchRestaurantsByFilters;
         viewModel.searchRestaurants = searchRestaurants;
 
@@ -66,15 +67,14 @@
                 }
 
             );
-
-
         }
-        viewModel.numberOfPages = function() {
+
+        function numberOfPages() {
             if(viewModel.restaurants)
                 return Math.ceil(viewModel.restaurants.length / viewModel.pageSize);
             else
                 return 0;
-        };
+        }
 
 
         function getLocation() {

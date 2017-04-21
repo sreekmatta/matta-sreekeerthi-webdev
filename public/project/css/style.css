@@ -172,7 +172,7 @@ hr {
     }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (min-width: 726px) and (max-width: 772px) {
     .ho-board-heading{
         margin-top: 160px !important;
     }
@@ -794,7 +794,9 @@ a.checked-bookmark:hover,a.unchecked-bookmark:hover{
     padding: 10px;
     border-radius: 8px;
     border-color: lightgray;
-    background-color: white
+    background-color: white;
+    line-height: 30px;
+    font-size: 15px;
 }
 
 @media screen and (max-width: 410px) {

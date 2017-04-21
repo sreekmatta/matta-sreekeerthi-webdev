@@ -29,12 +29,6 @@
                 controllerAs: 'model',
                 resolve: { loggedin: checkLoggedin }
             })
-            .when("/enduser/:uid/find/friends/:frienduname",{
-                templateUrl: 'views/users/templates/find-friends.view.client.html',
-                controller: 'UserDashboardController',
-                controllerAs: 'model',
-                resolve: { loggedin: checkLoggedin }
-            })
             .when("/enduser/:uid",{
                 templateUrl: 'views/users/templates/foodie/foodie-dashboard.view.client.html',
                 controller: 'UserDashboardController',
@@ -130,19 +124,15 @@
             .when("/restaurant/:resName/:resid",{
                 templateUrl: 'views/restaurant/templates/restaurant-details.view.client.html',
                 controller: 'RestaurantDetailsController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: { loggedin: checkLoggedin}
             })
             .when("/restaurant/:rid",{
                 templateUrl: 'views/restaurant/templates/restaurant-details.view.client.html',
                 controller: 'RestaurantDetailsController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: { loggedin: checkLoggedin}
             })
-            .when("/restaurant/redirect/:imageUploaded/:rid",{
-                templateUrl: 'views/restaurant/templates/restaurant-details.view.client.html',
-                controller: 'RestaurantDetailsController',
-                controllerAs: 'model'
-            })
-
             .otherwise({redirectTo:'/'});
 
     }
@@ -158,7 +148,7 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope) {
                 $rootScope.currentUser = user[0];
                 deferred.resolve();
             } else
-            if($rootScope.currentUser && $rootScope.currentUser.userType == 'RESTAURANT'){
+            if($rootScope.currentUser &&$rootScope.currentUser!='0'&& $rootScope.currentUser.userType == 'RESTAURANT'){
                 deferred.resolve();
                 //continue saving the current user in the root scope
             }

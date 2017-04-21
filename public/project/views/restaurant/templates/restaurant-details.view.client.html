@@ -113,16 +113,6 @@
                         <img class="ho-standard-width" ng-show="model.restaurant.logoUrl" ng-src="{{model.restaurant.logoUrl}}">
                         <img class="ho-standard-width" ng-hide="model.restaurant.logoUrl" src="images/noimage.png">
 
-                        <!--<div ng-if="model.currentUser!='0'&&model.currentUser._id==model.restaurant._id" class="form-group">-->
-                            <!--<input class="ho-standard-width form-control ho-input-text" name="restaurantImage" type="file"/>-->
-                            <!--<input ng-model="model.restaurant._id"-->
-                                   <!--name="name" hidden/>-->
-                        <!--</div>-->
-                        <!--<button ng-if="model.currentUser!='0'&&model.currentUser._id==model.restaurant._id"-->
-                                <!--class="ho-standard-width btn btn-block btn-primary" type="submit">-->
-                            <!--Upload Poster-->
-                        <!--</button>-->
-
                     </form>
                 </div>
                 <div class="col-xs-9 ho-bottom-margin ho-top-margin res-details">
@@ -143,7 +133,7 @@
                 <div class="tab-content ho-all-padding ho-deco">
                     <div id="info" class="tab-pane fade in active">
                         <div class="row">
-                            <a ng-if="model.currentUser!='0'&&model.currentUser._id==model.restaurant._id" href="#!/restaurant/{{model.resId}}/addInfo" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Details</a>
+                            <a ng-show="model.currentUser && model.currentUser._id==model.restaurant._id" href="#!/restaurant/{{model.resId}}/addInfo" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Details</a>
                         </div>
 
                         <div class="row" ng-if="model.restaurant.foodTypes[0]">
@@ -233,34 +223,36 @@
                     </div>
                     <div id="menu" class="tab-pane fade">
                         <div class="row" ng-if="model.userType == 'RESTAURANT'">
-                            <a ng-if="model.currentUser!='0'&&model.currentUser._id==model.restaurant._id" href="#!/restaurant/{{model.resId}}/addMenu" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Menu</a>
+                            <a ng-show="model.currentUser && model.currentUser._id==model.restaurant._id" href="#!/restaurant/{{model.resId}}/addMenu" class="btn btn-danger ho-margin-left">Add /Edit Restaurant Menu</a>
                         </div>
-                        <div ng-if="model.restaurantMenu" ng-repeat="section in model.restaurantMenu" class="row left-margin">
-                            <div class="row pull-left">
-                                <h4>{{section.name}}</h4>
+                        <div class="container-fluid zero-padding">
+                            <div ng-if="model.restaurantMenu" ng-repeat="section in model.restaurantMenu" class="left-margin">
+                                <div class="row col-xs-12 zero-padding pull-left">
+                                    <h4><b>{{section.name}}</b></h4>
 
-                                <h5 ng-if="section.description">
-                                    {{section.description}}
-                                </h5>
-                            </div>
-                            <br><br><br>
-                            <div class="row">
-                                <div class="" ng-repeat="itemVal in section.items">
-                                    <h5>{{itemVal.name}} - $ {{itemVal.basePrice}}</h5>
+                                    <h5 ng-if="section.description">
+                                       <i> {{section.description}}</i>
+                                    </h5>
+                                </div>
+                                <div class="row col-xs-12 ho-bottom-margin zero-padding">
+                                    <div class="" ng-repeat="itemVal in section.items">
+                                        <h5>{{itemVal.name}} - $ {{itemVal.basePrice}}</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div ng-if="model.userType == 'RESTAURANT'" class="row left-margin">
-                            <div ng-bind-html="model.getHTMLContent(model.restaurant.menu)">
+                            <div ng-if="model.userType == 'RESTAURANT'" class="row left-margin">
+                                <div ng-bind-html="model.getHTMLContent(model.restaurant.menu)">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div id="posts" class="tab-pane fade">
                         <div class="row" ng-repeat="post in model.posts" ng-if="model.posts.length>0">
-                            <div class="col-xs-1">
-                                user {{post._user.substring(0, 3)}}
+                            <div class="col-xs-3">
+                                <a ng-show="model.currentUser && model.currentUser!='0'" class="restaurant-link" href="#!/enduser/{{post._user}}"> user {{post._user.substring(0, 3)}}</a>
+                                <span ng-hide="model.currentUser && model.currentUser!='0'"> user {{post._user.substring(0, 3)}}</span>
                             </div>
-                            <div class="col-xs-11">
+                            <div class="col-xs-9">
                                 <p>{{post.post_text}}</p>
                             </div>
                         </div>

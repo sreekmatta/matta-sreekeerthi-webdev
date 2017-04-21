@@ -488,3 +488,33 @@ margin-top: 20px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+@media screen and (max-width: 855px)
+{	.navbar-toggle {
+		display: inline-block !important;
+	}
+}
+
+@media screen and (max-width: 855px)
+{	.navbar-header {
+		 float: none;
+	}
+	ul.navbar-nav{
+		display: none;
+	}
+}
+@media screen and (min-width: 855px){
+
+	ul.navbar-nav{
+		display: inline !important;
+	}
+}
+
+.display-ele{
+	display: grid !important;
+}
+
+
+.navbar-collapse.in {
+	overflow-y: hidden;
+}

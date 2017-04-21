@@ -7,7 +7,9 @@
         var viewModel = this;
         viewModel.currentUser = $rootScope.currentUser;
 
+
         viewModel.searchRestaurants = searchRestaurants;
+
 
         function searchRestaurants() {
             var resname = $( "#resname").val();

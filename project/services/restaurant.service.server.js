@@ -1,8 +1,5 @@
 module.exports = function (app,restaurantModel) {
 
-    var multer = require('multer'); // npm install multer --save
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
-
     app.post('/rest/restaurant/login', findRestaurantByCredentials);
     app.get('/rest/restaurant/allrestaurants', findAllRestaurants)
     app.get("/rest/restaurant", findRestaurant);
@@ -11,27 +8,6 @@ module.exports = function (app,restaurantModel) {
     app.delete("/rest/restaurant/:rid", deleteRestaurant);
     app.post('/rest/restaurant/register', createRestaurant);
     app.get("/rest/restaurant/name/:resName",findRestaurantByName);
-    app.post ("/rest/restaurant/upload", upload.single('restaurantImage'), uploadImage);
-
-    function uploadImage(req, res) {
-        var resId = req.body.name;
-        var myFile = req.file;
-        if(myFile!=null)
-        {
-            var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
-            var logoUrl = url;
-
-            restaurantModel
-                .updateRestaurantImage(resId,logoUrl)
-                .then(function (restaurant) {
-                    var imageUploaded = "1";
-                    res.redirect("/project/index.html#!/restaurant/redirect/"+imageUploaded+"/"+resId);
-                }, function (error) {
-                    res.sendStatus(500);
-                });
-
-        }
-    }
 
 
     function createRestaurant(req, res) {

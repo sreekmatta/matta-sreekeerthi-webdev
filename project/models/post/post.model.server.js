@@ -1,6 +1,5 @@
 module.exports = function () {
 
-    var model = null;
     var api = {
         createPostForUser:createPostForUser,
         findAllPostsForUser:findAllPostsForUser,
@@ -12,9 +11,10 @@ module.exports = function () {
         setModel: setModel
     };
 
+    var model = null;
+
     var mongoose = require('mongoose');
     var q = require('q');
-
     var PostSchema = require('./post.schema.server.js')();
     var PostModel = mongoose.model('PostModel', PostSchema);
 

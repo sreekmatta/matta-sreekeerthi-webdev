@@ -3,12 +3,12 @@
         .module("HungryOwlAppMaker")
         .controller("RestaurantProfileController", RestaurantProfileController);
 
-    function RestaurantProfileController(RestaurantService,$location,$rootScope,$routeParams) {
+    function RestaurantProfileController(RestaurantService, $location, $rootScope, $routeParams) {
         var viewModel = this;
         var rid = $routeParams['rid'];
         viewModel.rid = rid;
-        //event handlers
         viewModel.currentUser = $rootScope.currentUser;
+
 
         viewModel.updateProfile = updateProfile;
         viewModel.searchRestaurants = searchRestaurants;
@@ -26,11 +26,12 @@
                     }
                 );
         }
+
         init();
 
         function updateProfile(restaurant) {
             RestaurantService
-                .updateRestaurant(rid,restaurant)
+                .updateRestaurant(rid, restaurant)
                 .then(
                     function successCallback(response) {
                         var restaurant = response.data;
@@ -43,9 +44,9 @@
         }
 
         function searchRestaurants() {
-            var resname = $( "#resname").val();
-            var radius = $( "#radius").val();
-            $location.url("/restaurant/search/"+radius+"/"+resname);
+            var resname = $("#resname").val();
+            var radius = $("#radius").val();
+            $location.url("/restaurant/search/" + radius + "/" + resname);
         }
 
     }

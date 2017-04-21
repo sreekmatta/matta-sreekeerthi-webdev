@@ -4,8 +4,6 @@ module.exports = function (app,enduserModel) {
     var LocalStrategy = require('passport-local').Strategy;
     var bcrypt = require("bcrypt-nodejs");
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
-
     var googleConfig = {
         clientID     : process.env.GOOGLE_CLIENT_ID,
         clientSecret : process.env.GOOGLE_CLIENT_SECRET,
@@ -24,8 +22,6 @@ module.exports = function (app,enduserModel) {
             var url = '/project/index.html#!/enduser/'+t._id;
             res.redirect(url);
         });
-
-
     app.post("/rest/enduser", createUser);
     app.post("/rest/login", passport.authenticate('local'), login);
     app.post("/rest/logout", logout);
@@ -44,7 +40,6 @@ module.exports = function (app,enduserModel) {
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-
     function serializeUser(user, done) {
         done(null, user);
     }
@@ -78,9 +73,7 @@ module.exports = function (app,enduserModel) {
                 });
     }
 
-
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
-
     function googleStrategy(token, refreshToken, profile, done) {
 
         console.log("NEW PROFILE", profile,token,refreshToken);

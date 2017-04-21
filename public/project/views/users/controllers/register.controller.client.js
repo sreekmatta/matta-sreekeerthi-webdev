@@ -11,6 +11,7 @@
         viewModel.register = register;
 
         function register(user) {
+
             if(user && user.username && user.password && user.retypepassword
                 && user.email && user.lastName && user.firstName)
             {

@@ -37,7 +37,7 @@
                             $location.url("/enduser/" + user._id);
                         },
                         function errorCallback(response) {
-                            viewModel.errorMessage = "Enter Credentials are not Valid";
+                            viewModel.errorMessage = "Entered Credentials are Invalid";
                         }
                     );
             }

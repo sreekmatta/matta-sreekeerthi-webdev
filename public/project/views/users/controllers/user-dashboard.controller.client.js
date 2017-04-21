@@ -8,12 +8,23 @@
         var userId = $routeParams['uid'];
         viewModel.userId = userId;
         viewModel.currentUser = $rootScope.currentUser;
-        viewModel.searchRestaurants = searchRestaurants;
         var user = null;
 
         //default values
         var lat = "42.343165899999995";
         var lon ="-71.1011797";
+
+
+        //event handlers
+        viewModel.searchRestaurants = searchRestaurants;
+        viewModel.newPost = newPost;
+        viewModel.getLocation = getLocation;
+        viewModel.createPost = createPost;
+        viewModel.getRestaurantById = getRestaurantById;
+        viewModel.findFriendByUsername = findFriendByUsername;
+        viewModel.followUser = followUser;
+        viewModel.unfollowUser = unfollowUser;
+
 
         function init() {
             var promise = UserService.findUserById(userId);
@@ -59,11 +70,6 @@
         }
         init();
 
-        //event handlers
-        viewModel.newPost = newPost;
-        viewModel.getLocation = getLocation;
-        viewModel.createPost = createPost;
-        viewModel.getRestaurantById = getRestaurantById;
 
         function newPost(newPostDetails) {
             var promise = PostService.createPost(userId, newPostDetails);
@@ -101,19 +107,24 @@
         function createPost(newPost) {
             var res_desc = document.getElementById("restaurant-id").value;
             res_desc = res_desc.split(",");
+            var restaurantNameForPost = document.getElementById("restaurant").value;
 
-            newPost._restaurant = res_desc[0];
-            newPost._restaurant_local = res_desc[1];
-            newPost.restaurant_name = document.getElementById("restaurant").value;
-            newPost._user = userId;
-
-            if(!newPost.restaurant_name||newPost.restaurant_name==""){
+            if(!restaurantNameForPost||restaurantNameForPost==""){
                 viewModel.errorMessage = "Location is mandatory to share a post!";
             }
-            else if(!newPost._restaurant){
+            else if(!res_desc[0]){
                 viewModel.errorMessage = "Please enter a valid restaurant from search results.";
             }
+            else if(!newPost || !newPost.post_text){
+                viewModel.errorMessage = "Please enter atleast 10 characters to post Update";
+            }
             else{
+
+                newPost._restaurant = res_desc[0];
+                newPost._restaurant_local = res_desc[1];
+                newPost.restaurant_name = restaurantNameForPost;
+                newPost._user = userId;
+
                 var promise = PostService.createPost(userId,newPost);
 
                 promise.then(
@@ -165,7 +176,6 @@
         }
 
 
-        viewModel.findFriendByUsername = findFriendByUsername;
 
         function findFriendByUsername(friendUsername) {
             friendUsername = friendUsername.username;
@@ -177,17 +187,16 @@
                         if(friends!= undefined) {
                             viewModel.friends = friends;
                         } else {
-                            viewModel.errorMessage = "Sorry, No results matching the Username:" + friendUsername;
+                            viewModel.errorMessageFriends = "Sorry, No results matching the Username:" + friendUsername;
                         }
                     }
                 );
             }
             else{
-                viewModel.errorMessage = "Please search by Username";
+                viewModel.errorMessageFriends = "Please search by Username";
             }
         }
 
-        viewModel.followUser = followUser;
 
         function followUser(mainUserId, followerUserId) {
             var promise = UserService.followUser(mainUserId, followerUserId);
@@ -198,14 +207,12 @@
                         viewModel.allFollowers = users;
                         viewModel.user.followers.push(followerUserId);
                         viewModel.currentUser.following.push(mainUserId);
-                        $route.reload();
                     } else {
                         viewModel.errorMessage = "Sorry, Error occurred while following the current user";
                     }
                 }
             );
         }
-        viewModel.unfollowUser = unfollowUser;
         function unfollowUser(mainUserId,unfollowById) {
             var promise = UserService.unfollowUser(mainUserId, unfollowById);
             promise.then(
@@ -214,7 +221,6 @@
                     if(mainUser!= undefined) {
                         viewModel.allFollowers = mainUser.followers;
                         viewModel.user = mainUser;
-                        $route.reload();
                     } else {
                         viewModel.errorMessage = "Sorry, Error occurred while following the current user";
                     }

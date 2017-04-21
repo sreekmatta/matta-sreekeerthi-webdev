@@ -2,14 +2,9 @@ module.exports = function () {
     var mongoose = require('mongoose');
 
     var UserSchema = mongoose.Schema({
-        facebook: {
-            id:    String,
-            token: String
-        },
         userType: { type : String,
             enum : ['FOODIE', 'ADMIN'] ,
             default : 'FOODIE'},
-        imageUrl:String,
         firstName: String,
         lastName: String,
         username: String,
@@ -18,7 +13,6 @@ module.exports = function () {
         google: {
             id:    String
         },
-        phone:String,
         followers:[{type: mongoose.Schema.Types.ObjectId, ref: 'EnduserModel'}],
         following:[{type: mongoose.Schema.Types.ObjectId, ref: 'EnduserModel'}],
         posts:[{type: mongoose.Schema.Types.ObjectId, ref: 'PostModel'}],

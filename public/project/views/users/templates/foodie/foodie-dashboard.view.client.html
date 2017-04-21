@@ -88,22 +88,22 @@
                     <div ng-show="model.currentUser._id!=model.user._id"
                          class="ho-board-heading friend-info">
                         Username: {{model.user.username | uppercase }}
-                        &nbsp;&nbsp;
-                        <a ng-show="model.user.followers.indexOf(model.currentUser._id)==-1"
-                           ng-click="model.followUser(model.user._id,model.currentUser._id)"
-                           class="btn btn-primary"> Follow
-                            <span class="glyphicon glyphicon-user"></span>
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </a>
-                        &nbsp;&nbsp;
-                        <a ng-show="model.user.followers.indexOf(model.currentUser._id)>-1"
-                           ng-click="model.unfollowUser(model.user._id,model.currentUser._id)"
-                           class="btn btn-success"> Following
-                            <span class="glyphicon glyphicon-user"></span>
-                        </a><br>
+                        <br>
                         First Name: {{model.user.firstName}}
                         <br>
                         Last Name: {{model.user.lastName}}
+                        <br>
+                        <a ng-show="model.user.followers.indexOf(model.currentUser._id)==-1"
+                           ng-click="model.followUser(model.user._id,model.currentUser._id)"
+                           class="btn btn-primary ho-top-margin"> Follow
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+                        <a ng-show="model.user.followers.indexOf(model.currentUser._id)>-1"
+                           ng-click="model.unfollowUser(model.user._id,model.currentUser._id)"
+                           class="btn btn-success ho-top-margin"> Following
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
                     </div>
                 </div>
                 <div class="row">
@@ -124,10 +124,15 @@
                                     </a>
                                 </li>
                                 <li class="ho-menu-li"><a data-toggle="pill" href="#followers"
-                                                          target="_self" class="btn ho-dashboard-link">Followers</a>
+                                                          target="_self" class="btn ho-dashboard-link">
+                                    <span ng-show="model.currentUser._id==model.user._id">Followers</span>
+                                    <span ng-show="model.currentUser._id!=model.user._id">Friend's Followers</span>
+                                </a>
                                 </li>
                                 <li class="ho-menu-li"><a data-toggle="pill" href="#following"
-                                                          target="_self" class="btn ho-dashboard-link">Following</a>
+                                                          target="_self" class="btn ho-dashboard-link">
+                                    <span ng-show="model.currentUser._id==model.user._id">Following</span>
+                                    <span ng-show="model.currentUser._id!=model.user._id">Friend's Following</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -148,7 +153,7 @@
                                         <li class="list-group-item msk-table-heading zero-padding-tb">
                                             <div class="row">
                                                 <div class="col-xs-12 zero-padding">
-                                        <textarea rows="4"
+                                        <textarea rows="4" minlength="10"
                                                   class="form-control"
                                                   ng-model="post.post_text">
                                         </textarea>
@@ -244,10 +249,10 @@
                                     </div>
 
                                     <div class="row ho-5px-all-padding">
-                                        <div ng-show="model.errorMessage" class="alert alert-danger" role="alert">
+                                        <div ng-show="model.errorMessageFriends" class="alert alert-danger" role="alert">
                                             <span class="glyphicon glyphicon-exclamation-sign msk-msg-glyphicon" aria-hidden="true"></span>
                                             <span class="sr-only">Error:</span>
-                                            {{model.errorMessage}}
+                                            {{model.errorMessageFriends}}
                                         </div>
                                         <ul class="list-group" ng-show="model.friends">
                                             <h4>Friends list</h4>
@@ -255,16 +260,17 @@
                                             <li class="list-group-item list-group-item-success">
                                                 <div class="row">
                                                     <div class="col-xs-4">Username</div>
-                                                    <div class="col-xs-4">Name</div>
-                                                    <div class="col-xs-4">Follow</div>
+                                                    <div class="col-xs-6">Name</div>
+                                                    <div class="col-xs-2">Follow</div>
                                                 </div>
                                             </li>
 
+                                            <div ng-show="model.friends&&model.friends.length>0">
                                             <li ng-if="friend._id!=model.currentUser._id" ng-repeat="friend in model.friends" class="list-group-item">
                                                 <a href="#!/enduser/{{friend._id}}">
                                                     <div class="row">
-                                                        <div class="col-xs-5">{{friend.username}}</div>
-                                                        <div class="col-xs-5">{{friend.firstName}} {{friend.lastName}} </div>
+                                                        <div class="col-xs-4">{{friend.username}}</div>
+                                                        <div class="col-xs-6">{{friend.firstName}} </div>
                                                         <div class="col-xs-2">
                                                             <a href="#!/enduser/{{friend._id}}"
                                                                class="btn btn-block btn-default">
@@ -273,19 +279,27 @@
                                                     </div>
                                                 </a>
                                             </li>
+                                            </div>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div id="followers" class="tab-pane fade search-result">
                                 <div class="ho-section-heading">
-                                    Followers
+                                    <span ng-show="model.currentUser._id==model.user._id">Followers</span>
+                                    <span ng-show="model.currentUser._id!=model.user._id">Friend's Followers</span>
                                 </div>
                                 <div class="ho-section-content">
                                     <div class="">
                                         <div ng-show="model.allFollowers.length==0">
-                                            <h4>You don't have any followers yet.</h4>
-                                            <h5>Share Reviews to get more Followers.</h5>
+                                            <div ng-show="model.currentUser._id==model.user._id">
+                                                <h4>You don't have any followers yet.</h4>
+                                                <h5>Share Updates to get more Followers.</h5>
+                                            </div>
+                                            <div ng-show="model.currentUser._id!=model.user._id">
+                                                <h4><span class="ho-friend-name">{{model.user.firstName}}</span> do not have any followers </h4>
+                                                <h5>Follow <span class="ho-friend-name">{{model.user.firstName}}</span> today.</h5>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row ho-5px-all-padding restaurant-bookmark" ng-if="model.allFollowers.length>0">
@@ -317,13 +331,19 @@
                             </div>
                             <div id="following" class="tab-pane fade search-result">
                                 <div class="ho-section-heading">
-                                    Following
+                                    <span ng-show="model.currentUser._id==model.user._id">Following</span>
+                                    <span ng-show="model.currentUser._id!=model.user._id">Friend's Following</span>
                                 </div>
                                 <div class="ho-section-content">
                                     <div class="">
                                         <div ng-show="model.allFollowing.length==0">
-                                            <h4>You are not following anyone yet.</h4>
-                                            <h5>Find friends today.</h5>
+                                            <div ng-show="model.currentUser._id==model.user._id">
+                                                <h4>You are not following anyone yet.</h4>
+                                                <h5>Find friends today.</h5>
+                                            </div>
+                                            <div ng-show="model.currentUser._id!=model.user._id">
+                                                <h4>{{model.user.firstName}} is not following anyone yet.</h4>
+                                            </div>
                                         </div>
                                         <div ng-if="model.allFollowing.length>0" class="row ho-5px-all-padding restaurant-bookmark">
                                             <ul class="list-group">

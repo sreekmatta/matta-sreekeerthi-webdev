@@ -2,7 +2,6 @@ module.exports = function () {
 
     var model = null;
     var api = {
-        findUserByFacebookId: findUserByFacebookId,
         createUser: createUser,
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
@@ -25,11 +24,6 @@ module.exports = function () {
     var EnduserModel = mongoose.model('EnduserModel', EnduserSchema);
 
     return api;
-
-
-    function findUserByFacebookId(facebookId) {
-        return User.findOne({'facebook.id': facebookId});
-    }
 
     function createUser(user) {
         var deferred = q.defer();
@@ -179,13 +173,17 @@ module.exports = function () {
                             } else {
                                 var index_m = mainPerson.followers.indexOf(unfollower._id);
                                 mainPerson.followers.splice(index_m, 1);
-
-
                                 var index_u = unfollower.following.indexOf(mainPerson._id);
                                 unfollower.following.splice(index_u, 1);
                                 mainPerson.save();
                                 unfollower.save();
-                                deferred.resolve(mainPerson);
+
+                                EnduserModel
+                                    .find({ _id: { $in: mainPerson.followers}},
+                                        function (err, users) {
+
+                                            deferred.resolve(users);
+                                        });
                             }
                         });
                 }
