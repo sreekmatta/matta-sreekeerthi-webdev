@@ -5,9 +5,11 @@
 
     function AdminController($location,$routeParams,$rootScope) {
         var viewModel = this;
-        var userId = $routeParams['uid'];
-        viewModel.userId = userId;
         viewModel.currentUser = $rootScope.currentUser;
+        var userId = viewModel.currentUser._id;
+        viewModel.userId = userId;
+
+
         viewModel.searchRestaurants = searchRestaurants;
 
 

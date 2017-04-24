@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="col-xs-1">
-            <a href="#!/restaurant/{{currentUser._id}}" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            <a href="#!/restaurant" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
             </a></div>
         <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
@@ -19,11 +19,11 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu nav-dropdown-menu">
-                    <li><a href="#!/restaurant/{{currentUser._id}}">
+                    <li><a href="#!/restaurant">
                         <span class="glyphicon glyphicon-dashboard"></span>
                         Dashboard</a>
                     </li>
-                    <li><a href="#!/restaurant/{{currentUser._id}}/profile">
+                    <li><a href="#!/restaurant/profile">
                         <span class="glyphicon glyphicon-user"></span>
                         Profile</a>
                     </li>
@@ -125,44 +125,59 @@
                        class="form-control"
                        placeholder="phone"/>
 
-                <label for ="acceptsCash">Do you Accept Cash?</label>
-                <input ng-model="model.restaurant.acceptsCash"
-                       type="checkbox"
-                       id="acceptsCash"
-                       placeholder="acceptsCash"/>
+                <div class="cuisines-dropdown">
+                    <label for ="cuisines">Select Cuisines</label>
+                    <div ng-dropdown-multiselect=""
+                         options="model.example8data"
+                         selected-model="model.example8model"
+                         extra-settings="model.example8settings"
+                         id="cuisines"></div>
+                </div>
+                <div>
+                    <label for ="acceptsCash">Do you Accept Cash?</label>
+                    <input ng-model="model.restaurant.acceptsCash"
+                           type="checkbox"
+                           id="acceptsCash"
+                           placeholder="acceptsCash"/>
+                </div>
+                <div>
+                    <label for ="acceptsCard">Do you Accept Card?</label>
+                    <input ng-model="model.restaurant.acceptsCard"
+                           type="checkbox"
+                           id="acceptsCard"
+                           placeholder="acceptsCard"/>
+                </div>
+                <div>
+                    <label for ="offersDelivery">Do you Offer Delivery?</label>
+                    <input ng-model="model.restaurant.offersDelivery"
+                           type="checkbox"
+                           id="offersDelivery"
+                           placeholder="offersDelivery"/>
+                </div>
+                <br>
+                <div>
+                    <label for ="deliveryMin">What is your minimum delivery price?</label>
+                    <input ng-model="model.restaurant.deliveryMin"
+                           type="number"
+                           id="deliveryMin"
+                           class="form-control"
+                           placeholder="deliveryMin"/>
+                </div>
 
-                <label for ="acceptsCard">Do you Accept Card?</label>
-                <input ng-model="model.restaurant.acceptsCard"
-                       type="checkbox"
-                       id="acceptsCard"
-                       placeholder="acceptsCard"/>
-
-                <label for ="offersDelivery">Do you Offer Delivery?</label>
-                <input ng-model="model.restaurant.offersDelivery"
-                       type="checkbox"
-                       id="offersDelivery"
-                       placeholder="offersDelivery"/>
-
-                <label for ="deliveryMin">What is your minimum delivery price?</label>
-                <input ng-model="model.restaurant.deliveryMin"
-                       type="number"
-                       id="deliveryMin"
-                       class="form-control"
-                       placeholder="deliveryMin"/>
-
-                <label for ="deliveryPrice">What is your actual delivery price?</label>
-                <input ng-model="model.restaurant.deliveryPrice"
-                       type="number"
-                       id="deliveryPrice"
-                       class="form-control"
-                       placeholder="deliveryPrice"/>
-
+                <div>
+                    <label for ="deliveryPrice">What is your actual delivery price?</label>
+                    <input ng-model="model.restaurant.deliveryPrice"
+                           type="number"
+                           id="deliveryPrice"
+                           class="form-control"
+                           placeholder="deliveryPrice"/>
+                </div>
 
                 <div class="ho-buttons-margin">
                     <a class="btn btn-success btn-block"
-                       ng-click="model.updateProfile(model.restaurant)">Update Info</a>
+                       ng-click="model.updateProfile(model.restaurant,model.example8model)">Update Info</a>
                     <a class="btn btn-danger  btn-block"
-                       href="#!/restaurant/{{model.rid}}">Cancel</a>
+                       href="#!/restaurant">Cancel</a>
                 </div>
             </div>
             <div class="col-sm-2 col-xs-1">
@@ -170,6 +185,40 @@
         </div>
     </div>
 </div>
+<script>
+    $(".dropdown dt a").on('click', function() {
+        $(".dropdown dd ul").slideToggle('fast');
+    });
 
+    $(".dropdown dd ul li a").on('click', function() {
+        $(".dropdown dd ul").hide();
+    });
+
+    function getSelectedValue(id) {
+        return $("#" + id).find("dt a span.value").html();
+    }
+
+    $(document).bind('click', function(e) {
+        var $clicked = $(e.target);
+        if (!$clicked.parents().hasClass("dropdown")) $(".dropdown dd ul").hide();
+    });
+
+    $('.mutliSelect input[type="checkbox"]').on('click', function() {
+
+        var title = $(this).closest('.mutliSelect').find('input[type="checkbox"]').val(),
+            title = $(this).val() + ",";
+
+        if ($(this).is(':checked')) {
+            var html = '<span title="' + title + '">' + title + '</span>';
+            $('.multiSel').append(html);
+            $(".hida").hide();
+        } else {
+            $('span[title="' + title + '"]').remove();
+            var ret = $(".hida");
+            $('.dropdown dt a').append(ret);
+
+        }
+    });
+</script>
 
 

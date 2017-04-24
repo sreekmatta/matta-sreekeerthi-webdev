@@ -39,8 +39,8 @@ a:hover{
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color:Black;
-    opacity:0.8;
+    background-color: Black;
+    opacity: 0.8;
     z-index: -1;
 }
 /* end of home style*/
@@ -126,7 +126,7 @@ a:hover{
 .msk-greeting-text{
     color: orangered;
     padding-left: 50px;
-    font-size: 50px;
+    font-size: 40px;
     text-align: center;
     margin-bottom: 30px;
     font-weight: 600;
@@ -262,7 +262,7 @@ hr {
 
 .ho-main-body{
     margin-top: 90px !important;
-    margin-bottom: 90px !important;
+    margin-bottom: 40px !important;
 }
 
 
@@ -367,46 +367,6 @@ hr {
     margin-top: 5px;
 }
 
-
-
-/****** Style Star Rating Widget *****/
-
-.rating {
-    border: none;
-    float: left;
-}
-
-.rating > input { display: none; }
-.rating > label:before {
-    margin: 5px;
-    font-size: 1.25em;
-    font-family: FontAwesome;
-    display: inline-block;
-    content: "\f005";
-}
-
-.rating > .half:before {
-    content: "\f089";
-    position: absolute;
-}
-
-.rating > label {
-    color: #ddd;
-    float: right;
-}
-
-/***** CSS Magic to Highlight Stars on Hover *****/
-
-.rating > input:checked ~ label, /* show gold star when clicked */
-.rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
-
-.rating > input:checked + label:hover, /* hover current star when changing rating */
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
-
-
 .ho-brief-details{
     padding-left: 6px;
     padding-top: 4px;
@@ -508,7 +468,7 @@ textarea{
 }
 
 .ho-board-heading{
-    margin-left: 20px;
+    margin-left: 40px;
     margin-bottom: 10px;
     margin-top: 60px;
 }
@@ -696,24 +656,6 @@ a.restaurant-link:hover {
     padding-bottom: 40px;
 }
 
-/*.join-btn{*/
-/*padding: 10px;*/
-/*border: 1px solid;*/
-/*border-radius: 15px;*/
-/*padding-top: 0px;*/
-/*padding-bottom: 2px;*/
-/*background-color: #337ab7;;*/
-/*font-weight: bold;*/
-/*color: black;*/
-/*border-color: white;*/
-/*}*/
-
-/*a.join-btn:hover{*/
-/*background-color: gray;*/
-/*text-decoration: none;*/
-/*color: white;*/
-/*}*/
-
 a.join-btn:hover{
     background-color: transparent;
 }
@@ -743,17 +685,6 @@ a.join-btn:hover{
     margin-right: 0px;
     margin-bottom: 15px;
     border-radius: 10px;
-}
-
-.unchecked-bookmark{
-    color: darkgray;
-}
-.checked-bookmark{
-    color: blue;
-}
-
-a.checked-bookmark:hover,a.unchecked-bookmark:hover{
-    background-color: transparent;
 }
 
 .not-active {
@@ -815,8 +746,9 @@ a.checked-bookmark:hover,a.unchecked-bookmark:hover{
         font-size: 30px;
     }
 
-    .col-xs-6 {
+    .toggle-padding {
         width: 48%;
+        padding-right: 0px !important;
     }
 
     .ho-login-btn,.ho-nav-buttons{
@@ -859,4 +791,31 @@ a.checked-bookmark:hover,a.unchecked-bookmark:hover{
     border: 1px solid cornflowerblue;
     border-radius: 5px;
     margin-bottom: -15px;
+}
+
+.ho-date{
+    position: relative;
+    float: right;
+    margin-right: 0px;
+    padding: 5px;
+    border-radius: 6px;
+    background-color: lightgray;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 320px) {
+    .msk-greeting-text {
+       font-size: 30px;
+    }
+    .centered {
+         margin-top: 105px;
+     }
+}
+
+.cuisines-dropdown{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

@@ -15,8 +15,17 @@
         var resName = $routeParams['resName'];
         viewModel.resId = resId;
         viewModel.resName = resName;
+
         viewModel.currentUser = $rootScope.currentUser;
-        var rid = $routeParams['rid'];
+        var rid = viewModel.currentUser._id;
+
+        if(!resId){
+            resId = rid;
+            viewModel.resId = resId;
+        }
+
+
+        var apiResId = $routeParams['apiResId'];
         var lat = $routeParams['lat'];
         var lon = $routeParams['lon'];
 
@@ -25,7 +34,7 @@
         viewModel.getHTMLContent = getHTMLContent;
 
         function init() {
-            if(rid==undefined) {
+            if(resId && resName) {
 
                 var promise = RestaurantService.findRestaurant(resName);
                 promise.then(
@@ -33,31 +42,33 @@
                         restaurant = restaurant.data.restaurants;
                         if (restaurant != undefined) {
                             viewModel.restaurant = restaurant[0];
+
+                            var promiseMenu = RestaurantService.findRestaurantMenuById(resId);
+                            promiseMenu.then(
+                                function (restaurantMenu) {
+                                    restaurantMenu = restaurantMenu.data;
+                                    if (restaurantMenu != undefined) {
+                                        viewModel.restaurantMenu = restaurantMenu;
+                                    } else {
+                                        viewModel.errorMessage = "Error while loading restaurant menu";
+                                    }
+                                }
+                            );
+
                         } else {
                             viewModel.errorMessage = "Error while loading restaurant by ID:" + resId;
                         }
                     }
                 );
 
-                var promise = RestaurantService.findRestaurantMenuById(resId);
-                promise.then(
-                    function (restaurantMenu) {
-                        restaurantMenu = restaurantMenu.data;
-                        if (restaurantMenu != undefined) {
-                            viewModel.restaurantMenu = restaurantMenu;
-                        } else {
-                            viewModel.errorMessage = "Error while loading restaurant menu";
-                        }
-                    }
-                );
+
             }
-            else if(!lat&&!lon){
-                viewModel.resId = rid;
-                resId = rid;
-                var promise = RestaurantService.findRestaurantByIdFromDB(rid);
+            else if(resId && !resName){
+                var promise = RestaurantService.findRestaurantByIdFromDB(resId);
                 promise.then(
                     function successCallback(restaurant) {
                         restaurant = restaurant.data;
+                        restaurant = restaurant[0];
                         if (restaurant != undefined) {
                             viewModel.restaurant = restaurant;
                             viewModel.userType = restaurant.userType;
@@ -84,8 +95,8 @@
 
 
             if(lat!=undefined && lon!=undefined
-                && viewModel.restaurant == undefined){
-                var promise = RestaurantService.findRestaurantByName(lat,lon,rid)
+                && apiResId != undefined){
+                var promise = RestaurantService.findRestaurantByName(lat,lon,apiResId);
                 promise.then(
                     function (restaurant) {
                         if (restaurant.data != undefined) {

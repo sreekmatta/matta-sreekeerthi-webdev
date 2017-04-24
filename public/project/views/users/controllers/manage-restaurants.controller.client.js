@@ -5,12 +5,13 @@
 
     function ManageRestaurantController($location,$routeParams,$rootScope,RestaurantService,$route,PostService) {
         var viewModel = this;
-        var userId = $routeParams['uid'];
+        viewModel.currentUser = $rootScope.currentUser;
+        var userId = viewModel.currentUser._id;
+
         var resId = $routeParams['resId'];
         viewModel.userId = userId;
         viewModel.restaurant = null;
 
-        viewModel.currentUser = $rootScope.currentUser;
 
         viewModel.searchRestaurants = searchRestaurants;
         viewModel.searchAllRestaurants = searchAllRestaurants;
@@ -31,7 +32,8 @@
                     .findRestaurantByIdFromDB(resId)
                     .then(
                         function (response) {
-                            viewModel.restaurant = response.data;
+                            var resValue = response.data;
+                            viewModel.restaurant = resValue[0];
                         });
             }
         }
@@ -40,7 +42,7 @@
 
         function createRestaurant(restaurant) {
             RestaurantService
-                .restaurantRegister(restaurant)
+                .createRestaurant(restaurant)
                 .then(
                     function (response) {
                         var restaurant = response.data;

@@ -64,6 +64,7 @@ module.exports = function () {
         return deferred.promise;
     }
 
+
     function findAllPostsForRestaurant(resId) {
         var deferred = q.defer();
         PostModel

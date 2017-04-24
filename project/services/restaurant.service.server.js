@@ -1,14 +1,69 @@
 module.exports = function (app,restaurantModel) {
+    var passport      = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
 
-    app.post('/rest/restaurant/login', findRestaurantByCredentials);
-    app.get('/rest/restaurant/allrestaurants', findAllRestaurants)
+    app.post("/rest/restaurant/login", passport.authenticate('local-restaurant'), login);
+    app.post("/rest/restaurant/logout", logout);
+
+    // app.post('/rest/restaurant/login',findRestaurantByCredentials);
+    app.get("/rest/restaurant/allcuisines",findAllCuisineTypes);
+    app.get('/rest/restaurant/allrestaurants', findAllRestaurants);
     app.get("/rest/restaurant", findRestaurant);
+    app.get("/rest/restaurant/name/:resName",findRestaurantByName);
+    app.get("/rest/restaurant/cuisine/:cuisineType",findRestaurantsByCuisine);
+
     app.get("/rest/restaurant/:rid", findRestaurantById);
     app.put("/rest/restaurant/:rid", updateRestaurant);
     app.delete("/rest/restaurant/:rid", deleteRestaurant);
-    app.post('/rest/restaurant/register', createRestaurant);
-    app.get("/rest/restaurant/name/:resName",findRestaurantByName);
+    app.post('/rest/restaurant/register', register);
 
+    function register (req, res) {
+        var restaurant = req.body;
+        restaurantModel
+            .createRestaurant(restaurant)
+            .then(
+                function(restaurant){
+                    if(restaurant){
+                        req.login(restaurant, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(restaurant);
+                            }
+                        });
+                    }
+                    else{
+                        res.json(null);
+                    }
+                }
+            );
+    }
+
+    passport.use("local-restaurant",new LocalStrategy(localStrategy));
+    function localStrategy(username, password, done) {
+
+        restaurantModel
+            .findRestaurantByUsername(username)
+            .then(
+                function(restaurant) {
+                    // if the user exists, compare passwords with bcrypt.compareSync
+                    if(restaurant && restaurant.password ==password){//&& bcrypt.compareSync(password, user.password)) {
+                        return done(null, restaurant);
+                    } else {
+                        return done(null, false);
+                    }
+                });
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
+    }
 
     function createRestaurant(req, res) {
         var newRestaurant = req.body;
@@ -40,6 +95,16 @@ module.exports = function (app,restaurantModel) {
         } else if(username) {
             findRestaurantByUsername(req, res);
         }
+    }
+
+    function findAllCuisineTypes(req, res) {
+        restaurantModel
+            .findAllCuisineTypes()
+            .then(function (cuisines) {
+                res.json(cuisines);
+            }, function (error) {
+                res.sendStatus(500);
+            });
     }
 
     function findRestaurantByUsername(req, res) {
@@ -95,6 +160,17 @@ module.exports = function (app,restaurantModel) {
     function findAllRestaurants(req,res) {
         restaurantModel
             .findAllRestaurants()
+            .then(function (restaurants) {
+                res.json(restaurants);
+            }, function (error) {
+                res.sendStatus(500)
+            });
+    }
+
+    function findRestaurantsByCuisine(req,res) {
+        var cuisineType = req.params.cuisineType;
+        restaurantModel
+            .findRestaurantsByCuisine(cuisineType)
             .then(function (restaurants) {
                 res.json(restaurants);
             }, function (error) {

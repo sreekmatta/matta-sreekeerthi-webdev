@@ -91,42 +91,28 @@
         function searchRestaurantsByFilters() {
             var cuisine = $('input[name=cuisine]:checked').val();
             var radius = $('input[name=radius]:checked').val();
-            var delivery = document.getElementById('delivery');
-            if (delivery.checked) {
-                var promise = RestaurantService.findDeliveringRestaurantsOfCuisine(lat,lon,radius,cuisine);
-                promise.then(
-                    function (restaurants) {
-                        restaurants = restaurants.data;
-                        if(restaurants!= undefined) {
-                            viewModel.restaurants = restaurants.restaurants;
-                        } else {
-                            viewModel.errorMessage = "Error while loading Restaurants";
-                        }
-                    }
-                );
-            }
-            else{
-                var promise = RestaurantService.findAllRestaurantsOfCuisine(lat,lon,radius,cuisine);
-                promise.then(
-                    function (restaurants) {
-                        restaurants = restaurants.data;
-                        if(restaurants!= undefined) {
-                            viewModel.restaurants = restaurants.restaurants;
-                        } else {
-                            viewModel.errorMessage = "Error while loading Restaurants";
-                        }
-                    }
-                );
-            }
+            var promise = RestaurantService.findAllRestaurantsOfCuisine(lat,lon,radius,cuisine);
+            promise.then(
+                function (restaurants) {
+                    restaurants = restaurants.data;
+                    if(restaurants!= undefined) {
+                        viewModel.restaurants = restaurants.restaurants;
 
-            var allRes = [];
-            RestaurantService
-                .findAllRestaurants()
-                .then(
-                    function (response) {
-                        allRes = response.data;
-                        viewModel.restaurants = allRes.concat(viewModel.restaurants);
-                    });
+                        var promiseDB = RestaurantService.findRestaurantsByCuisineFromDB(cuisine);
+                        promiseDB.then(
+                            function (response) {
+                                var resDB = response.data;
+                                if(resDB!= undefined) {
+                                    viewModel.restaurants =
+                                        viewModel.restaurants.concat(resDB);
+                                }
+                            }
+                        )
+                    } else {
+                        viewModel.errorMessage = "Error while loading Restaurants";
+                    }
+                }
+            );
         }
     }
 })();

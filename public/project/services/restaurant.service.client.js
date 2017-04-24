@@ -6,7 +6,7 @@
     function restaurantService($http) {
         var api = {
             restaurantLogout: restaurantLogout,
-            restaurantLogin : restaurantLogin,
+            loginRestaurant : loginRestaurant,
             restaurantRegister: restaurantRegister,
             findRestaurantByCredentials: findRestaurantByCredentials,
             findRestaurantByIdFromDB:findRestaurantByIdFromDB,
@@ -21,11 +21,21 @@
             findRestaurantsNearBy:findRestaurantsNearBy,
             findDeliveringRestaurantsOfCuisine:findDeliveringRestaurantsOfCuisine,
             findAllRestaurantsOfCuisine:findAllRestaurantsOfCuisine,
-            findAllRestaurants:findAllRestaurants
+            findAllRestaurants:findAllRestaurants,
+            findAllCuisineTypes:findAllCuisineTypes,
+            findRestaurantsByCuisineFromDB:findRestaurantsByCuisineFromDB
         };
         return api;
 
-        function restaurantLogin(restaurant) {
+        function findRestaurantsByCuisineFromDB(cuisineType) {
+            return $http.get("/rest/restaurant/cuisine/"+cuisineType);
+        }
+
+        function findAllCuisineTypes() {
+            return $http.get("/rest/restaurant/allcuisines");
+        }
+
+        function loginRestaurant(restaurant) {
             return $http.post("/rest/restaurant/login", restaurant);
         }
 

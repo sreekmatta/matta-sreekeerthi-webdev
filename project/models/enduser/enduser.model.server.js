@@ -135,6 +135,13 @@ module.exports = function () {
                 if(err)
                     deffered.reject(err);
                 else {
+                    // model.postModel.deleteAllPostsForUser(userId,function (error,posts) {
+                    //   if(error)
+                    //       deffered.reject(error);
+                    //   else{
+                    //       deffered.resolve(user);
+                    //   }
+                    // })
                     deffered.resolve(user);
                 }
             });

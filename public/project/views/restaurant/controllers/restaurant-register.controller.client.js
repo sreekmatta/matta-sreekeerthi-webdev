@@ -5,6 +5,7 @@
 
     function RestaurantRegisterController(RestaurantService,$location,$rootScope) {
         var viewModel = this;
+
         viewModel.currentUser = $rootScope.currentUser;
 
         //event handlers
@@ -23,7 +24,7 @@
                                 if (response.data != null) {
                                     var restaurant = response.data;
                                     $rootScope.currentUser = restaurant;
-                                    $location.url("/restaurant/" + restaurant._id);
+                                    $location.url("/restaurant");
                                 }
                                 else{
                                     viewModel.errorMessage = "Username already exists";

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="col-xs-1">
-            <a href="#!/admin/{{model.currentUser._id}}/manage/restaurant" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            <a href="#!/admin/manage/restaurant" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
             </a></div>
         <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
@@ -20,15 +20,15 @@
                 </button>
                 <ul class="dropdown-menu nav-dropdown-menu">
                     <li ng-show="model.currentUser.userType=='ADMIN'">
-                        <a href="#!/admin/{{model.currentUser._id}}">
+                        <a href="#!/admin">
                             <span class="glyphicon glyphicon-dashboard"></span>
                             Admin Dashboard</a>
                     </li>
-                    <li><a href="#!/enduser/{{model.currentUser._id}}">
+                    <li><a href="#!/enduser">
                         <span class="glyphicon glyphicon-dashboard"></span>
                         Foodie Dashboard</a>
                     </li>
-                    <li><a href="#!/enduser/{{model.currentUser._id}}/profile">
+                    <li><a href="#!/enduser/profile">
                         <span class="glyphicon glyphicon-user"></span>
                         Profile</a>
                     </li>
@@ -81,7 +81,7 @@
         <div class="row ho-dashboard ho-left-padding ho-right-padding">
             <div>
                 <div class="row">
-                    <h3 class="ho-board-heading">Manage Users</h3>
+                    <h3 class="ho-board-heading">Edit Restaurant : {{model.restaurant.name}}</h3>
                 </div>
                 <div class="row left-margin right-margin">
                     <div class="row">
@@ -129,7 +129,7 @@
                                 <a class="btn btn-success btn-block"
                                    ng-click="model.updateRestaurant(model.restaurant)">Update Restaurant</a>
                                 <a class="btn btn-danger  btn-block"
-                                   href="#!/admin/{{model.currentUser._id}}">Cancel</a>
+                                   href="#!/admin">Cancel</a>
                             </div>
                         </div>
                         <div class="col-sm-2 col-xs-1">

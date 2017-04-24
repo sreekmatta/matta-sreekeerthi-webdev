@@ -11,6 +11,8 @@ module.exports = function () {
         findAllRestaurants:findAllRestaurants,
         findRestaurantByName:findRestaurantByName,
         updateRestaurantImage:updateRestaurantImage,
+        findAllCuisineTypes:findAllCuisineTypes,
+        findRestaurantsByCuisine:findRestaurantsByCuisine,
         setModel: setModel
     };
 
@@ -43,10 +45,14 @@ module.exports = function () {
         return deferred.promise;
     }
 
+    function findAllCuisineTypes() {
+        return RestaurantModel.schema.path('cuisine').enumValues;
+    }
+
     function findRestaurantById(restaurantId) {
         var deferred = q.defer();
         RestaurantModel
-            .findById(restaurantId, function (err, restaurant) {
+            .find({_id:restaurantId}, function (err, restaurant) {
                 if(err) {
                     deferred.reject(err);
                 } else {
@@ -107,6 +113,7 @@ module.exports = function () {
                 {   username: restaurant.username,
                     password: restaurant.password,
                     name: restaurant.name,
+                    email:restaurant.email,
                     streetAddress: restaurant.streetAddress,
                     city: restaurant.city,
                     state: restaurant.state,
@@ -164,6 +171,22 @@ module.exports = function () {
         var deferred = q.defer();
         RestaurantModel
             .find({name: { "$regex": resName, "$options": "i" }},
+                function (err, restaurants) {
+                    if(!restaurants) {
+                        console.log("err");
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(restaurants);
+                    }
+                });
+        return deferred.promise;
+    }
+
+
+    function findRestaurantsByCuisine(cuisineType) {
+        var deferred = q.defer();
+        RestaurantModel
+            .find({foodTypes: cuisineType},
                 function (err, restaurants) {
                     if(!restaurants) {
                         console.log("err");

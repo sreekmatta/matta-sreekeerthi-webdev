@@ -5,9 +5,11 @@
 
     function ManageUserController($location,$routeParams,$rootScope,UserService,$route,PostService) {
         var viewModel = this;
-        var userId = $routeParams['uid'];
-        viewModel.userId = userId;
         viewModel.currentUser = $rootScope.currentUser;
+        var userId = viewModel.currentUser._id;
+
+        viewModel.userId = userId;
+
         var nuId = $routeParams['userId'];
 
         viewModel.searchRestaurants = searchRestaurants;
@@ -25,17 +27,17 @@
                     });
 
             if(nuId){
-            var promise = UserService.findUserById(nuId);
-            promise.then(
-                function (user) {
-                    user = user.data;
-                    if(user!= undefined) {
-                        viewModel.user = user;
-                    } else {
-                        viewModel.errorMessage = "Error while loading enduser by ID:" + userId;
+                var promise = UserService.findUserById(nuId);
+                promise.then(
+                    function (user) {
+                        user = user.data;
+                        if(user!= undefined) {
+                            viewModel.user = user;
+                        } else {
+                            viewModel.errorMessage = "Error while loading enduser by ID:" + userId;
+                        }
                     }
-                }
-            );
+                );
             }
         }
         init();
@@ -43,7 +45,7 @@
 
         function createUser(user) {
             UserService
-                .register(user)
+                .createUser(user)
                 .then(
                     function (response) {
                         if(response.status==200){
@@ -109,10 +111,12 @@
                 );
 
             PostService.DeleteAllPostsByUser(userId)
-                .then(function () {
-                    $route.reload();
-                    console.log("Delete Success");
-                })
+                .then(function successCallback() {
+                        $route.reload();
+                    },
+                    function errorCallback() {
+                        $route.reload();
+                    })
         }
 
     }

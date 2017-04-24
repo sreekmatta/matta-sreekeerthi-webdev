@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function(app,passport,LocalStrategy) {
     //db connection
     var connectionString = 'mongodb://127.0.0.1:27017/test';
 
@@ -10,7 +10,7 @@ module.exports = function(app) {
     mongoose.connect(connectionString);
 
     var models = require('./models/models.server')();
-    require("./services/enduser.service.server.js")(app,models.enduserModel);
+    require("./services/enduser.service.server.js")(app,models.enduserModel,models.restaurantModel);
     require("./services/restaurant.service.server.js")(app,models.restaurantModel);
     require("./services/post.service.server.js")(app,models.postModel);
 };

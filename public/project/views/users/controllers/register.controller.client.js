@@ -23,7 +23,7 @@
                                 if (response.data != null) {
                                     var user = response.data;
                                     $rootScope.currentUser = user;
-                                    $location.url("/enduser/" + user._id);
+                                    $location.url("/enduser");
                                 }
                                 else
                                     viewModel.errorMessage = "Username already exists";

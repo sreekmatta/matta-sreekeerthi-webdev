@@ -5,9 +5,15 @@
 
     function UserDashboardController(UserService,RestaurantService,PostService,$route,$location,$routeParams,$rootScope) {
         var viewModel = this;
-        var userId = $routeParams['uid'];
-        viewModel.userId = userId;
         viewModel.currentUser = $rootScope.currentUser;
+        var userId = viewModel.currentUser._id;
+
+        var friendUID = $routeParams['uid'];
+        if(friendUID) {
+            viewModel.userId = friendUID;
+            userId = friendUID;
+        }
+
         var user = null;
 
         //default values
@@ -201,8 +207,8 @@
         function followUser(mainUserId, followerUserId) {
             var promise = UserService.followUser(mainUserId, followerUserId);
             promise.then(
-                function (users) {
-                    var users = users.data;
+                function (response) {
+                    var users = response.data;
                     if(users!= undefined) {
                         viewModel.allFollowers = users;
                         viewModel.user.followers.push(followerUserId);
@@ -213,14 +219,17 @@
                 }
             );
         }
+
         function unfollowUser(mainUserId,unfollowById) {
             var promise = UserService.unfollowUser(mainUserId, unfollowById);
             promise.then(
                 function (response) {
-                    var mainUser = response.data;
-                    if(mainUser!= undefined) {
-                        viewModel.allFollowers = mainUser.followers;
-                        viewModel.user = mainUser;
+                    var users = response.data;
+                    if(users!= undefined) {
+                        viewModel.allFollowers = users;
+                        viewModel.user.followers = users;
+                        viewModel.currentUser.following.splice(
+                            viewModel.currentUser.following.indexOf(mainUserId),1);
                     } else {
                         viewModel.errorMessage = "Sorry, Error occurred while following the current user";
                     }

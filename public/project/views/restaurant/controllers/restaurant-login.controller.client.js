@@ -29,13 +29,13 @@
             }
             else{
                 RestaurantService
-                    .findRestaurantByCredentials(restaurant.username,restaurant.password)
+                    .loginRestaurant(restaurant)
                     .then(
                         function successCallback(response) {
                             var restaurant = response.data;
                             if(restaurant){
                                 $rootScope.currentUser = restaurant;
-                                $location.url("/restaurant/" + restaurant._id);
+                                $location.url("/restaurant");
                             }
                             else{
                                 viewModel.errorMessage = "Invalid Credentials For Restaurant";

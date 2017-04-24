@@ -34,7 +34,7 @@
                         function successCallback(response) {
                             var user = response.data;
                             $rootScope.currentUser = user;
-                            $location.url("/enduser/" + user._id);
+                            $location.url("/enduser");
                         },
                         function errorCallback(response) {
                             viewModel.errorMessage = "Entered Credentials are Invalid";

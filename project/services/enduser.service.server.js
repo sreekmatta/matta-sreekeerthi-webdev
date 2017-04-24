@@ -1,6 +1,6 @@
-module.exports = function (app,enduserModel) {
+module.exports = function (app,enduserModel,restaurantModel) {
 
-    var passport = require('passport');
+    var passport      = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
     var bcrypt = require("bcrypt-nodejs");
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -10,7 +10,8 @@ module.exports = function (app,enduserModel) {
         callbackURL  : process.env.GOOGLE_CALLBACK_URL
     };
 
-    
+
+
 
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/auth/google/callback',
@@ -19,11 +20,11 @@ module.exports = function (app,enduserModel) {
 
         }), function(req, res){
             var t  = req.user;
-            var url = '/project/index.html#!/enduser/'+t._id;
+            var url = '/project/index.html#!/enduser';
             res.redirect(url);
         });
     app.post("/rest/enduser", createUser);
-    app.post("/rest/login", passport.authenticate('local'), login);
+    app.post("/rest/login", passport.authenticate('local-user'), login);
     app.post("/rest/logout", logout);
     app.post("/rest/register", register);
     app.get("/rest/enduser/getall",getAllUsers);
@@ -48,8 +49,21 @@ module.exports = function (app,enduserModel) {
         enduserModel
             .findUserById(user._id)
             .then(
-                function(user){
-                    done(null, user);
+                function(endUser){
+                    if(endUser.length==0){
+                        restaurantModel
+                            .findRestaurantById(user._id)
+                            .then(
+                                function(restaurant){
+                                    done(null, restaurant);
+                                },
+                                function(err){
+                                    done(err, null);
+                                }
+                            );
+                    }
+                    else
+                        done(null, endUser);
                 },
                 function(err){
                     done(err, null);
@@ -57,20 +71,20 @@ module.exports = function (app,enduserModel) {
             );
     }
 
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use("local-user",new LocalStrategy(localStrategy));
     function localStrategy(username, password, done) {
-
         enduserModel
             .findUserByUsername(username)
             .then(
                 function(user) {
-                    // if the user exists, compare passwords with bcrypt.compareSync
                     if(user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     } else {
                         return done(null, false);
                     }
                 });
+
+
     }
 
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
@@ -167,13 +181,22 @@ module.exports = function (app,enduserModel) {
     function updateUser(req, res) {
         var userId = req.params.userId;
         var user = req.body;
-        user.password = bcrypt.hashSync(user.password);
-        enduserModel
-            .updateUser(userId,user)
-            .then(function (user) {
-                res.json(user);
-            }, function (error) {
-                res.sendStatus(500);
+        enduserModel.findUserById(userId)
+            .then(function (existingUser) {
+                existingUser = existingUser[0];
+
+                if(existingUser){
+                    if(user.password!=existingUser.password){
+                        user.password = bcrypt.hashSync(user.password);
+                    }
+                    enduserModel
+                        .updateUser(userId,user)
+                        .then(function (user) {
+                            res.json(user);
+                        }, function (error) {
+                            res.sendStatus(500);
+                        });
+                }
             });
     }
 
@@ -213,8 +236,6 @@ module.exports = function (app,enduserModel) {
         var user = req.body;
         var username = user.username;
         var password = user.password;
-        // var username = req.query.username;
-        // var password = req.query.password;
 
         enduserModel
             .findUserByCredentials(username,password)

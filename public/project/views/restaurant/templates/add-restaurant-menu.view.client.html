@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="col-xs-1">
-            <a href="#!/restaurant/{{currentUser._id}}" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
+            <a href="#!/restaurant" class="navbar-brand ho-left"> <span class="glyphicon glyphicon-chevron-left"></span>
             </a></div>
         <div class="col-xs-5 msk-navbar-header zero-padding">
             <a class="navbar-brand" href="#!/">
@@ -19,11 +19,11 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu nav-dropdown-menu">
-                    <li><a href="#!/restaurant/{{currentUser._id}}">
+                    <li><a href="#!/restaurant">
                         <span class="glyphicon glyphicon-dashboard"></span>
                         Dashboard</a>
                     </li>
-                    <li><a href="#!/restaurant/{{currentUser._id}}/profile">
+                    <li><a href="#!/restaurant/profile">
                         <span class="glyphicon glyphicon-user"></span>
                         Profile</a>
                     </li>
@@ -101,7 +101,7 @@
                     <a class="btn btn-success btn-block"
                        ng-click="model.updateProfile(model.restaurant)">Update Menu</a>
                     <a class="btn btn-danger  btn-block"
-                       href="#!/restaurant/{{model.rid}}">Cancel</a>
+                       href="#!/restaurant">Cancel</a>
                 </div>
 
             </form>

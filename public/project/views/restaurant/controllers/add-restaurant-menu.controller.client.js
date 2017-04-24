@@ -5,9 +5,9 @@
 
     function AddRestaurantMenuController(RestaurantService,$location,$rootScope,$routeParams) {
         var viewModel = this;
-        var rid = $routeParams['rid'];
-        viewModel.rid = rid;
         viewModel.currentUser = $rootScope.currentUser;
+        var rid = viewModel.currentUser._id;
+        viewModel.rid = rid;
 
 
         viewModel.updateProfile = updateProfile;
@@ -18,6 +18,7 @@
                 .then(
                     function successCallback(response) {
                         var restaurant = response.data;
+                        restaurant = restaurant[0];
                         viewModel.restaurant = restaurant;
                     },
                     function errorCallback(response) {
