@@ -819,3 +819,10 @@ a.join-btn:hover{
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+
+@media screen and (min-width: 460px) and (max-width: 730px) {
+    .ho-board-heading {
+        margin-top: 160px !important;
+    }
+}

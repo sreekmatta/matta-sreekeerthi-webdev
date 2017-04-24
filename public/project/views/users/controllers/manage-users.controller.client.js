@@ -44,32 +44,75 @@
 
 
         function createUser(user) {
-            UserService
-                .createUser(user)
-                .then(
-                    function (response) {
-                        if(response.status==200){
-                            viewModel.successMessage = "User created successfully";
-                        }
-                        else
-                            viewModel.errorMessage = "Username already exists";
 
-                    });
+            if(user && user.username && user.password && user.retypepassword
+                && user.email && user.lastName && user.firstName)
+            {
+                if(user.retypepassword === user.password){
+                    UserService.findUserByUsername(user.username)
+                        .then(
+                            function (response) {
+                                var userExists = response.data;
+                                if(userExists){
+                                    viewModel.errorMessage = "Username already exists";
+                                }
+                                else{
+                                    UserService
+                                        .createUser(user)
+                                        .then(
+                                            function (response) {
+                                                if(response.status==200){
+                                                    viewModel.successMessage = "User created successfully";
+                                                }
+                                                else
+                                                    viewModel.errorMessage = "Sorry, error occurred while creating User";
+
+                                            });
+                                }
+                            }
+                        );
+                }
+                else{
+                    viewModel.errorMessage = "Password and Verify Password donot Match";
+                }
+
+            }
+            else
+            {
+                if(user && user.username && user.password && user.retypepassword
+                    && !user.email && user.lastName && user.firstName)
+                    viewModel.errorMessage = "Please enter a valid E-mail Id";
+                else
+                    viewModel.errorMessage = "All the fields are mandatory";
+            }
+
         }
 
         function updateUser(user) {
-            var promise = UserService.updateUser(nuId,user);
-            promise.then(
-                function successCallback(response) {
-                    if(response.status == 200) {
-                        viewModel.successMessage = "User Profile updated successfully";
-                    } else {
+
+            if(user && user.username && user.password
+                && user.email && user.lastName && user.firstName)
+            {
+                var promise = UserService.updateUser(nuId,user);
+                promise.then(
+                    function successCallback(response) {
+                        if(response.status == 200) {
+                            viewModel.successMessage = "User Profile updated successfully";
+                        } else {
+                            viewModel.errorMessage = "Error while updating enduser by ID:" + userId;
+                        }
+                    },
+                    function errorCallback(response) {
                         viewModel.errorMessage = "Error while updating enduser by ID:" + userId;
-                    }
-                },
-                function errorCallback(response) {
-                    viewModel.errorMessage = "Error while updating enduser by ID:" + userId;
-                });
+                    });
+            }
+            else
+            {
+                if(user && user.username && user.password && !user.email && user.lastName && user.firstName)
+                    viewModel.errorMessage = "Please enter a valid E-mail Id";
+                else
+                    viewModel.errorMessage = "All the fields are mandatory";
+            }
         }
 
         function searchRestaurants() {

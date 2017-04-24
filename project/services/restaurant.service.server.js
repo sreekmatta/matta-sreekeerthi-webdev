@@ -109,7 +109,7 @@ module.exports = function (app,restaurantModel) {
     }
 
     function findRestaurantByUsername(req, res) {
-        var username = req.params.username;
+        var username = req.query.username;
         restaurantModel
             .findRestaurantByUsername(username)
             .then(function (restaurant) {

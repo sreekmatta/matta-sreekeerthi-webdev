@@ -41,15 +41,41 @@
 
 
         function createRestaurant(restaurant) {
-            RestaurantService
-                .createRestaurant(restaurant)
-                .then(
-                    function (response) {
-                        if(response.status == 200)
-                            viewModel.successMessage = "Restaurant created successfully";
-                        else
-                            viewModel.errorMessage = "Restaurant not created";
-                    });
+
+            if (restaurant && restaurant.username && restaurant.password && restaurant.name) {
+
+                RestaurantService.findRestaurantByUsername(restaurant.username)
+                    .then(
+                        function (response) {
+                            var restaurantExists = response.data;
+                            if(restaurantExists){
+                                viewModel.successMessage="";
+                                viewModel.errorMessage = "Restaurant Username already exists";
+                            }
+                            else{
+                                RestaurantService
+                                    .createRestaurant(restaurant)
+                                    .then(
+                                        function (response) {
+                                            if(response.status == 200){
+                                                viewModel.errorMessage="";
+                                                viewModel.successMessage = "Restaurant created successfully";
+                                            }
+                                            else{
+                                                viewModel.successMessage="";
+                                                viewModel.errorMessage = "Restaurant not created";
+                                            }
+
+                                        });
+                            }
+
+                        }
+                    );
+            }
+            else{
+                viewModel.successMessage="";
+                viewModel.errorMessage = "Restaurant name, Username, Password are mandatory";
+            }
         }
 
         function searchAllRestaurants() {
@@ -101,18 +127,26 @@
         }
 
         function updateRestaurant(restaurant) {
-            RestaurantService
-                .updateRestaurant(resId,restaurant)
-                .then(
-                    function successCallback(response) {
-                        $route.reload();
-                        viewModel.restaurant = restaurant;
-                        viewModel.successMessage = "Restaurant updated successfully";
-                    },
-                    function errorCallback(response) {
-                        viewModel.errorMessage = "Restaurant does not exist";
-                    }
-                );
+            if (restaurant && restaurant.username && restaurant.password && restaurant.name) {
+                RestaurantService
+                    .updateRestaurant(resId,restaurant)
+                    .then(
+                        function successCallback(response) {
+                            viewModel.restaurant = restaurant;
+                            viewModel.errorMessage="";
+                            viewModel.successMessage = "Restaurant updated successfully";
+                        },
+                        function errorCallback(response) {
+                            viewModel.successMessage="";
+                            viewModel.errorMessage = "Error occurred while updating the restaurant";
+                        }
+                    );
+            }
+            else{
+                viewModel.successMessage="";
+                viewModel.errorMessage = "Restaurant Name and Password are mandatory fields";
+            }
+
         }
 
     }
