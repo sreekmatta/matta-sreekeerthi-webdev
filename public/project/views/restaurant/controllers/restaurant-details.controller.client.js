@@ -17,10 +17,13 @@
         viewModel.resName = resName;
 
         viewModel.currentUser = $rootScope.currentUser;
-        var rid = viewModel.currentUser._id;
 
         if(!resId){
-            resId = rid;
+            if(viewModel.currentUser && viewModel.currentUser!='0' &&
+            viewModel.currentUser.userType=='RESTAURANT')
+            {
+                resId =     viewModel.currentUser._id;
+            }
             viewModel.resId = resId;
         }
 
