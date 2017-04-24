@@ -43,9 +43,11 @@
                             function successCallback(response) {
                                 var restaurant = response.data;
                                 viewModel.restaurant = restaurant;
-                                viewModel.successMessage = "Restaurant details updated Successfully"
+                                viewModel.errorMessage="";
+                                viewModel.successMessage = "Restaurant details updated Successfully";
                             },
                             function errorCallback(response) {
+                                viewModel.successMessage="";
                                 viewModel.errorMessage = "Restaurant does not exist";
                             }
                         );
@@ -53,10 +55,15 @@
             else{
                 if(restaurant && restaurant.username && restaurant.password
                     && restaurant.retypepassword
-                    && !restaurant.email && restaurant.name)
+                    && !restaurant.email && restaurant.name){
+
+                    viewModel.successMessage="";
                     viewModel.errorMessage = "Please enter a valid E-mail Id";
-                else
+                }
+                else{
+                    viewModel.successMessage="";
                     viewModel.errorMessage = "All the fields are mandatory";
+                }
 
             }
         }
