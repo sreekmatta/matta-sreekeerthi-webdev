@@ -509,13 +509,13 @@ textarea{
     height: 45px;
     border-radius: 5px;
     color: black;
+    padding: 5px;
 }
 
 .ho-place{
     width: 100%;
     margin-left: 1px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 5px;
     color: black;
 }
 
@@ -826,3 +826,5 @@ a.join-btn:hover{
         margin-top: 160px !important;
     }
 }
+
+

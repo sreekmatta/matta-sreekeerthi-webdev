@@ -38,33 +38,24 @@
         <div class="ho-dashboard-greeting">
             Find the best places around you to eat
         </div>
-        <div class="msk-search-bar">
+        <div class="row msk-search-bar">
             <div class="col-xs-1 col-md-2"></div>
             <div class="col-xs-10 col-md-8 zero-padding">
-                <div class="col-xs-12 col-sm-2 msk-col-search dropdown pull-left">
+                <div class="col-xs-12 col-sm-3 msk-col-search dropdown pull-left">
                     <select name="radius" id="radius" class="ho-radius">
                         <option value="2">Around 2 miles</option>
                         <option value="5">Around 5 miles</option>
                         <option value="10">Around 10 miles</option>
                     </select>
                 </div>
-                <div class="col-xs-12 col-sm-8 msk-col-search search-bar">
-                    <div class="input-group">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle search-bar-height"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                <span class="glyphicon glyphicon-search"></span>
-                                <span>Search</span>
-                            </button>
-                        </div><!-- /btn-group -->
-                        <select name="place" id="resname" class="search-bar-height ho-place">
-                            <option value="0">All Places</option>
-                            <option value="Cafe">Cafes</option>
-                            <option value="Bars">Bars</option>
-                            <option value="Pizza">Pizzeria</option>
-                        </select>
-                    </div><!-- /input-group -->
+                <div class="col-xs-12 col-sm-7 msk-col-search search-bar">
+
+                    <select name="place" id="resname" class="search-bar-height ho-place">
+                        <option value="0">All Places</option>
+                        <option value="Cafe">Cafes</option>
+                        <option value="Bars">Bars</option>
+                        <option value="Pizza">Pizzeria</option>
+                    </select>
                 </div>
                 <div class="col-xs-12 col-sm-2 msk-col-search">
                     <a ng-click="model.searchRestaurants()"

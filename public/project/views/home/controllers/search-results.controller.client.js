@@ -28,7 +28,7 @@
         viewModel.curPage = 0;
         viewModel.pageSize = 10;
 
-
+        viewModel.loading = true;
         viewModel.numberOfPages = numberOfPages;
         viewModel.searchRestaurantsByFilters = searchRestaurantsByFilters;
         viewModel.searchRestaurants = searchRestaurants;
@@ -62,6 +62,7 @@
                             function (response) {
                                 var allRes = response.data;
                                 viewModel.restaurants = allRes.concat(viewModel.restaurants);
+                                viewModel.loading = false;
                             });
 
                 }
