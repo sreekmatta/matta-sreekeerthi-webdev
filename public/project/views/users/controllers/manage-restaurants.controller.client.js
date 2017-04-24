@@ -45,7 +45,6 @@
                 .createRestaurant(restaurant)
                 .then(
                     function (response) {
-                        var restaurant = response.data;
                         if(response.status == 200)
                             viewModel.successMessage = "Restaurant created successfully";
                         else

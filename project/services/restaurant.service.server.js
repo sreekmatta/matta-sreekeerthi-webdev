@@ -8,6 +8,7 @@ module.exports = function (app,restaurantModel) {
     // app.post('/rest/restaurant/login',findRestaurantByCredentials);
     app.get("/rest/restaurant/allcuisines",findAllCuisineTypes);
     app.get('/rest/restaurant/allrestaurants', findAllRestaurants);
+    app.post("/rest/restaurant", createRestaurant);
     app.get("/rest/restaurant", findRestaurant);
     app.get("/rest/restaurant/name/:resName",findRestaurantByName);
     app.get("/rest/restaurant/cuisine/:cuisineType",findRestaurantsByCuisine);
