@@ -14,6 +14,7 @@
         //event handlers
         viewModel.updateUser = updateUser;
         viewModel.deleteUser = deleteUser;
+        viewModel.searchRestaurants = searchRestaurants;
 
         function init() {
             var promise = UserService.findUserById(userId);
@@ -80,6 +81,13 @@
                     viewModel.errorMessage = "Error while updating enduser by ID:" + userId;
                 });
         }
+
+        function searchRestaurants() {
+            var resname = $( "#resname").val();
+            var radius = $( "#radius").val();
+            $location.url("/restaurant/search/"+radius+"/"+resname);
+        }
+
 
 
     }
