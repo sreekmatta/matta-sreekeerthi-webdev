@@ -348,19 +348,6 @@ a > .fa-pinterest-square:hover{
 a > .fa {
 	color: #777 !important;
 }
-
-.parallax {
-	/* The image used */
-	background-image: url("../img/project-back.jpg");
-	height: 50px;
-
-	/* Create the parallax scrolling effect */
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
 span.glyphicon-education{
 	font-size: 25px !important;
 	top: 5px;
@@ -517,4 +504,29 @@ margin-top: 20px;
 
 .navbar-collapse.in {
 	overflow-y: hidden;
+}
+
+@media screen and (max-width: 350px){
+	h2.section-heading , .navbar-brand{
+		font-size: 25px !important;
+	}
+
+	h2.web-dev-heading {
+		width: 238px;
+	}
+	h2.skills-heading {
+		width: 90px;
+	}
+	h2.education-heading {
+		width: 143px;
+	}
+	h2.experience-heading {
+		width: 157px;
+	}
+	h2.projects-heading {
+		width: 126px;
+	}
+	h2.contact-heading {
+		width: 124px;
+	}
 }

@@ -114,7 +114,7 @@ module.exports = function () {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
-                    bookmarks: user.bookmarks,
+                    userType: user.userType,
                     phone:user.phone},
                 function (err,user) {
                     if(err){
@@ -135,13 +135,6 @@ module.exports = function () {
                 if(err)
                     deffered.reject(err);
                 else {
-                    // model.postModel.deleteAllPostsForUser(userId,function (error,posts) {
-                    //   if(error)
-                    //       deffered.reject(error);
-                    //   else{
-                    //       deffered.resolve(user);
-                    //   }
-                    // })
                     deffered.resolve(user);
                 }
             });

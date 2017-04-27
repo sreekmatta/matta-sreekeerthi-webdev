@@ -33,6 +33,10 @@
                         user = user.data;
                         if(user!= undefined) {
                             viewModel.user = user;
+                            if(user.userType=="ADMIN")
+                                viewModel.isAdmin = true;
+                            else
+                                viewModel.isAdmin = false;
                         } else {
                             viewModel.errorMessage = "Error while loading enduser by ID:" + userId;
                         }
@@ -88,11 +92,14 @@
 
         }
 
-        function updateUser(user) {
+        function updateUser(user,isAdmin) {
 
             if(user && user.username && user.password
                 && user.email && user.lastName && user.firstName)
             {
+                if(isAdmin)
+                    user.userType = "ADMIN";
+
                 var promise = UserService.updateUser(nuId,user);
                 promise.then(
                     function successCallback(response) {
