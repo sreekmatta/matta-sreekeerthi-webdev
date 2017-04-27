@@ -12,7 +12,6 @@ module.exports = function (app,enduserModel,restaurantModel) {
 
 
 
-
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
     app.get('/auth/google/callback',
         passport.authenticate('google', {
@@ -222,7 +221,7 @@ module.exports = function (app,enduserModel,restaurantModel) {
     }
 
     function findUserByUsername(req, res) {
-        var username = req.params.username;
+        var username = req.query.username;
         enduserModel
             .findUserByUsername(username)
             .then(function (user) {
@@ -236,6 +235,12 @@ module.exports = function (app,enduserModel,restaurantModel) {
         var user = req.body;
         var username = user.username;
         var password = user.password;
+
+        if(!user)
+        {
+            var username = req.query.username;
+            var password = req.query.password;
+        }
 
         enduserModel
             .findUserByCredentials(username,password)
