@@ -506,7 +506,7 @@ margin-top: 20px;
 	overflow-y: hidden;
 }
 
-@media screen and (max-width: 350px){
+@media screen and (max-width: 365px){
 	h2.section-heading , .navbar-brand{
 		font-size: 25px !important;
 	}
